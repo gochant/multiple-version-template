@@ -15,13 +15,13 @@ require(['../require-conf'], function (config) {
             extensions: ['veronica-ui'],
             modules: [{
                 name: 'basic',
-                source: './modules',
+                parentPath: '../widgets',
                 widgetPath: '',
                 multilevel: true,
                 hasEntry: false
             }, {
                 name: 'project',
-                source: './modules',
+                parentPath: './modules',
                 widgetPath: '',
                 multilevel: true,
                 hasEntry: false
