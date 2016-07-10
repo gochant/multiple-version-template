@@ -1,7 +1,7 @@
 
 require(['../require-conf'], function (config) {
 
-    var devPath = 'http://192.168.1.18:8097/cdn/vendor';  // 开发时路径
+    var devPath = 'http://localhost:8001/vendor';  // 开发时路径
     var releasePath = './vendor';  // 发布时路径
     require.config(config(devPath, releasePath));  // 进行 requirejs 配置
 
@@ -14,50 +14,34 @@ require(['../require-conf'], function (config) {
             global: true,
             extensions: ['veronica-ui'],
             modules: [{
-                name: 'basic',
-                parentPath: '../widgets',
-                widgetPath: '',
-                multilevel: true,
-                hasEntry: false
-            }, {
-                name: 'project',
-                parentPath: './modules',
+                name: 'module1',
+                parentPath: '../',
                 widgetPath: '',
                 multilevel: true,
                 hasEntry: false
             }],
-            homePage: 'project/projects/follows',
+            homePage: 'geo',
             autoParseWidgetName: false,
             autoBuildPage: true
         });
 
+        var _ = app.core._;
 
+        if (!_.any) {
+            _.any = _.some;
+        }
+
+        app.page.add([{
+            'geo': {
+                name: '地理定位',
+                widgets: [
+                    'module1-geo@.v-render-body@module1'
+                ]
+            }
+        }]);
 
         app.launch().done(function () {
-
-            // 本地存储，兼容所有浏览器
-            require(['store'], function (store) {
-                app.store = store;
-            });
-
-            require(['extension'], function (extension) {
-                app.use(extension);
-                app.ui.initSidebar();
-                app.page.start();
-
-                if ($('.menu-item').find('.fa-legal').length > 0) {
-                    app.request.getJSON('Works/List').done(function (resp) {
-                        if (resp && resp.success) {
-                            var total = resp.total;
-                            if (total) {
-                                $('li .fn-sp').html(total);
-                                //app.store.set('workCount', total);
-                            }
-                        }
-                    });
-                }
-            });
-
+            app.page.start(true);
         });
     });
 });

@@ -1,0 +1,7 @@
+﻿[
+  {
+    "outputFile": "frontend/product/module1/geo/index.css",
+    "inputFile": "frontend/product/module1/geo/index.less",
+    "global-var": "scope=module1-geo"
+  }
+]

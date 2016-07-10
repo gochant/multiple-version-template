@@ -33,7 +33,8 @@
 
         // 第三方库路径
         config.paths = {
-            'lodash': framePath + '/lodash/4.13.1/lodash',
+            'underscore': framePath + '/lodash/4.13.1/lodash',
+          //  'underscore': framePath + '',
             'jquery': framePath + '/jquery/1.11.3/jquery',
             'text': framePath + '/requirejs-text/2.0.14/text',
             'ver': framePath + '/requirejs-ver/ver',
