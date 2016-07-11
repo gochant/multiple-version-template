@@ -4,6 +4,11 @@
 module.exports = function (grunt) {
 
     var reqPath = './www/product/config/require-conf.js';
+    var reqConfig = require(reqPath)('../__local__/vendor');
+
+    //reqConfig.paths = {
+    //    'product': '../'
+    //}
 
     grunt.initConfig({
         veronica: {
@@ -12,7 +17,7 @@ module.exports = function (grunt) {
                     appDir: './www',
                     baseUrl: '.',
                     dir: './www-built',
-                    reqConfig: require(reqPath)('../__local__/vendor'),
+                    reqConfig: reqConfig,
                     clean: [],
                     notMerge: [],
                     optimize: false,
@@ -40,7 +45,8 @@ module.exports = function (grunt) {
                     remote: {
                         vendor: [{
                             name: 'vendor.zip',
-                            path: 'http://192.168.1.18:8097/cdn/vendor/'
+                            path: 'http://localhost:8001/vendor/'
+                         //   path: 'http://192.168.1.18:8097/cdn/vendor/'
                         }],
                         copy: {
                             files: [{
