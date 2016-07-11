@@ -3,30 +3,34 @@
 
 module.exports = function (grunt) {
 
+    var reqPath = './www/product/config/require-conf.js';
 
     grunt.initConfig({
         veronica: {
-            defaults: {
+            product: {
                 options: {
-                    appDir: './frontend/product',
+                    appDir: './www',
                     baseUrl: '.',
-                    dir: './release',
-                    reqConfig: require('./frontend/product/require-conf.js')('../../__local__/vendor'),
+                    dir: './www-built',
+                    reqConfig: require(reqPath)('../__local__/vendor'),
                     clean: [],
                     notMerge: [],
                     optimize: false,
+                   // removeCombined: false,
                     entryPack: [{
-                        name: './home/main',
+                        name: './product/entry/home',
                         include: [
-                            './require-conf',
+                            
                             'veronica', 'jquery', 'underscore',
                             'text', 'css', 'ver'
-                        ]}],
+                        ],
+                       // exclude: ['./product/js/config/require-conf']
+                    }],
                     jsPack: {
                         paths: [
                             {
                                 name: 'module1',
-                                origin: './module1',
+                                origin: './product/widget/module1',
                                 target: './widgets',
                                 unique: true
                             }
@@ -36,7 +40,7 @@ module.exports = function (grunt) {
                     remote: {
                         vendor: [{
                             name: 'vendor.zip',
-                            path: 'http://localhost:8001/vendor/'
+                            path: 'http://192.168.1.18:8097/cdn/vendor/'
                         }],
                         copy: {
                             files: [{
@@ -44,12 +48,15 @@ module.exports = function (grunt) {
                                 cwd: '__local__/vendor/',
                                 src: [
                                     'jquery/**',
-                                    'tinyui/**'
+                                    'tinyui/**',
+                                    'veronica-ui/**',
+                                    'echarts/**'
                                 ],
-                                dest: 'release/vendor'
+                                dest: 'www-built/vendor'
                             }]
                         }
-                    }
+                    },
+                  //  remote: false
                 }
             }
         }

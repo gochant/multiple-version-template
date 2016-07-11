@@ -1,9 +1,12 @@
+requirejs([
+    '../config/require-conf',
+    '../config/home/extension',
+    '../config/home/page'
+], function (req, extension, page) {
 
-require(['../require-conf'], function (config) {
-
-    var devPath = 'http://localhost:8001/vendor';  // 开发时路径
-    var releasePath = './vendor';  // 发布时路径
-    require.config(config(devPath, releasePath));  // 进行 requirejs 配置
+    var devPath = 'http://192.168.1.18:8097/cdn/vendor';  // 开发时路径
+    var releasePath = '../../vendor';  // 发布时路径
+    require.config(req(devPath, releasePath));  // 进行 requirejs 配置
 
     require([
         'veronica'
@@ -15,14 +18,15 @@ require(['../require-conf'], function (config) {
             extensions: ['veronica-ui'],
             modules: [{
                 name: 'module1',
-                parentPath: '../',
+                parentPath: '../widget',
                 widgetPath: '',
                 multilevel: true,
                 hasEntry: false
             }],
             homePage: 'geo',
             autoParseWidgetName: false,
-            autoBuildPage: true
+            autoBuildPage: true,
+            releaseWidgetPath: '../../widgets'
         });
 
         var _ = app.core._;
@@ -39,6 +43,9 @@ require(['../require-conf'], function (config) {
                 ]
             }
         }]);
+
+        extension(app);
+        page(app);
 
         app.launch().done(function () {
             app.page.start(true);
