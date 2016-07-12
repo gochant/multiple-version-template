@@ -37,7 +37,7 @@
           //  'underscore': framePath + '',
             'jquery': framePath + '/jquery/1.11.3/jquery',
             'text': framePath + '/requirejs-text/2.0.14/text',
-            'ver': framePath + '/requirejs-ver/ver',
+            'ver': framePath + '/requirejs-ver/0.2.0/ver',
             'css': framePath + '/require-css/0.1.8/css',
             'normalize': framePath + '/require-css/0.1.8/normalize',
             'css-builder': framePath + '/require-css/0.1.8/css-builder',

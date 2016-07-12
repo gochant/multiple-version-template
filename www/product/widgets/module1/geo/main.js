@@ -1,12 +1,23 @@
 define([
     'text!./index.html',
     'echarts',
+    'ver!module1-test@module1',
     'css!./index.css'
-], function (tpl, echarts) {
+], function (tpl, echarts, subview) {
     return {
         template: tpl,
+        views: function() {
+            return {
+                'sub': {
+                    initializer: subview,
+                    options: {
+                        host: '.sub'
+                    }
+                }
+            }
+        },
         rendered: function () {
-            var dom = this.$el.get(0);
+            var dom = this.$('.chart').get(0);
             setTimeout(function () {
                 var myChart = echarts.init(dom);
 

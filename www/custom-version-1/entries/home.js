@@ -3,16 +3,17 @@ requirejs.config({
 });
 
 requirejs([
-    'product/config/require-conf',
-    'product/config/home/extension',
-    'product/config/home/page'
-], function (req, extension, page) {
-
+    'product/configs/require-conf',
+    'product/configs/home/extension',
+    'custom-version-1/configs/home/page',
+    'custom-version-1/configs/home/module'
+], function (req, extension, page, module) {
 
     var devPath = 'http://192.168.1.18:8097/cdn/vendor';  // 开发时路径
-    var devPath = 'http://localhost:8001/vendor';  // 开发时路径
-
+    // var devPath = 'http://localhost:8001/vendor';  // 开发时路径
     var releasePath = 'vendor';  // 发布时路径
+    var releaseWidgetPath = 'widgets';
+
     require.config(req(devPath, releasePath));  // 进行 requirejs 配置
 
     require([
@@ -23,17 +24,11 @@ requirejs([
         var app = veronica.createApp({
             global: true,
             extensions: ['veronica-ui'],
-            modules: [{
-                name: 'module1',
-                parentPath: './product/widget',
-                widgetPath: '',
-                multilevel: true,
-                hasEntry: false
-            }],
-            homePage: 'geo',
+            modules: module,
+            homePage: 'geo2',
             autoParseWidgetName: false,
             autoBuildPage: true,
-            releaseWidgetPath: 'widgets'
+            releaseWidgetPath: releaseWidgetPath
         });
 
         var _ = app.core._;
@@ -41,15 +36,6 @@ requirejs([
         if (!_.any) {
             _.any = _.some;
         }
-
-        app.page.add([{
-            'geo': {
-                name: '地理定位',
-                widgets: [
-                    'module1-geo@.v-render-body@module1'
-                ]
-            }
-        }]);
 
         extension(app);
         page(app);
