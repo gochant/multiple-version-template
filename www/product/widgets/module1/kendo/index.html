@@ -1,0 +1,41 @@
+<div data-bind="visible: isPrimitive">
+    <h4>ComboBox</h4>
+    <input data-role="combobox"
+           data-placeholder="Type a product e.g. 'Chai'"
+           data-value-primitive="true"
+           data-text-field="ProductName"
+           data-value-field="ProductID"
+           data-bind="value: selectedProduct,
+                              source: products,
+                              visible: isVisible,
+                              enabled: isEnabled,
+                              events: {
+                                change: onChange,
+                                open: onOpen,
+                                close: onClose
+                              }"
+           style="width: 100%" />
+    <p class="demo-hint">
+        <strong>data-value-primitive</strong> is set to <strong>true</strong>
+    </p>
+</div>
+<div data-bind="invisible: isPrimitive">
+    <h4>ComboBox</h4>
+    <input data-role="combobox"
+           data-placeholder="Type a product e.g. 'Chai'"
+           data-text-field="ProductName"
+           data-value-field="ProductID"
+           data-bind="value: selectedProduct,
+                              source: products,
+                              visible: isVisible,
+                              enabled: isEnabled,
+                              events: {
+                                change: onChange,
+                                open: onOpen,
+                                close: onClose
+                              }"
+           style="width: 100%" />
+    <p class="demo-hint">
+        <strong>data-value-primitive</strong> is <strong>not</strong> set.
+    </p>
+</div>

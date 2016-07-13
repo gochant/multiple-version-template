@@ -14,5 +14,9 @@
   {
     "outputFile": "www-built/styles/common.css",
     "inputFile": "www-built/styles/common.less"
+  },
+  {
+    "outputFile": "www/product/html/home.css",
+    "inputFile": "www/product/html/home.less"
   }
 ]
