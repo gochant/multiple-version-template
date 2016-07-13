@@ -17,6 +17,7 @@ define([
             }
         },
         rendered: function () {
+            var a = 'ccc';
             var dom = this.$('.chart').get(0);
             setTimeout(function () {
                 var myChart = echarts.init(dom);
