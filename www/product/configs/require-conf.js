@@ -15,6 +15,7 @@
 }(this, function () {
 
     return function (devPath, releasePath) {
+        var version = '0.1.0';
 
         var config = {
             debug: true,
@@ -29,9 +30,15 @@
             }
         };
 
-        var framePath = config.debug === true ? devPath : releasePath;
+        var framePath = releasePath;
+        config.urlArgs = 'v=' + version;
 
-        // 第三方库路径
+        if (config.debug === true) {
+            framePath = devPath;
+            config.urlArgs = "v=" + (new Date()).getTime();
+        }
+
+        // 绗笁鏂瑰簱璺緞
         config.paths = {
             'underscore': framePath + '/lodash/4.13.1/lodash',
           //  'underscore': framePath + '',
