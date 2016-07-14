@@ -1,4 +1,4 @@
-var reqPath = './require-conf.js';
+var reqPath = '../configs/require-conf.js';
 var reqConfig = require(reqPath)('../__local__/vendor');
 var dir = './www-built';
 

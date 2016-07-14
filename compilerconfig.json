@@ -18,5 +18,9 @@
   {
     "outputFile": "www/product/html/home.css",
     "inputFile": "www/product/html/home.less"
+  },
+  {
+    "outputFile": "www/product/html/styles/home.css",
+    "inputFile": "www/product/html/styles/home.less"
   }
 ]

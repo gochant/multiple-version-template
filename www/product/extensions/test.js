@@ -4,5 +4,7 @@ define(function () {
         app.test.hello = function () {
             console.log('hello');
         }
+
+
     }
 });

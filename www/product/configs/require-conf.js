@@ -35,7 +35,7 @@
 
         if (config.debug === true) {
             framePath = devPath;
-            config.urlArgs = "v=" + (new Date()).getTime();
+           // config.urlArgs = "v=" + (new Date()).getTime();
         }
 
         // 第三方库路径
@@ -52,9 +52,9 @@
             //'veronica': './assets/veronica',
             'veronica-ui': framePath + '/veronica-ui/0.1.3/veronica-ui',
             'veronica-ui-pro': framePath + '/veronica-ui/0.1.3/veronica-ui-pro',
-            'kendo-ui-pro': framePath + '/kendo-ui/pro/2016.2.607/js/kendo.all.min',
-            'kendo-ui-pro-culture': framePath + '/kendo-ui/pro/2016.2.607/js/cultures/kendo.culture.zh-CN.min',
-            'kendo-ui-pro-messages': framePath + '/kendo-ui/pro/2016.2.607/js/messages/kendo.messages.zh-CN.min',
+            'kendo-ui-pro': framePath + '/kendo-ui/pro/2015.3.1111/js/kendo.web.min',
+            'kendo-ui-pro-culture': framePath + '/kendo-ui/pro/2015.3.1111/js/cultures/kendo.culture.zh-CN.min',
+            'kendo-ui-pro-messages': framePath + '/kendo-ui/pro/2015.3.1111/js/messages/kendo.messages.zh-CN.min',
             'tiny': framePath + '/tinyui/1.0.0/js/tiny',
             'jquery-scrollbar': framePath + '/jquery.scrollbar/0.2.9/jquery.scrollbar',
             'select2': framePath + '/select2/3.5.4/js/select2',

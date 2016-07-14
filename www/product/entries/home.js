@@ -17,13 +17,14 @@ requirejs([
     require.config(req(devPath, releasePath));  // 进行 requirejs 配置
 
     require([
-        'veronica'
+        'veronica',
+        'kendo-ui-pro'
     ], function (veronica) {
 
         // 创建应用程序
         var app = veronica.createApp({
             homePage: 'geo',
-            extensions: ['veronica-ui'],
+            //extensions: ['veronica-ui-pro'],
             modules: module,
             autoParseWidgetName: false,
             autoBuildPage: true,

@@ -1,13 +1,13 @@
 define([
-    'text!./index.html',
-    'kendo-ui-pro'
-], function (tpl, kendo) {
+    'text!./index.html'
+], function (tpl) {
+    var kendo = window.kendo;
     return {
         template: tpl,
         initAttr: function () {
             this.model({
                 selectedProduct: null,
-                isPrimitive: false,
+                isPrimitive: true,
                 isVisible: true,
                 isEnabled: true,
                 primitiveChanged: function () {
