@@ -9,19 +9,19 @@ requirejs([
     'product/configs/home/module'
 ], function (req, extension, page, module) {
 
-    var devPath = 'http://192.168.1.18:8097/cdn/vendor';  // ¿ª·¢Ê±Â·¾¶
-    // var devPath = 'http://localhost:8001/vendor';  // ¿ª·¢Ê±Â·¾¶
-    var releasePath = 'vendor';  // ·¢²¼Ê±Â·¾¶
+    var devPath = 'http://192.168.1.18:8097/cdn/vendor';  // å¼€å‘æ—¶è·¯å¾„
+    // var devPath = 'http://localhost:8001/vendor';  // å¼€å‘æ—¶è·¯å¾„
+    var releasePath = 'vendor';  // å‘å¸ƒæ—¶è·¯å¾„
     var releaseWidgetPath = 'widgets';
 
-    require.config(req(devPath, releasePath));  // ½øĞĞ requirejs ÅäÖÃ
+    require.config(req(devPath, releasePath));  // è¿›è¡Œ requirejs é…ç½®
 
     require([
         'veronica',
         'kendo-ui-pro'
     ], function (veronica) {
 
-        // ´´½¨Ó¦ÓÃ³ÌĞò
+        // åˆ›å»ºåº”ç”¨ç¨‹åº
         var app = veronica.createApp({
             homePage: 'geo',
             //extensions: ['veronica-ui-pro'],

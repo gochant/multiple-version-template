@@ -1,5 +1,50 @@
-mixin list
-  ul
-    li foo2333
-    li bar
-    li baz
+//- panel
+mixin panel(type,title)
+  - var cls = 'panel-' + type
+    .panel(class=cls)
+      .panel-heading
+        h3.panel-title= title
+      .panel-body
+        block
+
+mixin panel-default(title)
+  +panel('default',title)
+    block
+
+mixin nav(type)
+  ul.nav(class=type, role='tablist')
+    block
+
+mixin nav_item(href, active)
+  - var cls = active === true ? 'active' : undefined
+    li(role='presentation', class=cls)
+      a(role='tab', data-toggle='tab', href=href)
+        block
+
+mixin tabs
+  +nav('nav-tabs')
+
+mixin tab_content
+  .tab-content
+    block
+
+mixin tab_pane(id, active)
+  - var cls = active === true ? 'in active' : undefined
+  .tab-pane.fade(role='tabpanel', id=id, class=cls)
+    block
+
+mixin icon(type)
+  i.fa.fa-fw(class='fa-' + type)
+
+mixin button(style, size)
+  - var styleCls = style ? 'btn-' + style : 'btn-default'
+  - var sizeCls = size ? 'btn-' + size : null
+  a.btn(class=[styleCls, sizeCls])&attributes(attributes)
+    block
+
+mixin icon-button(icon, text, style, size)
+  +button(style, size)
+    +icon(icon)
+    | &nbsp;
+    | #{text}
+    block
