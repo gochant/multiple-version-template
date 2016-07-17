@@ -1,0 +1,33 @@
+include ../src/mixin.pug
+
+doctype html
+html
+  head
+    block title
+    meta(http-equiv='content-type', content='text/html;charset=UTF-8')
+    link(href='../assets/tinyui/1.0.0/css/bootstrap.css', rel='stylesheet')
+    link(href='../assets/font-awesome/4.5.0/css/font-awesome.css', rel='stylesheet')
+    link(href='../assets/tinyui/1.0.0/css/tiny.css', rel='stylesheet')
+    link(href='../assets/kendo/styles/kendo.common-office365.min.css', rel='stylesheet')
+    link(href='../assets/kendo/styles/kendo.office365.min.css', rel='stylesheet')
+  body
+    +nav('nav-tabs')
+      +nav_item('#home') Home
+      +nav_item('#profile') Profile
+      +nav_item('#settings')
+        | Settings
+    .panel
+      +button('download', '下载22')
+    #grid
+      +kendo-grid(
+        "[{ 'field': 'ProductName', 'width': 270 }, { 'field': 'UnitPrice' }]",
+         'source: products'
+         )(style='height: 200px')
+
+    +form-table-layout
+      +t-row
+        +t-col
+          +editor('hehe')
+    script(src='../assets/jquery/1.11.3/jquery.js')
+    script(src='../assets/kendo/js/kendo.web.min.js')
+    script(src='scripts/grid.js')
