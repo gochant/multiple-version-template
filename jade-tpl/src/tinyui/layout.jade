@@ -1,0 +1,38 @@
+//- grid layout
+
+mixin row
+  .row
+    block
+
+mixin col(num, size)
+  - size || (size = 'sm')
+  - var cls = 'col-' + size + '-' + num
+  (class=[cls])
+
+//- form layout
+mixin form-layout-t()
+  table.table.table-bordered.table-hover.table-form-horizontal&attributes(attributes)
+    block
+     
+mixin row-t
+  tr&attributes(attributes)
+    block
+
+mixin col-t(colspan)
+  if colspan
+    td(colspan=colspan)&attributes(attributes)
+      block
+  else
+    td&attributes(attributes)
+      block
+
+mixin form-layout-h
+  .form-horizontal
+    block
+
+mixin row-h
+  .form-group
+    block
+
+mixin col-h(num)
+  +col(num, 'xs')

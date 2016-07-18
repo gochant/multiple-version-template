@@ -1,0 +1,99 @@
+mixin label(text)
+  label.control-label #{text}
+
+mixin editor(field, text, type, data)
+  case type
+    when 'combobox'
+      +combobox(field)&attributes(attributes)
+    when 'dropdownlist'
+      +dropdownlist(field)&attributes(attributes)
+    when 'datepicker'
+      +datepicker(field)&attributes(attributes)
+    when 'timepicker'
+      +timepicker(field)&attributes(attributes)
+    when 'numeric'
+      +numeric(field)&attributes(attributes)
+    when 'multiselect'
+      +multiselect(field)&attributes(attributes)
+    when 'autocomplete'
+      +autocomplete(field)&attributes(attributes)
+    when 'textarea'
+      +textarea(field)&attributes(attributes)
+    when 'checkbox'
+      +checkbox(field, text)&attributes(attributes)
+    when 'checkboxlist'
+      +checkboxlist(field, data)&attributes(attributes)
+    default
+      +text(field)&attributes(attributes)
+
+mixin editor-t(text, field, type, data)
+  +col-t
+    if attributes.required
+      +label(text)(required)
+    else
+      +label(text)
+    +editor(field, text, type, data)
+
+mixin editor-h(text, field, type, data)
+  +row-h
+    if attributes.required
+      +label(text)(col-xs-3)(required)
+    else
+      +label(text)(col-xs-3)
+    +col-h(9)
+      +editor(field, text, type, data)
+
+mixin text(field)
+  - var bind = 'value: data.' + field
+  input.form-control(type='text', data-bind=bind)&attributes(attributes)
+
+mixin textarea(field)
+  - var bind = 'value: data.' + field
+  textarea.form-control(data-bind=bind)&attributes(attributes)
+
+mixin checkbox(field, text)
+  - var bind = 'value: data.' + field
+  .checkbox
+    label
+      input(type='checkbox', data-bind=bind)
+      | #{text}
+
+mixin checkboxlist(field, list)
+  - var bind = 'checked: data.' + field
+  .checkbox-group
+    each item, index in list
+      label.checkbox-inline
+        input(type='checkbox', data-bind=bind, value=item.value)
+        | #{item.name}
+	    
+mixin combobox(field)
+  - var bind = 'source: '+ field +'List, value: data.' + field
+  select(data-role='combobox', data-text-field='name',
+   data-value-field='value', data-bind=bind)&attributes(attributes)
+
+mixin dropdownlist(field)
+  - var bind = 'source: '+ field +'List, value: data.' + field
+  select(data-role='dropdownlist', data-text-field='name',
+   data-value-field='value', data-bind=bind)&attributes(attributes)
+
+mixin datepicker(field)
+  - var bind = 'value: data.' + field
+  input(data-role='datepicker', data-bind=bind)&attributes(attributes)
+
+mixin timepicker(field)
+  - var bind = 'value: data.' + field
+  input(data-role='timepicker', data-bind=bind)&attributes(attributes)
+
+mixin numeric(field)
+  - var bind = 'value: data.' + field
+  input(data-role='numerictextbox', data-bind=bind)&attributes(attributes)
+
+mixin multiselect(field)
+  - var bind = 'value: data.' + field
+  select(data-role='multiselect', data-text-field='name', multiple='multiple'
+   data-value-field='value', data-bind=bind)&attributes(attributes)
+
+mixin autocomplete(field)
+  - var bind = 'source: '+ field +'List, value: data.' + field
+  input(data-role='autocomplete', data-text-field='name',
+   data-value-field='value', data-bind=bind)&attributes(attributes)

@@ -1,4 +1,4 @@
-include ../src/mixin.pug
+include ../src/mixin.jade
 
 doctype html
 html
@@ -10,6 +10,7 @@ html
     link(href='../assets/tinyui/1.0.0/css/tiny.css', rel='stylesheet')
     link(href='../assets/kendo/styles/kendo.common-office365.min.css', rel='stylesheet')
     link(href='../assets/kendo/styles/kendo.office365.min.css', rel='stylesheet')
+    link(href='fixed.css', rel='stylesheet')
   body
     +nav('nav-tabs')
       +nav_item('#home') Home
@@ -24,10 +25,18 @@ html
          'source: products'
          )(style='height: 200px')
 
-    +form-table-layout
-      +t-row
-        +t-col
-          +editor('hehe')
+    +form-layout-t(style='margin: 20px auto;width:800px;')
+      +row-t
+        +editor-t('组合框', 'name22', 'combobox')(required)
+        +editor-t('复选框', 'name2', 'checkbox')(required)
+      +row-t
+        +editor-t('文本框', 'text')
+        +editor-t('复选框列表', 'name223', 'checkboxlist', [
+          { name: '橘子', value: 'Orange' },
+          { name: '苹果', value: 'Apple'}])(required)
+      +row-t
+        +editor-t('')
+
     script(src='../assets/jquery/1.11.3/jquery.js')
     script(src='../assets/kendo/js/kendo.web.min.js')
     script(src='scripts/grid.js')

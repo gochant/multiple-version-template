@@ -35,4 +35,4 @@ var viewModel = kendo.observable({
         }
     })
 });
-kendo.bind($("#grid"), viewModel);
+kendo.bind($("body"), viewModel);

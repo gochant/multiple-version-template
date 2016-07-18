@@ -22,5 +22,13 @@
   {
     "outputFile": "www/product/html/styles/home.css",
     "inputFile": "www/product/html/styles/home.less"
+  },
+  {
+    "outputFile": "jade-tpl/demo/fixed.css",
+    "inputFile": "jade-tpl/demo/fixed.less"
+  },
+  {
+    "outputFile": "jade-tpl/assets/tinyui/src/less/tiny.css",
+    "inputFile": "jade-tpl/assets/tinyui/src/less/tiny.less"
   }
 ]
