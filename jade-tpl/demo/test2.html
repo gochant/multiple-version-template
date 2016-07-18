@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -48,22 +48,22 @@
             </div>
         </div>
     </nav>
-    <aside class="aside">
+    <aside class="aside sidebar-inverse">
         <ul class="nav nav-pills nav-stacked">
             <li>
-                <a>
+                <a href="">
                     <i class="fa fa-fw fa-home"></i>
-                    &nbsp;Home
+                    &nbsp;办件中心
                 </a>
             </li>
             <li class="active">
-                <a>
+                <a href="">
                     <i class="fa fa-fw fa-calculator"></i>
-                    &nbsp;Profile
+                    &nbsp;统计分析
                 </a>
             </li>
             <li>
-                <a>
+                <a href="">
                     <i class="fa fa-fw fa-pencil"></i>
                     &nbsp;数据管理
                 </a>
@@ -93,28 +93,26 @@
         <div class="navbar navbar-sm navbar-primary no-margin">
             <ul class="nav navbar-nav">
                 <li>
-                    <a>业务办理</a>
+                    <a href="#">业务办理</a>
                 </li>
                 <li>
-                    <a>我的业务</a>
+                    <a href="#">我的业务</a>
                 </li>
                 <li class="active">
-                    <a>待办业务</a>
+                    <a href="#">待办业务</a>
                 </li>
                 <li>
-                    <a>业务跟踪</a>
+                    <a href="#">业务跟踪</a>
                 </li>
             </ul>
         </div>
-        <div class="bg-normal">
-            <ul class="nav nav-pills nav-underline nav-sm">
-                <li role="presentation" class="active"><a href="#">Home</a></li>
-                <li role="presentation"><a href="#">Profile</a></li>
-                <li role="presentation"><a href="#">Messages</a></li>
-            </ul>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-toolbar panel-toolbar-sm clearfix">
+        <ul class="nav nav-pills nav-underline nav-sm">
+            <li role="presentation" class="active"><a href="#">承包信息</a></li>
+            <li role="presentation"><a href="#">登记簿信息</a></li>
+            <li role="presentation"><a href="#">合同信息</a></li>
+        </ul>
+        <div class="panel panel-default block-abs-3">
+            <div class="panel-toolbar panel-toolbar-xs clearfix">
                 <div class="btn-toolbar pull-left">
                     <a href="" class="btn btn-sm btn-default">
                         <i class="fa fa-refresh"></i>
@@ -139,8 +137,15 @@
                     </form>
                 </div>
             </div>
-            <div class="panel-body no-padding">
-                <table></table>
+            <div class="panel-body no-padding block-abs-body" id="grid">
+                <div data-role="grid" data-editable="true" data-columns="[
+                                   { 'field': 'ProductName', 'width': 270 },
+                                   { 'field': 'UnitPrice' },
+                                ]" data-pageable="true" data-bind="source: products,
+                              visible: isVisible,
+                              events: {
+                                save: onSave
+                              }" style="height:100%"></div>
             </div>
         </div>
         <!--<div class="panel panel-default block-abs-2">

@@ -36,3 +36,11 @@ var viewModel = kendo.observable({
     })
 });
 kendo.bind($("body"), viewModel);
+function resizeGrid() {
+    
+    $('[data-role=grid]').data("kendoGrid").resize();
+}
+
+$(window).resize(function () {
+    resizeGrid();
+});

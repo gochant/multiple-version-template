@@ -803,9 +803,9 @@ input[type="checkbox"] {
   z-index: 1000;
 }
 .navbar-dark {
-  background-color: #3f51b5;
+  background-color: #286090;
   border: 0;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  /*box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);*/
   margin-bottom: 0;
 }
 .navbar-dark .navbar-brand {
@@ -2024,121 +2024,123 @@ fieldset {
   margin-bottom: 17px;
 }
 /* ���� kendo-ui ��ʽ */
-.selected,
-.k-state-selected {
-  color: #fff;
-  background-color: #428bca;
-  border-color: #428bca;
-}
-/*.selected,
+.tiny-kendo {
+  /*.selected,
 .k-state-selected {
     background-color: #337ab7;
     border-color: #337ab7;
 }*/
-.k-marquee-color {
+}
+.tiny-kendo .selected,
+.tiny-kendo .k-state-selected {
+  color: #fff;
+  background-color: #428bca;
+  border-color: #428bca;
+}
+.tiny-kendo .k-marquee-color {
   background-color: #00b0ff;
   filter: alpha(opacity=60);
   opacity: .6;
 }
-.k-marquee-text {
+.tiny-kendo .k-marquee-text {
   color: #3f51b5;
 }
-.k-marquee {
+.tiny-kendo .k-marquee {
   position: absolute;
   z-index: 100000;
 }
-.k-marquee-color,
-.k-marquee-text {
+.tiny-kendo .k-marquee-color,
+.tiny-kendo .k-marquee-text {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
 }
-.k-loading,
-.k-loading-image {
+.tiny-kendo .k-loading,
+.tiny-kendo .k-loading-image {
   background-color: transparent;
   background-repeat: no-repeat;
   background-position: center center;
 }
-.k-loading-mask,
-.k-loading-image,
-.k-loading-text {
+.tiny-kendo .k-loading-mask,
+.tiny-kendo .k-loading-image,
+.tiny-kendo .k-loading-text {
   position: absolute;
 }
-.k-loading-mask {
+.tiny-kendo .k-loading-mask {
   z-index: 100;
 }
-.k-loading-text {
+.tiny-kendo .k-loading-text {
   text-indent: -4000px;
   text-align: center;
 }
-.k-loading-image,
-.k-loading-color {
+.tiny-kendo .k-loading-image,
+.tiny-kendo .k-loading-color {
   width: 100%;
   height: 100%;
 }
-.k-loading-image {
+.tiny-kendo .k-loading-image {
   top: 0;
   left: 0;
   z-index: 2;
 }
-.k-loading-color {
+.tiny-kendo .k-loading-color {
   filter: alpha(opacity=30);
   opacity: .3;
 }
-.k-loading,
-.k-state-hover .k-loading {
+.tiny-kendo .k-loading,
+.tiny-kendo .k-state-hover .k-loading {
   background-image: url('patches/Office365/loading.gif');
   background-position: 50% 50%;
 }
-.k-loading-image {
+.tiny-kendo .k-loading-image {
   background-image: url('patches/Office365/loading-image.gif');
 }
-.k-loading-color {
+.tiny-kendo .k-loading-color {
   background-color: #fff;
 }
-.k-pager-wrap {
+.tiny-kendo .k-pager-wrap {
   height: 30px;
   line-height: 30px;
   padding: 0 5px;
 }
-.k-pager-wrap .k-pager-numbers:before,
-.k-pager-wrap .k-pager-numbers:after,
-.k-pager-wrap:before,
-.k-pager-wrap:after {
+.tiny-kendo .k-pager-wrap .k-pager-numbers:before,
+.tiny-kendo .k-pager-wrap .k-pager-numbers:after,
+.tiny-kendo .k-pager-wrap:before,
+.tiny-kendo .k-pager-wrap:after {
   content: " ";
   display: table;
 }
-.k-pager-wrap ul,
-.k-pager-wrap li {
+.tiny-kendo .k-pager-wrap ul,
+.tiny-kendo .k-pager-wrap li {
   list-style: none;
 }
-.k-pager-wrap .k-pager-numbers:after,
-.k-pager-wrap:after {
+.tiny-kendo .k-pager-wrap .k-pager-numbers:after,
+.tiny-kendo .k-pager-wrap:after {
   clear: both;
 }
-.k-pager-wrap .k-pager-nav,
-.k-pager-wrap .k-pager-numbers,
-.k-pager-wrap .k-pager-numbers li {
+.tiny-kendo .k-pager-wrap .k-pager-nav,
+.tiny-kendo .k-pager-wrap .k-pager-numbers,
+.tiny-kendo .k-pager-wrap .k-pager-numbers li {
   float: left;
   padding: 0 5px;
   margin-bottom: 0;
 }
-.k-pager-wrap .k-pager-numbers li span {
+.tiny-kendo .k-pager-wrap .k-pager-numbers li span {
   padding: 0 5px;
 }
-.k-pager-wrap .k-pager-nav,
-.k-pager-wrap .k-pager-numbers li {
+.tiny-kendo .k-pager-wrap .k-pager-nav,
+.tiny-kendo .k-pager-wrap .k-pager-numbers li {
   min-width: 16px;
 }
-.k-pager-wrap .k-pager-info {
+.tiny-kendo .k-pager-wrap .k-pager-info {
   float: right;
 }
-.k-pager-wrap .k-pager-numbers .k-current-page {
+.tiny-kendo .k-pager-wrap .k-pager-numbers .k-current-page {
   display: none;
 }
-.k-icon {
+.tiny-kendo .k-icon {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
   line-height: normal;
@@ -2148,22 +2150,22 @@ fieldset {
   -moz-osx-font-smoothing: grayscale;
   font-size: 0;
 }
-.k-state-disabled .k-icon {
+.tiny-kendo .k-state-disabled .k-icon {
   opacity: 0.3;
 }
-.k-icon:before {
+.tiny-kendo .k-icon:before {
   font-size: 14px;
 }
-.k-i-seek-w:before {
+.tiny-kendo .k-i-seek-w:before {
   content: "\f100";
 }
-.k-i-arrow-w:before {
+.tiny-kendo .k-i-arrow-w:before {
   content: "\f104";
 }
-.k-i-seek-e:before {
+.tiny-kendo .k-i-seek-e:before {
   content: "\f101";
 }
-.k-i-arrow-e:before {
+.tiny-kendo .k-i-arrow-e:before {
   content: "\f105";
 }
 /* bootstrap �� kendoui ��ʽ����ʱ��Ҫ���ӵĲ��� */

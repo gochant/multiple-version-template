@@ -13,7 +13,7 @@ body {
   bottom: 0;
   top: 50px;
   width: 120px;
-  background: black;
+  background: #252830;
   padding-top: 40px;
 }
 .desktop > .main {
@@ -23,29 +23,41 @@ body {
   bottom: 0;
   left: 120px;
 }
-.sidebar-inverse .nav-list > li > a {
+.sidebar-inverse .nav > li {
+  /*&:hover > a {
+            color: #fff;
+            background: #434857;
+        }*/
+}
+.sidebar-inverse .nav > li > a {
   color: #b8c7ce;
 }
-.sidebar-inverse .nav-list > li > a > .menu-icon {
+.sidebar-inverse .nav > li > a:hover {
+  color: #fff;
+  background: #434857;
+}
+.sidebar-inverse .nav > li > a > .menu-icon {
   border-color: transparent;
 }
-.sidebar-inverse .nav-list > li.active > a {
+.sidebar-inverse .nav > li.active > a {
   color: #fff;
 }
-.sidebar-inverse .nav-list > li:hover > a {
+.sidebar-inverse .nav > li.active > a:hover {
   color: #fff;
-  background: #1e282c;
+  background: #337ab7;
 }
 .navbar-sm {
   min-height: 40px;
   border: 0;
 }
 .navbar-sm .navbar-nav > li > a {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
 }
 .navbar-primary {
-  background: #337AB7;
+  background: #5094ce;
 }
 .navbar-primary .navbar-nav > li > a {
   color: white;
@@ -53,13 +65,14 @@ body {
 .navbar-primary .nav > li > a:hover,
 .navbar-primary .nav > li > a:active,
 .navbar-primary .nav > li > a:focus {
-  color: #303646;
+  background: transparent;
 }
 .navbar-primary .navbar-nav > .active > a,
 .navbar-primary .navbar-nav > .active > a:focus,
 .navbar-primary .navbar-nav > .active > a:hover {
-  color: #303646;
-  background: #F3F3F3;
+  /*color: #303646;*/
+  background: #337ab7;
+  /*border-bottom-color: #337AB7;*/
 }
 .block-abs-2 {
   top: 85px;
@@ -67,6 +80,14 @@ body {
   left: 10px;
   right: 10px;
   bottom: 10px;
+  margin: 0;
+}
+.block-abs-3 {
+  top: 108px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
   margin: 0;
 }
 .block-abs-body {
@@ -113,6 +134,19 @@ body {
 .panel > .panel-toolbar-sm {
   padding: 5px 10px;
 }
+.panel > .panel-toolbar-xs {
+  padding: 1px 5px;
+}
 .input-md-width {
   width: 210px;
+}
+.panel-body > .k-widget,
+.panel-body > .k-block {
+  border-width: 0;
+}
+/*.k-widget, .k-block, .k-inline-block, .k-draghandle {
+    border-width: 0;
+}*/
+.k-pager-wrap {
+  font-size: 12px;
 }

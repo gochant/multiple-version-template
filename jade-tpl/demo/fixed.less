@@ -15,7 +15,7 @@ body {
 
 
 @sidebar-width: 120px;
-@sidebar-bg-color: black;
+@sidebar-bg-color: #252830;
 @panel-body-top: 43px;
 
 .desktop {
@@ -43,22 +43,30 @@ body {
 
 .sidebar-inverse {
 
-    .nav-list > li {
+    .nav > li {
         > a {
             color: #b8c7ce;
+
+            &:hover {
+                color: #fff;
+                background: #434857;
+            }
 
             > .menu-icon {
                 border-color: transparent;
             }
         }
-
+        /*&:hover > a {
+            color: #fff;
+            background: #434857;
+        }*/
         &.active > a {
             color: #fff;
-        }
 
-        &:hover > a {
-            color: #fff;
-            background: #1e282c;
+            &:hover {
+                color: #fff;
+                background: @component-active-bg;
+            }
         }
     }
 }
@@ -68,27 +76,32 @@ body {
     border: 0;
 
     .navbar-nav > li > a {
-        padding-top: 10px;
-        padding-bottom: 10px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        border-top: 4px solid transparent;
+        border-bottom: 4px solid transparent;
     }
 }
 
 .navbar-primary {
-    background: #337AB7;
+    background: lighten(@brand-primary, 10%);
 
     .navbar-nav > li > a {
         color: white;
     }
 
-    .nav > li > a:hover, .nav > li > a:active, .nav > li > a:focus {
-        color: #303646;
+    .nav > li > a:hover,
+    .nav > li > a:active,
+    .nav > li > a:focus {
+        background: transparent;
     }
 
     .navbar-nav > .active > a,
     .navbar-nav > .active > a:focus,
     .navbar-nav > .active > a:hover {
-        color: #303646;
-        background: #F3F3F3;
+        /*color: #303646;*/
+        background: @brand-primary;
+        /*border-bottom-color: #337AB7;*/
     }
 }
 
@@ -105,12 +118,18 @@ body {
     .block-abs(10px);
 }
 
+.block-abs-3 {
+    top: 108px;
+    .block-abs(0);
+}
+
 .block-abs-body {
     position: absolute;
     .block-abs(0);
     top: @panel-body-top;
     overflow: auto;
 }
+
 
 .section-header {
     padding-bottom: ((@line-height-computed / 2) - 1);
@@ -161,7 +180,23 @@ body {
 .panel > .panel-toolbar-sm {
     padding: @padding-small-vertical @padding-small-horizontal;
 }
+.panel > .panel-toolbar-xs {
+    padding: @padding-xs-vertical @padding-xs-horizontal;
+}
 
 .input-md-width {
     width: 210px;
+}
+
+.panel-body {
+    > .k-widget,
+    > .k-block {
+        border-width: 0;
+    }
+}
+/*.k-widget, .k-block, .k-inline-block, .k-draghandle {
+    border-width: 0;
+}*/
+.k-pager-wrap {
+    font-size: 12px;
 }
