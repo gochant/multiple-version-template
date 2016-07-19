@@ -1,3 +1,13 @@
+//- desktop
+
+mixin sidebar
+  aside.aside.sidebar-inverse&attributes(attributes)
+    block
+
+mixin main
+  main.main
+    block
+
 //- grid layout
 
 mixin row
@@ -7,7 +17,7 @@ mixin row
 mixin col(num, size)
   - size || (size = 'sm')
   - var cls = 'col-' + size + '-' + num
-  (class=[cls])
+  div(class=[cls])
 
 //- form layout
 mixin form-layout-t()
@@ -36,3 +46,9 @@ mixin row-h
 
 mixin col-h(num)
   +col(num, 'xs')
+
+//- utility
+
+mixin right
+  .pull-right
+    block

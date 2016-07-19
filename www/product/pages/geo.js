@@ -3,13 +3,16 @@ define(function () {
         'geo': {
             name: '地理定位',
             widgets: [
-                'module1-geo@.v-render-body@module1'
-            ]
+                'framework-geo@.v-render-body@framework',
+                'framework-test2@.v-render-body@framework'
+            ],
+            inherits: ['_common']
         },
         kendo: {
             widgets: [
-                'module1-kendo@.v-render-body@module1'
-            ]
+                'framework-kendo@.v-render-body@framework'
+            ],
+            inherits: ['_common']
         }
     };
 });

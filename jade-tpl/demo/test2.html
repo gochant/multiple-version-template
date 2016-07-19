@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -13,7 +13,7 @@
 </head>
 
 <body class="desktop">
-    <nav class="navbar navbar-dark navbar-fixed-top">
+    <nav class="navbar navbar-primary">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">Project name</a>
@@ -69,29 +69,16 @@
                 </a>
             </li>
         </ul>
-        <!--<div class="sidebar sidebar-inverse">
-            <ul class="nav nav-list">
-                <li class="active">
-                    <a href="#">
-                        <i class="menu-icon fa fa-desktop"></i>
-                        <span class="menu-text">菜单项一</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="menu-icon fa fa-phone"></i>
-                        <span class="menu-text">菜单项二</span>
-                    </a>
-                </li>
-            </ul>
-        </div>-->
     </aside>
     <main class="main">
         <div class="breadcrumb no-margin">
-            山东省临沂市
+            <a class="control-label">山东省临沂市</a>
+            <!--<a href="" class="btn btn-xs btn-default">
+                <i class="fa fa-angle-down"></i>
+            </a>-->
         </div>
-        <div class="navbar navbar-sm navbar-primary no-margin">
-            <ul class="nav navbar-nav">
+        <div>
+            <ul class="nav nav-pills nav-primary">
                 <li>
                     <a href="#">业务办理</a>
                 </li>
@@ -106,39 +93,48 @@
                 </li>
             </ul>
         </div>
-        <ul class="nav nav-pills nav-underline nav-sm">
-            <li role="presentation" class="active"><a href="#">承包信息</a></li>
-            <li role="presentation"><a href="#">登记簿信息</a></li>
-            <li role="presentation"><a href="#">合同信息</a></li>
-        </ul>
-        <div class="panel panel-default block-abs-3">
-            <div class="panel-toolbar panel-toolbar-xs clearfix">
-                <div class="btn-toolbar pull-left">
-                    <a href="" class="btn btn-sm btn-default">
-                        <i class="fa fa-refresh"></i>
-                        &nbsp;刷新
-                    </a>
-                    <a href="" class="btn btn-sm btn-default">
-                        <i class="fa fa-refresh"></i>
-                        &nbsp;刷新
-                    </a>
-                </div>
-                <div class="pull-right">
-                    <form>
-                        <div class="input-group input-group-sm input-md-width">
-                            <input type="text" value="" class="form-control" placeholder="请输入承包方名称查询" />
-                            <div class="input-group-btn">
-                                <button class="btn btn-default">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </div>
+        <div>
+            <ul class="nav nav-pills nav-underline nav-sm">
+                <li role="presentation" class="active">
+                    <a href="#">承包信息</a>
+                </li>
+                <li role="presentation">
+                    <a href="#">登记簿信息</a>
+                </li>
+                <li role="presentation">
+                    <a href="#">合同信息</a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <div class="panel panel-default block-abs-3">
+                <div class="panel-toolbar panel-toolbar-sm clearfix">
+                    <div class="btn-toolbar btn-toolbar-sm pull-left">
+                        <a href="" class="btn btn-default">
+                            <i class="fa fa-refresh"></i>
+                            &nbsp;刷新
+                        </a>
+                        <a href="" class="btn btn-default">
+                            <i class="fa fa-edit"></i>
+                            &nbsp;编辑
+                        </a>
+                    </div>
+                    <div class="pull-right">
+                        <form>
+                            <div class="input-group input-group-sm input-md-width">
+                                <input type="text" value="" class="form-control" placeholder="请输入承包方名称查询" />
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
 
-                        </div>
-                    </form>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
-            <div class="panel-body no-padding block-abs-body" id="grid">
-                <div data-role="grid" data-editable="true" data-columns="[
+                <div class="panel-body no-padding block-abs-body" id="grid">
+                    <div data-role="grid" data-editable="true" data-columns="[
                                    { 'field': 'ProductName', 'width': 270 },
                                    { 'field': 'UnitPrice' },
                                 ]" data-pageable="true" data-bind="source: products,
@@ -146,6 +142,7 @@
                               events: {
                                 save: onSave
                               }" style="height:100%"></div>
+                </div>
             </div>
         </div>
         <!--<div class="panel panel-default block-abs-2">

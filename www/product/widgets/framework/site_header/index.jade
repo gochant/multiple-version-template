@@ -1,0 +1,11 @@
+include ../../../../../jade-tpl/src/mixin.jade
+
++navbar('fluid').navbar-primary
+  +navbar-header
+    +navbar-brand 土地承包管理信息系统
+  +navbar-right
+    +nav-navbar
+      +nav-item('#', true): +i-text('home', 'Home')
+      +nav-item('#'): +i-text('book', 'Library')
+      +nav-item('#'): +i-text('pencil', 'Applications')
+      +nav-item('#'): +i-text('cog', 'Settings')

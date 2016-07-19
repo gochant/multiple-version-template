@@ -1,0 +1,19 @@
+include ../src/mixin.jade
+
+doctype html
+html
+  head
+    block title
+    meta(http-equiv='content-type', content='text/html;charset=UTF-8')
+    link(href='../assets/bootstrap/3.3.6/css/bootstrap-flat.css', rel='stylesheet')
+    link(href='../assets/font-awesome/4.5.0/css/font-awesome.css', rel='stylesheet')
+    link(href='../assets/tinyui/src/less/tiny.css', rel='stylesheet')
+    link(href='../assets/kendo/styles/kendo.common-office365.min.css', rel='stylesheet')
+    link(href='../assets/kendo/styles/kendo.office365.min.css', rel='stylesheet')
+    link(href='fixed.css', rel='stylesheet')
+  body.desktop
+    block body
+
+    script(src='../assets/jquery/1.11.3/jquery.js')
+    script(src='../assets/kendo/js/kendo.web.min.js')
+    script(src='scripts/grid.js')

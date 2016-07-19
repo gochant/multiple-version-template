@@ -1,16 +1,17 @@
-
-mixin icon(type)
-  i.fa.fa-fw(class='fa-' + type)
-
-mixin button(style, size)
+mixin btn(style, size)
   - var styleCls = style ? 'btn-' + style : 'btn-default'
   - var sizeCls = size ? 'btn-' + size : null
   a.btn(class=[styleCls, sizeCls])&attributes(attributes)
     block
 
-mixin icon-button(icon, text, style, size)
-  +button(style, size)
+mixin btn-icon(icon, text, style, size)
+  +btn(style, size)
     +icon(icon)
-    | &nbsp;
     | #{text}
     block
+
+mixin btn-refresh
+  +btn-icon('refresh', 'Ë¢ÐÂ')
+
+mixin btn-search-icon
+  +btn-icon('search')

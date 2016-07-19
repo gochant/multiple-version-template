@@ -1,0 +1,33 @@
+extends ./layout.jade
+
+block body
+  +navbar('fluid').navbar-primary
+    +navbar-header
+      +navbar-brand Project Name
+    +navbar-right
+      +nav-navbar
+        +nav-item('#', true): +i-text('home', 'Home')
+        +nav-item('#'): +i-text('book', 'Library')
+        +nav-item('#'): +i-text('pencil', 'Applications')
+        +nav-item('#'): +i-text('cog', 'Settings')
+  +sidebar
+    +nav-vertical
+      +nav-item('#')
+        +i-text('home', '办件中心')
+      +nav-item('#', true)
+        +i-text('calculator', '统计分析')
+      +nav-item('#')
+        +i-text('pencil', '数据管理')
+  +main
+    .breadcrumb.no-margin
+      .control-label 山东省临沂市22
+    +nav-primary
+      +nav-item('#') 业务办理
+      +nav-item('#', true) 我的业务
+      +nav-item('#') 待办业务
+      +nav-item('#') 业务跟踪
+    +nav-underline('sm')
+      +nav-item('#') 承包信息
+      +nav-item('#', true) 登记簿信息
+      +nav-item('#') 合同信息
+

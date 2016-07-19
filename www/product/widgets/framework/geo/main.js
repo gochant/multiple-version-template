@@ -1,9 +1,10 @@
 define([
     'text!./index.html',
     'echarts',
-    'ver!module1-test@module1',
+    'ver!framework-test2@framework',
     'css!./index.css'
 ], function (tpl, echarts, subview) {
+    debugger;
     return {
         template: tpl,
         views: function() {

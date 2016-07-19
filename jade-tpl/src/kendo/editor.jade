@@ -37,14 +37,14 @@ mixin editor-t(text, field, type, data)
 mixin editor-h(text, field, type, data)
   +row-h
     if attributes.required
-      +label(text)(col-xs-3)(required)
+      +label(text)(class=['col-xs-3'], required)
     else
-      +label(text)(col-xs-3)
+      +label(text)(class=['col-xs-3'])
     +col-h(9)
       +editor(field, text, type, data)
 
-mixin text(field)
-  - var bind = 'value: data.' + field
+mixin textbox(field)
+  - var bind = field ? 'value: data.' + field : null;
   input.form-control(type='text', data-bind=bind)&attributes(attributes)
 
 mixin textarea(field)

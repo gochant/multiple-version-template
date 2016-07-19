@@ -1,0 +1,11 @@
+//- input
+
+mixin input-group-btn
+  .input-group
+    +textbox
+    .input-group-btn
+      block
+
+mixin searchbox
+  +input-group-btn
+    +btn-search-icon

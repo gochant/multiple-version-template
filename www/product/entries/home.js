@@ -41,7 +41,7 @@ requirejs([
         page(app);
 
         app.launch().done(function () {
-            app.page.start(true);
+            app.page.start(false);
         });
     });
 });

@@ -1,0 +1,17 @@
+//-------- 
+//- icon
+//--------
+
+mixin icon(name)
+  +icon-fa(name)
+  | &nbsp;
+
+//- icon and text
+mixin i-text(name, text)
+  +icon(name)
+  | #{text}
+  block
+
+mixin icon-fa(name, type)
+  - type || (type = 'fw')
+  i(class=['fa', 'fa-' + name, 'fa-' + type], aria-hidden='true')

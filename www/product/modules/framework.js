@@ -1,6 +1,6 @@
 define(function () {
     return {
-        name: 'module1',
+        name: 'framework',
         parentPath: './product/widgets',
         widgetPath: '',
         multilevel: true,
