@@ -1,7 +1,7 @@
 define([
     'text!./index.html',
     'echarts',
-    'ver!framework-test2@framework',
+    'ver!framework-test3@framework',
     'css!./index.css'
 ], function (tpl, echarts, subview) {
     debugger;

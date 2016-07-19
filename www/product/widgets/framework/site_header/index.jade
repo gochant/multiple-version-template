@@ -2,7 +2,7 @@ include ../../../../../jade-tpl/src/mixin.jade
 
 +navbar('fluid').navbar-primary
   +navbar-header
-    +navbar-brand 土地承包管理信息系统
+    +navbar-brand <%- load %>
   +navbar-right
     +nav-navbar
       +nav-item('#', true): +i-text('home', 'Home')

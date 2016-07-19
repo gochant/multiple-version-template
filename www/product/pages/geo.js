@@ -4,7 +4,7 @@ define(function () {
             name: '地理定位',
             widgets: [
                 'framework-geo@.v-render-body@framework',
-                'framework-test2@.v-render-body@framework'
+                'framework-test3@.v-render-body@framework'
             ],
             inherits: ['_common']
         },
