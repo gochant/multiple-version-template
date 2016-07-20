@@ -2822,6 +2822,27 @@ define('app/page',[], function () {
             return pageConfig;
         }
 
+        function getAllWidgetConfigs(pageConfig, me, result) {
+            if (result == null) {
+                result = [];
+            }
+            result.push(pageConfig.widgets);
+
+            _.each(pageConfig.inherits, function (parentName) {
+                var config = me.get(parentName);
+                result.push(config.widgets);
+                result = getAllWidgetConfigs(config, me, result);
+            })
+            //for (var i = 0, len = pageConfig.inherits.length; i < len; i++) {
+            //    var parentName = pageConfig.inherit[i];
+            //    var config = me.get(parentName);
+            //    result.push(config.widgets);
+            //    result = getAllWidgetConfigs(config, me, result);
+            //}
+
+            return result;
+        }
+
         /**
          * 无法通过构造函数直接构造
          * @classdesc 页面相关
@@ -2840,11 +2861,8 @@ define('app/page',[], function () {
             _changeTitle: function () { },
             _processInherit: function (pageConfig) {
                 var me = this;
-                var parentsWidgets = _.map(pageConfig.inherit, function (parentName) {
-                    return me.get(parentName).widgets;
-                });
-                parentsWidgets.unshift(pageConfig.widgets);
-                return _.uniq(_.union.apply(_, parentsWidgets), false, function (item) {
+                var allWidgets = getAllWidgetConfigs(pageConfig, this);
+                return _.uniq(_.union.apply(_, allWidgets), false, function (item) {
                     if (item.options && item.options.el) return item.options.el;  // 确保一个元素上只有一个插件
                     return item.name + item.options.host;  // 确保一个父元素下，只有一个同样的插件
                 });
@@ -3006,7 +3024,8 @@ define('app/page',[], function () {
                                     _source: appConfig.page.defaultSource
                                 }
                             }],
-                            inherit: [appConfig.page.defaultInherit]
+                            inherits: pageName === appConfig.page.defaultInherit
+                                ? [] : [appConfig.page.defaultInherit]
                         }, item);
                     });
 

@@ -1,11 +1,11 @@
 //- input
 
 mixin input-group-btn
-  .input-group
+  .input-group&attributes(attributes)
     +textbox
     .input-group-btn
       block
 
 mixin searchbox
-  +input-group-btn
+  +input-group-btn&attributes(attributes)
     +btn-search-icon

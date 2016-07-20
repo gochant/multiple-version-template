@@ -1,6 +1,6 @@
 define([
     '../../pages/_common',
-    '../../pages/geo'
+    '../../pages/ndcbjyq'
 ], function () {
     var args = Array.prototype.slice.call(arguments);
     return function (app) {

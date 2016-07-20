@@ -40,6 +40,7 @@ module.exports = function (grunt) {
                 tasks: 'pug',
                 options: {
                     spawn: false,
+                    event: 'all'
                 }
             },
             less: {
@@ -64,7 +65,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-pug');
     grunt.loadNpmTasks('grunt-contrib-less');
 
-    grunt.registerTask('default', ['watch']);
+    grunt.registerTask('default', ['watch:pug']);
     grunt.registerTask('build', ['veronica']);
 
 };

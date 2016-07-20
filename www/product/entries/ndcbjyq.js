@@ -9,8 +9,8 @@ requirejs([
     'product/configs/home/module'
 ], function (req, extension, page, module) {
 
-    //var devPath = 'http://192.168.1.18:8097/cdn/vendor';  // 开发时路径
-     var devPath = 'http://localhost:8001/vendor';  // 开发时路径
+    var devPath = 'http://192.168.1.18:8097/cdn/vendor';  // 开发时路径
+     //var devPath = 'http://localhost:8001/vendor';  // 开发时路径
     var releasePath = 'vendor';  // 发布时路径
     var releaseWidgetPath = 'widgets';
 
@@ -23,7 +23,7 @@ requirejs([
 
         // 创建应用程序
         var app = veronica.createApp({
-            homePage: 'geo',
+            homePage: 'ndcbjyq_workdeck_handle',
             //extensions: ['veronica-ui-pro'],
             modules: module,
             autoParseWidgetName: false,
