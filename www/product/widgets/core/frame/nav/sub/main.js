@@ -1,7 +1,8 @@
 define([
+    'ver!core-frame-nav-_page@core',
     'text!./index.html'
-], function (tpl) {
-    return {
-        template: tpl
-    };
+], function (ctor, tpl) {
+    var base = ctor.export();
+    base.template = tpl;
+    return base;
 });

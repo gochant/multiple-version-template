@@ -1,10 +1,12 @@
-include ../../../../../../jade-tpl/src/mixin.jade
+include ../../../../../../../jade-tpl/src/mixin.jade
 
 +sidebar.desktop-sidebar
   +nav-vertical
-    +nav-item('#ndcbjyq_workdeck_handle', true)
+    +nav-item('#ndcbjyq_workdeck_handle', true)(data-group='ndcbjyq_workdeck')
       +i-text('list-alt', '办件中心') 
-    +nav-item('#')
+    +nav-item('#ndcbjyq_query_right_register')(data-group='ndcbjyq_query')
       +i-text('search', '数据查询')
     +nav-item('#')
       +i-text('dashboard', '统计汇总')
+    +nav-item('#ndcbjyq_map_home')(data-group='ndcbjyq_map')
+      +i-text('map-marker', '以图管地')

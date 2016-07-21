@@ -1,3 +1,4 @@
 mixin kendo-grid(columns, bind)
   - var cstr = JSON.stringify(columns)
-  div(data-role='grid', data-columns!=columns, data-bind=bind)&attributes(attributes)
+  div(data-role='grid', 
+    data-columns!=columns, data-bind=bind)&attributes(attributes)

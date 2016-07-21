@@ -1,0 +1,31 @@
+include ../../../../../../../jade-tpl/src/mixin.jade
+
++panel.block-abs-3
+  +panel-toolbar('sm')
+    +btn-toolbar('sm').pull-left
+      +btn-refresh
+      +btn-search('高级查询22')
+      +btn-detail
+      +btn-icon('dashboard', '汇总登记簿')
+      +btn-export-dropdown
+        +dropdown-menu
+          +menu-item('#') 登记簿
+          +menu-item('#') 有效登记簿清册
+          +menu-item('#') 确权颁证信息表
+      +btn-more-dropdown
+        +dropdown-menu
+          +menu-item('#') 历史回溯
+          +menu-item('#') 权证信息
+          +menu-item('#') 权源流转合同
+          +menu-item('#') 附加信息
+    +right
+      +searchbox.input-group-sm.input-md-width
+  +panel-body.no-padding.block-abs-body
+    +kendo-grid([
+      { field: 'WarrantNumber', title: '权属信息'},
+      { field: 'zjhm', title: '证件号码' },
+      { field: 'cbf', title: '承包方' },
+      { field: 'fbf', title: '发包方' },
+      { field: 'djrq', title: '登记日期' },
+      { field: 'zt', title: '状态' }
+    ], 'source: hehe')(data-pageable=true, style={ height: '100%' })

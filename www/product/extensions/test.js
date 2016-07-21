@@ -4,7 +4,15 @@ define(function () {
         app.test.hello = function () {
             console.log('hello');
         }
-
-
+        //app.sandbox.on('pageLoading', function () {
+        //    requestAnimationFrame(function () {
+        //        $('#main').css('opacity', 0);
+        //    });
+        //});
+        //app.sandbox.on('pageLoaded', function () {
+        //    requestAnimationFrame(function () {
+        //        $('#main').css('opacity', 1);
+        //    });
+        //});
     }
 });

@@ -6,8 +6,7 @@ mixin btn(style, size)
 
 mixin btn-icon(icon, text, style, size)
   +btn(style, size)&attributes(attributes)
-    +icon(icon)
-    | #{text}
+    +i-text(icon, text)
     block
 
 mixin btn-group
@@ -19,7 +18,7 @@ mixin caret
 
 mixin btn-dropdown(icon, text, style, size)
   +btn-group&attributes(attributes)
-    +btn-icon(icon, text, style, size)
+    +btn-icon(icon, text, style, size)(data-toggle='dropdown')
       +caret
     block
 
@@ -37,18 +36,20 @@ mixin btn-detail
     block
 
 mixin btn-export
-  +btn-icon('download', '导出')
+  +btn-icon('download', '导出')&attributes(attributes)
     block
 
 mixin btn-export-dropdown
   +btn-group
-    +btn-export&attributes(attributes)
+    +btn-export()(data-toggle='dropdown')&attributes(attributes)
+      | &nbsp;
       +caret
     block
 
 mixin btn-more-dropdown
   +btn-group
-    +btn-icon('chain', '更多数据')&attributes(attributes)
+    +btn-icon('chain', '更多数据')(data-toggle='dropdown')&attributes(attributes)
+      | &nbsp;
       +caret
     block
   

@@ -4,6 +4,25 @@ define(function () {
     function isFunction(x) {
         return Object.prototype.toString.call(x) == '[object Function]';
     }
+    function clone(obj) {
+        if (obj === null || typeof (obj) !== 'object' || 'isActiveClone' in obj)
+            return obj;
+
+        if (obj instanceof Date)
+            var temp = new obj.constructor(); //or new Date(obj);
+        else
+            var temp = obj.constructor();
+
+        for (var key in obj) {
+            if (Object.prototype.hasOwnProperty.call(obj, key)) {
+                obj['isActiveClone'] = null;
+                temp[key] = clone(obj[key]);
+                delete obj['isActiveClone'];
+            }
+        }
+
+        return temp;
+    }
 
     var loadResource = function (resourceName, parentRequire, callback, config) {
 
@@ -28,7 +47,9 @@ define(function () {
 
                     if (!isFunction(templateContent)) {                   
                         templateContent = app.view.define(obj);
-                        templateContent.obj = obj;
+                        templateContent.export = function () {
+                            return clone(obj);
+                        };
                     }
                     templateContent._widgetName = obj._widgetName;
                     callback(templateContent);

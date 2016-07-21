@@ -18,7 +18,8 @@ requirejs([
 
     require([
         'veronica',
-        'kendo-ui-pro'
+        'kendo-ui-pro',
+        'bootstrap'
     ], function (veronica) {
 
         // 创建应用程序
@@ -28,7 +29,8 @@ requirejs([
             modules: module,
             autoParseWidgetName: false,
             autoBuildPage: true,
-            releaseWidgetPath: releaseWidgetPath
+            releaseWidgetPath: releaseWidgetPath,
+            widgetNamePattern: /(\w*)-?(\w*)-?(\w*)-?(\w*)-?(\w*)/
         });
 
         var _ = app.core._;

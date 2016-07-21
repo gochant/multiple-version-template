@@ -84,6 +84,7 @@ body {
     .nav > li {
         > a {
             color: #b8c7ce;
+            border-left: 4px solid transparent;
 
             &:hover,
             &:focus {
@@ -101,10 +102,12 @@ body {
         }*/
         &.active > a {
             color: #fff;
+            border-left-color: @component-active-bg;
+            background-color: #434857;
 
             &:hover {
                 color: #fff;
-                background: @component-active-bg;
+                background-color: #434857;
             }
         }
     }
@@ -265,7 +268,7 @@ body {
     position: relative;
     margin: 0;
     border-radius: 0 .28571429rem .28571429rem 0;
-        border-color: rgba(0,0,0,.15);
+    border-color: rgba(0,0,0,.15);
     left: calc(-1rem - 1.2em);
     margin-right: -1.2em;
     padding-left: calc(1rem + 1.2em);
@@ -315,13 +318,38 @@ body {
             border-bottom: 3px solid @nav-underline-bg;
         }
 
+
+
         a {
+            position: relative;
+
             &,
             &:hover,
             &:focus {
                 background-color: transparent;
                 color: inherit;
             }
+        }
+    }
+
+    > li {
+        &:before {
+            content: "";
+            width: 2px;
+            position: absolute;
+            right: -2px;
+            bottom: 6px;
+            top: 6px;
+            background: #eee;
+        }
+
+        > a:hover,
+        > a:focus {
+            background-color: transparent;
+        }
+
+        &:last-child:before {
+            width: 0;
         }
     }
 

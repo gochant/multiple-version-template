@@ -37,7 +37,7 @@ mixin nav-navbar
 
 mixin nav-item(href, active, toggle)
   - var cls = active === true ? 'active' : undefined
-    li(role='presentation', class=cls)
+    li(role='presentation', class=cls)&attributes(attributes)
       if toggle
         a(role='tab', data-toggle='tab', href=href)
           block

@@ -3,15 +3,25 @@
 //--------
 
 mixin icon(name)
-  +icon-fa(name)
-  | &nbsp;
+  +icon-fa(name)&attributes(attributes)
+
+mixin icon-nav(name)
+  +icon-fa(name, 'fw')&attributes(attributes)
 
 //- icon and text
 mixin i-text(name, text)
-  +icon(name)
+  +icon(name)&attributes(attributes)
+  if text
+    | &nbsp;
+    | #{text}
+  block
+
+mixin i-nav-text(name, text)
+  +icon-nav(name)&attributes(attributes)
+  | &nbsp;
   | #{text}
   block
 
 mixin icon-fa(name, type)
-  - type || (type = 'fw')
-  i(class=['fa', 'fa-' + name, 'fa-' + type], aria-hidden='true')
+  - var typeCls = type == null ? null : 'fa-' + type;
+  i(class=['fa', 'fa-' + name, typeCls], aria-hidden='true')&attributes(attributes)

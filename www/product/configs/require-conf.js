@@ -15,7 +15,7 @@
 }(this, function () {
 
     return function (devPath, releasePath) {
-        var version = '0.1.0';
+        var version = '0.1.1';
 
         var config = {
             debug: true,
@@ -24,6 +24,7 @@
                 'kendo-ui-pro': { 'deps': ['jquery'], 'exports': 'kendo' },
                 'kendo-ui-pro-culture': { 'deps': ['kendo-ui-pro'] },
                 'kendo-ui-pro-messages': { 'deps': ['kendo-ui-pro'] },
+                'bootstrap': { 'deps': ['jquery'] },
                 'tiny': { 'deps': ['jquery'] },
                 'jquery-scrollbar': { 'deps': ['jquery'] },
                 'echarts': { 'exports': 'echarts' }
@@ -56,13 +57,25 @@
             'kendo-ui-pro': framePath + '/kendo-ui/pro/2015.3.1111/js/kendo.web.min',
             'kendo-ui-pro-culture': framePath + '/kendo-ui/pro/2015.3.1111/js/cultures/kendo.culture.zh-CN.min',
             'kendo-ui-pro-messages': framePath + '/kendo-ui/pro/2015.3.1111/js/messages/kendo.messages.zh-CN.min',
+            'bootstrap': framePath + '/bootstrap/3.3.6/js/bootstrap',
             'tiny': framePath + '/tinyui/1.0.0/js/tiny',
             'jquery-scrollbar': framePath + '/jquery.scrollbar/0.2.9/jquery.scrollbar',
             'select2': framePath + '/select2/3.5.4/js/select2',
             'summernote': framePath + '/summernote/0.8.1/summernote',
             'summernote-lang': framePath + '/summernote/0.8.1/lang/summernote-zh-CN',
             'echarts': framePath + '/echarts/3.2.1/echarts',
-            'store': framePath + '/store/1.3.20/store'
+            'store': framePath + '/store/1.3.20/store',
+            'esri': 'assets/arcgis/4.0/esri',
+            'dojo': 'assets/arcgis/4.0/dojo',
+            'dgrid': 'assets/arcgis/4.0/dgrid',
+            'dijit': 'assets/arcgis/4.0/dijit',
+            'dojox': 'assets/arcgis/4.0/dojox',
+            'domReady': 'assets/arcgis/4.0/domReady',
+            'dstore': 'assets/arcgis/4.0/dstore',
+            'has': 'assets/arcgis/4.0/has',
+            'i18n': 'assets/arcgis/4.0/i18n',
+            'moment': 'assets/arcgis/4.0/moment',
+            'util': 'assets/arcgis/4.0/util'
         }
 
         return config;
