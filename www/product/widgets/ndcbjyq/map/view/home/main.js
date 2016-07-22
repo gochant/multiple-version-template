@@ -4,7 +4,7 @@ define([
   'dijit/registry',
   'text!./index.html',
   'css!./index.css'
-], function (require, dojo,registry, tpl) {
+], function (require, dojo, registry, tpl) {
     return {
         template: tpl,
         rendered: function () {
@@ -41,6 +41,7 @@ define([
         destroy: function () {
             var _ = this.options.sandbox.app.core._;
             _.each(registry.findWidgets(this.$el.get(0)), function (w) {
+                // 这里调用其API莫名其妙会报错
                 try {
                     w.destroyRecursive(true);
                 } catch (e) {

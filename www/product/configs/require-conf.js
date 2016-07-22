@@ -61,6 +61,7 @@
             'tiny': framePath + '/tinyui/1.0.0/js/tiny',
             'jquery-scrollbar': framePath + '/jquery.scrollbar/0.2.9/jquery.scrollbar',
             'select2': framePath + '/select2/3.5.4/js/select2',
+            'noty': framePath + '/noty/2.3.7/jquery.noty.packaged',
             'summernote': framePath + '/summernote/0.8.1/summernote',
             'summernote-lang': framePath + '/summernote/0.8.1/lang/summernote-zh-CN',
             'echarts': framePath + '/echarts/3.2.1/echarts',

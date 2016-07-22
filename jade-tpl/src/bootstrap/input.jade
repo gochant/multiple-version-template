@@ -1,11 +1,16 @@
 //- input
 
-mixin input-group-btn
+mixin input-group-btn(placeholder)
+  -
   .input-group&attributes(attributes)
-    +textbox
+    +textbox()(placeholder=placeholder)
     .input-group-btn
       block
 
-mixin searchbox
-  +input-group-btn&attributes(attributes)
-    +btn-search-icon
+mixin searchbox(placeholder, action)
+  +input-group-btn(placeholder)&attributes(attributes)
+    +btn-search-icon()(data-action=action)
+
+mixin searchbox-sm(placeholder, action)
+  +searchbox(placeholder, action).input-group-sm.input-md-width&attributes(attributes)
+    block

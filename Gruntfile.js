@@ -11,7 +11,10 @@ module.exports = function (grunt) {
         veronica: options,
         pug: {
             options: {
-                pretty: true
+                pretty: true,
+                client: false,
+                compileDebug: false,
+                amd: false
             },
             compile: {
                 files: [{

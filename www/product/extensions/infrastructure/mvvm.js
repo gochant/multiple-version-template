@@ -1,10 +1,15 @@
-﻿define([
+define([
+    'kendo-ui-pro',
+    'kendo-ui-pro-culture',
+    'kendo-ui-pro-messages'
 ], function () {
 
     return function (app) {
         var _ = app.core._;
         var $ = app.core.$;
         var kendo = app.core.kendo || window.kendo;
+
+        kendo.culture('zh-CN');
 
         app.view.base._bind = function () {
             var me = this;

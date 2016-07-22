@@ -23,16 +23,16 @@ mixin btn-dropdown(icon, text, style, size)
     block
 
 mixin btn-refresh
-  +btn-icon('refresh', '刷新')
+  +btn-icon('refresh', '刷新')(data-action='refresh')&attributes(attributes)
     block
 
-mixin btn-search(text)
+mixin btn-search(text, action)
   - text || (text = '查询')
-  +btn-icon('search', text)
+  +btn-icon('search', text)(data-action= action ? action : 'search')&attributes(attributes)
     block
 
 mixin btn-detail
-  +btn-icon('file-text-o', '详情')
+  +btn-icon('file-text-o', '详情')(data-action='detail')&attributes(attributes)
     block
 
 mixin btn-export
@@ -55,4 +55,5 @@ mixin btn-more-dropdown
   
 
 mixin btn-search-icon
-  +btn-icon('search')
+  +btn-icon('search')&attributes(attributes)
+    block

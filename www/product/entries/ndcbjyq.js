@@ -3,11 +3,8 @@ requirejs.config({
 });
 
 requirejs([
-    'product/configs/require-conf',
-    'product/configs/home/extension',
-    'product/configs/home/page',
-    'product/configs/home/module'
-], function (req, extension, page, module) {
+    'product/configs/require-conf'
+], function (req) {
 
     var devPath = 'http://192.168.1.18:8097/cdn/vendor';  // 开发时路径
      //var devPath = 'http://localhost:8001/vendor';  // 开发时路径
@@ -18,9 +15,11 @@ requirejs([
 
     require([
         'veronica',
-        'kendo-ui-pro',
+        'product/configs/home/extension',
+        'product/configs/home/page',
+        'product/configs/home/module',
         'bootstrap'
-    ], function (veronica) {
+    ], function (veronica, extension, page, module) {
 
         // 创建应用程序
         var app = veronica.createApp({
