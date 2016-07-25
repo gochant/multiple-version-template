@@ -43,9 +43,17 @@ define([
         detailHandler: function (e, app) {
             var me = this;
             app.kendoUtil.confirmSelected(this.list(), function (item) {
-                me.widgetWindow('ndcbjyq-query-detail-registration_book', {
+                var wnd = me.widgetWindow('ndcbjyq-query-detail-registration_book', {
                     _source: 'ndcbjyq'
-                }, { full: true });
+                }, {
+                    full: true,
+                    type: 'modal',
+                    template: $('#modal-template').html(),
+                    options: {
+                        title: '登记簿详情'
+                    }
+                });
+                // wnd.core.maximize();
             });
         }
     };

@@ -1,31 +1,55 @@
 include ../../../../../../../jade-tpl/src/mixin.jade
 
-+panel.block-abs-3
-  +panel-toolbar('sm')
-    +btn-toolbar('sm').pull-left
-      +btn-refresh
-      +btn-search('高级查询22')
-      +btn-detail
-      +btn-icon('dashboard', '汇总登记簿')
-      +btn-export-dropdown
-        +dropdown-menu
-          +menu-item('#') 登记簿
-          +menu-item('#') 有效登记簿清册
-          +menu-item('#') 确权颁证信息表
-      +btn-more-dropdown
-        +dropdown-menu
-          +menu-item('#') 历史回溯
-          +menu-item('#') 权证信息
-          +menu-item('#') 权源流转合同
-          +menu-item('#') 附加信息
-    +right
-      +searchbox.input-group-sm.input-md-width
-  +panel-body.no-padding.block-abs-body
-    +kendo-grid([
-      { field: 'WarrantNumber', title: '权属信息'},
-      { field: 'zjhm', title: '证件号码' },
-      { field: 'cbf', title: '承包方' },
-      { field: 'fbf', title: '发包方' },
-      { field: 'djrq', title: '登记日期' },
-      { field: 'zt', title: '状态' }
-    ], 'source: hehe')(data-pageable=true, style={ height: '100%' })
+.navbar.navbar-inverse.navbar-static-top
+  .container
+    button.close(data-dismiss='modal')
+      span ×
+    .navbar-brand
+      | 登记簿
+      small 详情
+.modal-body
+  .form-wrapper
+    .container
+      .aside
+        ul.nav.nav-content.nav-stacked
+          +nav-item('#', true) 基础信息
+          +nav-item 权证信息
+          +nav-item 流转信息
+          +nav-item 抵押信息
+          +nav-item 变更信息
+          +nav-item 附件
+      .content
+        +nav.nav-heavy.nav-pills
+          +nav-item('#', true) 基本信息
+          +nav-item 家庭成员
+          +nav-item 地块信息
+          +nav-item 地块示意图
+        div
+          +form-layout-t
+            +row-t
+              +textblock-t('发包方全称：', '', 2)
+            +row-t
+              +textblock-t('承包方代表姓名：', '', 2)
+            +row-t
+              +textblock-t('证件号码：', '', 2)
+            +row-t
+              +textblock-t('承包方式：', '', 2)
+            +row-t
+              +textblock-t('承包方类型：', '', 2)
+            +row-t
+              +textblock-t('承包方住址：', '', 2)
+            +row-t
+              +textblock-t('邮政编码：', '')
+              +textblock-t('联系电话：', '')
+            +row-t
+              +textblock-t('合同编号：', '', 2)
+            +row-t
+              +textblock-t('权证编号：', '', 2)
+            +row-t
+              +textblock-t('承包期限：', '', 2)
+  .navbar.navbar-inverse.navbar-fixed-bottom
+    .container
+      .navbar-form.navbar-right
+        .btn-toolbar
+          .btn-group
+            .btn.btn-success 保存

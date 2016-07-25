@@ -29,3 +29,9 @@ block body
     { field: 'RegisteDate', title: '登记日期' },
     { field: 'WorkStatus', title: '状态' }
   ], 'source: source')(data-pageable='true', data-auto-bind='false', data-selectable='row', style={ height: '100%' })
+
+  script#modal-template(type='text/template')
+    .modal.modal-fullscreen
+      .modal-dialog
+        .modal-content.fn-wnd
+            

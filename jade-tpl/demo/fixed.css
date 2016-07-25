@@ -317,3 +317,163 @@ body {
   line-height: 1.5;
   border-radius: 1px;
 }
+.k-window-maximized.k-window {
+  padding-top: 0;
+}
+.k-window-maximized .k-window-titlebar {
+  padding: 0;
+  min-height: 0;
+  height: 0;
+}
+.form-wrapper {
+  position: absolute;
+  top: 0;
+  bottom: 50px;
+  left: 0;
+  right: 0;
+  background: #eae8e9;
+}
+.form-wrapper > .container {
+  padding: 0;
+  height: 100%;
+  overflow: auto;
+  background: #f3f3f3;
+  border-right: 1px solid #dfdfdf;
+  border-left: 1px solid #dfdfdf;
+  overflow: hidden;
+}
+.form-wrapper > .container > .aside {
+  width: 180px;
+  height: 100%;
+  float: left;
+}
+.form-wrapper > .container > .content {
+  background: white;
+  margin-left: 180px;
+  height: 100%;
+  overflow: auto;
+}
+.form-wrapper > .container > .content > .nav-heavy {
+  position: absolute;
+  top: -42px;
+  margin-left: 50px;
+}
+.btn {
+  transition: opacity 0.1s ease, background-color 0.1s ease, color 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
+}
+.nav-heavy {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'SimHei', sans-serif;
+}
+.nav-heavy.nav-pills > li > a {
+  border-radius: 0;
+}
+.nav-heavy > li > a {
+  color: #a6a6a6;
+  background-color: transparent;
+}
+.nav-heavy > li > a:hover,
+.nav-heavy > li > a:focus {
+  color: #8d8d8d;
+  background-color: transparent;
+}
+.nav-heavy > li.active > a,
+.nav-heavy > li.active > a:hover,
+.nav-heavy > li.active > a:focus {
+  color: #337ab7;
+  background: white;
+}
+.nav-heavy > li {
+  margin-right: 20px;
+}
+.nav-content {
+  padding-top: 40px;
+}
+.nav-content > li > a {
+  padding-left: 40px;
+  color: #a6a6a6;
+}
+.nav-content > li > a:hover,
+.nav-content > li > a:focus {
+  color: #0d7ce7;
+  background-color: transparent;
+}
+.nav-content > li > a:hover {
+  text-decoration: underline;
+}
+.nav-content > li.active > a,
+.nav-content > li.active > a:hover,
+.nav-content > li.active > a:focus {
+  color: #000;
+  background: white;
+}
+.full {
+  width: 100%;
+  height: 100%;
+}
+.absolute-full {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.modal-fullscreen {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  bottom: 10px;
+  left: 10px;
+  overflow: hidden;
+}
+.modal-fullscreen .navbar-static-top {
+  z-index: auto;
+}
+.modal-fullscreen .navbar-inverse .navbar-brand {
+  color: white;
+}
+.modal-fullscreen .modal-dialog {
+  position: absolute;
+  border: 1px solid blue;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+.modal-fullscreen .modal-content {
+  border-radius: 0;
+  box-shadow: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.modal-fullscreen .modal-content .close {
+  font-size: 30px;
+  text-shadow: none;
+  color: white;
+  opacity: .9;
+  font-weight: normal;
+  line-height: 50px;
+}
+.modal-fullscreen .modal-content .modal-body {
+  position: absolute;
+  top: 50px;
+  bottom: 0;
+  width: 100%;
+  overflow: visible;
+  padding: 0;
+  background: #fff;
+}
+.modal-fullscreen .modal-content .modal-body > iframe {
+  border: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
