@@ -6,5 +6,8 @@
     "grunt-contrib-pug": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-veronica": "^0.2.0"
+  },
+  "dependencies": {
+    "http-proxy": "^1.14.0"
   }
 }

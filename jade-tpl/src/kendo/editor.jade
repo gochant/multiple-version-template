@@ -53,8 +53,8 @@ mixin editor-h(text, field, type, data)
       +editor(field, text, type, data)
 
 mixin textblock(field)
-  - var bind = field ? 'value: data.' + field : null;
-  span.form-control-static(type='text', data-bind=bind)&attributes(attributes)
+  - var bind = field ? 'text: data.' + field : null;
+  span.form-control(data-bind=bind)&attributes(attributes)
 
 mixin textbox(field)
   - var bind = field ? 'value: data.' + field : null;

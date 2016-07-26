@@ -429,6 +429,7 @@ body {
         > .content {
             background: white;
             margin-left: 180px;
+            padding: 10px;
             height: 100%;
             overflow: auto;
 
@@ -589,5 +590,28 @@ body {
                 .full();
             }
         }
+    }
+}
+
+.table-form-horizontal.wider {
+    > tbody > tr > td {
+        padding-left: 150px;
+    }
+
+    td .control-label {
+        width: 140px;
+        margin-left: -150px;
+    }
+}
+
+.table-form-horizontal.static {
+    &.table-hover > tbody > tr:hover {
+        background-color: inherit;
+    }
+
+    td .control-label {
+        padding: 6px 0;
+        color: #999;
+        text-align: right;
     }
 }

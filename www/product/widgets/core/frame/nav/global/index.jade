@@ -2,4 +2,31 @@ include ../../../../../../../jade-tpl/src/mixin.jade
 
 div
   .breadcrumb.no-margin
-    a.control-label 山东省临沂市2
+
+script#region-selector-pane(type='text/template').
+  <div class="nav-tabs-custom">
+      <ul class="nav nav-tabs nav-sm">
+          # for(var i = 0, len = data.nav.length; i < len; i++){ #
+          #  var item = data.nav[i]  #
+          #  var cls = data.requestKey === item.parentKey ? "active" : ""; #
+            <li class="#= cls #">
+              <a class="fn-nav-item" data-parent-key="#= item.parentKey #"> #= item.text # </a>
+            </li>
+          # } #
+      </ul>
+      <div class="tab-content">
+          <ul class="list-inline">
+            # for(var i = 0, len = data.list.length; i < len; i++){ #
+            # var item = data.list[i]; #
+            # var cls = _.findIndex(data.nav, function(n){ #
+            #  return n.parentKey === item.key #
+            # }) >= 0 ? 'active' : ''; #
+              <li class="#= cls #">
+                <a class="fn-list-item" data-key="#= item.key #">
+                  #= item.text #
+                </a>
+              </li>
+            # } #
+          </ul>
+      </div>
+  </div>

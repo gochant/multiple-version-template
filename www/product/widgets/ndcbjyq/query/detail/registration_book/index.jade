@@ -25,28 +25,28 @@ include ../../../../../../../jade-tpl/src/mixin.jade
           +nav-item 地块信息
           +nav-item 地块示意图
         div
-          +form-layout-t
+          +form-layout-t.wider.static
             +row-t
-              +textblock-t('发包方全称：', '', 2)
+              +textblock-t('发包方全称：', 'OutsourcerName', 2)
             +row-t
-              +textblock-t('承包方代表姓名：', '', 2)
+              +textblock-t('承包方代表姓名：', 'ContractorName', 2)
             +row-t
-              +textblock-t('证件号码：', '', 2)
+              +textblock-t('证件号码：', 'OutsourcerNumber', 2)
             +row-t
-              +textblock-t('承包方式：', '', 2)
+              +textblock-t('承包方式：', 'StrContractWay', 2)
             +row-t
-              +textblock-t('承包方类型：', '', 2)
+              +textblock-t('承包方类型：', 'StrContractorType', 2)
             +row-t
-              +textblock-t('承包方住址：', '', 2)
+              +textblock-t('承包方住址：', 'ContractorAddress', 2)
             +row-t
               +textblock-t('邮政编码：', '')
               +textblock-t('联系电话：', '')
             +row-t
-              +textblock-t('合同编号：', '', 2)
+              +textblock-t('合同编号：', 'DisplayAgreementNumber', 2)
             +row-t
-              +textblock-t('权证编号：', '', 2)
+              +textblock-t('权证编号：', 'WarrantNumber', 2)
             +row-t
-              +textblock-t('承包期限：', '', 2)
+              +textblock-t('承包期限：', 'ContractDeadline', 2)
   .navbar.navbar-inverse.navbar-fixed-bottom
     .container
       .navbar-form.navbar-right

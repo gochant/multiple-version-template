@@ -44,7 +44,8 @@ define([
             var me = this;
             app.kendoUtil.confirmSelected(this.list(), function (item) {
                 var wnd = me.widgetWindow('ndcbjyq-query-detail-registration_book', {
-                    _source: 'ndcbjyq'
+                    _source: 'ndcbjyq',
+                    id: item.ID
                 }, {
                     full: true,
                     type: 'modal',

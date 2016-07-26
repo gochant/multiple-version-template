@@ -7,6 +7,18 @@ define([
             url: {
                 query: 'g:[this].registrationBook.detail'
             }
+        },
+        rendered: function (app) {
+            var me = this;
+            app.request.getJSON(this.url('query'), {
+                id: this.options.id
+            }).done(function (resp) {
+                if (resp.success) {
+                    me.model({
+                        data: resp.data
+                    });
+                }
+            });
         }
 
     };
