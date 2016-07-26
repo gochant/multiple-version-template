@@ -9,40 +9,23 @@ define([
                 parents: 'g:[this].zone.parents'
             }
         },
+        initAttr: function () {
+            this.model({
+                text: '',
+                key: '51'
+            }, false);
+        },
         rendered: function () {
-            this.$('.breadcrumb').kendoZoneSelector({
+            var select = this.$('.fn-selector').kendoZoneSelector({
                 url: this.url('read'),
                 headerUrl: this.url('parents'),
                 template: $('#region-selector-pane').html(),
-                requestKey: '51'
-            });
-        },
-        initAttr: function (app) {
-            this.keyName = 'globalZone';
-         //   this.attr('key', globalData());
-        },
-        globalData: function (val) {
-            var app = this.options.sandbox.app;
-            if (val != null) {
-                app.data.set(this.keyName, val);
-            }
-            return app.data.get(this.keyName);
-        },
-        subscribe: function () {
+                requestKey: this.model().get('key')
+            }).data('kendoZoneSelector');
             var me = this;
-            this.sub('change.' + this.keyName, function (val) {
-              //  me.load
-            });
-        },
-        load: function () {
-            var app = this.options.sandbox.app;
-            var me = this;
-            app.request.getJSON(this.url('read'), {
-                key: this.attr('key')
-            }).done(function (resp) {
-                if (resp.success) {
-                    me.render();
-                }
+            select.bind('selected', function (data) {
+                me.model(data);
+                me.$('[data-toggle=dropdown]').dropdown('toggle');
             });
         }
     };

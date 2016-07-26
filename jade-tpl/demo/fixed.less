@@ -615,3 +615,44 @@ body {
         text-align: right;
     }
 }
+
+
+.panel.panel-xs {
+    .panel-heading,
+    .panel-body,
+    .panel-footer {
+        padding: 4px;
+    }
+}
+
+.dropdown-menu {
+    > .panel {
+        border: 0;
+    }
+}
+
+.dropdown.mega {
+    .dropdown-menu {
+        margin-top: -1px;
+    }
+}
+
+.nested-selector {
+    width: 450px;
+
+    .panel-body {
+
+        ul {
+            margin: 10px 0;
+
+            > li.active > a {
+                background-color: lighten(@component-active-bg, 10%);
+                color: @component-active-color;
+            }
+        }
+    }
+
+    &.panel .panel-heading {
+        padding-bottom: 0;
+    }
+}

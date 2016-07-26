@@ -4,6 +4,10 @@ define([
         var jQuery = app.core.$;
         var _ = app.core._;
 
+        $(document).on('click', '.dropdown.mega .dropdown-menu', function (e) {
+            e.stopPropagation();
+        });
+
         // zone selector jq plugin
         (function ($) {
 
@@ -18,7 +22,7 @@ define([
                     this.template = kendo.template(this.options.template, {
                         variable: 'data',
                         useWithBlock: false,
-                      //  interpolate: /{{([\s\S]+?)}}/g,
+                        //  interpolate: /{{([\s\S]+?)}}/g,
 
                     });
                     this._bindEvents();
@@ -29,6 +33,7 @@ define([
                     url: '',
                     template: '',
                     requestKey: null,
+                    keyLimitLength: 16,
                     responseHandler: function (resp1, resp2, requestKey, currentKey) {
                         var levelMap = {
                             '国家': '省',
@@ -36,34 +41,40 @@ define([
                             '市': '区县',
                             '县': '乡镇街道',
                             '镇': '村',
-                            '村':'组'
+                            '村': '组'
                         };
                         if (resp1.success && resp2.success) {
                             var data = this.data() || {};
                             data.requestKey = requestKey;
                             data.currentKey = currentKey;
-                            data.nav = _.map(resp2.data.headZone.reverse(), function(item) {
-                                return {
-                                    parentKey: item.Key,
-                                    text: levelMap[item.Kind]
+                            data.currentText = resp2.data.currentZone.RootFullName;
+                            data.nav = _.compact(_.map(resp2.data.headZone.reverse(), function (item) {
+                                var text = levelMap[item.Kind];
+                                if (text != null) {
+                                    return {
+                                        parentKey: item.Key,
+                                        text: levelMap[item.Kind]
+                                    }
                                 }
-                            });
+                              
+                            }));
 
-                            data.list = _.map(resp1.data.Sub, function(item) {
+                            data.list = _.map(resp1.data.Sub, function (item) {
                                 return {
                                     key: item.Key,
-                                    text: item.Value
+                                    text: item.Value,
+                                    longText: item.RootFullName
                                 };
                             });
 
                             this.data(data);
-                            this.refresh();
                         }
                     }
                 },
                 data: function (data) {
                     if (data != null) {
-                        this._data = data;
+                        this._data = _.extend(this._data, data);
+                        this.refresh();
                     }
                     return this._data;
                 },
@@ -72,17 +83,35 @@ define([
 
                     this.element
                         .on('click', '.fn-list-item', function (e) {
+                            e.stopPropagation();
                             var $el = $(e.target).closest('.fn-list-item');
-                            var requestKey = $el.attr('data-key');
-                            var currentKey = requestKey;
-                            me.fetch(requestKey, currentKey);
+                            var currentKey = $el.attr('data-key');
+                            var currentText = $el.attr('data-text');
+
+                            if (currentKey.length < me.options.keyLimitLength) {
+                                var requestKey = currentKey;
+
+                                me.fetch(requestKey, currentKey);
+                            } else {
+                                me.data({
+                                    currentKey: currentKey,
+                                    currentText: currentText
+                                });
+                            }
                         })
                         .on('click', '.fn-nav-item', function (e) {
                             var $el = $(e.target).closest('.fn-nav-item');
                             var requestKey = $el.attr('data-parent-key');
                             var currentKey = me.data().currentKey;
+
                             me.fetch(requestKey, currentKey);
 
+                        })
+                        .on('click', '.fn-ok', function (e) {
+                            me.trigger('selected', {
+                                key: me.data().currentKey,
+                                text: me.data().currentText
+                            });
                         });
                 },
                 fetch: function (requestKey, currentKey) {
@@ -109,7 +138,6 @@ define([
                         }
                     }))
                     .done(function (resp1, resp2) {
-                        debugger;
                         me.options.responseHandler.call(me, resp1, resp2, requestKey, currentKey);
                     });
                 },

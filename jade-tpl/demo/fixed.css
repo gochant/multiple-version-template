@@ -493,3 +493,27 @@ body {
   color: #999;
   text-align: right;
 }
+.panel.panel-xs .panel-heading,
+.panel.panel-xs .panel-body,
+.panel.panel-xs .panel-footer {
+  padding: 4px;
+}
+.dropdown-menu > .panel {
+  border: 0;
+}
+.dropdown.mega .dropdown-menu {
+  margin-top: -1px;
+}
+.nested-selector {
+  width: 450px;
+}
+.nested-selector .panel-body ul {
+  margin: 10px 0;
+}
+.nested-selector .panel-body ul > li.active > a {
+  background-color: #5094ce;
+  color: #fff;
+}
+.nested-selector.panel .panel-heading {
+  padding-bottom: 0;
+}

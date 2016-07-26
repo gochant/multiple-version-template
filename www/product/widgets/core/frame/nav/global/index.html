@@ -1,32 +1,42 @@
 
-<div>
-  <div class="breadcrumb no-margin"></div>
+<div class="dropdown mega">
+  <div class="breadcrumb no-margin" data-toggle="dropdown" style="cursor:pointer"><span class="fn-current" data-bind="text: text"></span>&nbsp;&nbsp;<span class="caret"></span></div>
+  <div class="dropdown-menu no-padding fn-selector"></div>
 </div>
 <script id="region-selector-pane" type="text/template">
-  <div class="nav-tabs-custom">
-      <ul class="nav nav-tabs nav-sm">
-          # for(var i = 0, len = data.nav.length; i < len; i++){ #
-          #  var item = data.nav[i]  #
-          #  var cls = data.requestKey === item.parentKey ? "active" : ""; #
-            <li class="#= cls #">
-              <a class="fn-nav-item" data-parent-key="#= item.parentKey #"> #= item.text # </a>
-            </li>
-          # } #
-      </ul>
-      <div class="tab-content">
+  <div class="panel panel-default panel-xs no-margin nested-selector">
+      <div class="panel-heading">
+          <ul class="nav nav-tabs tab-styled nav-sm">
+              # for(var i = 0, len = data.nav.length; i < len; i++){ #
+              #  var item = data.nav[i]  #
+              #  var cls = data.requestKey === item.parentKey ? "active" : ""; #
+                <li class="#= cls #">
+                  <a class="fn-nav-item" data-parent-key="#= item.parentKey #"> #= item.text # </a>
+                </li>
+              # } #
+          </ul>      
+      </div>
+  
+      <div class="panel-body">
           <ul class="list-inline">
             # for(var i = 0, len = data.list.length; i < len; i++){ #
             # var item = data.list[i]; #
-            # var cls = _.findIndex(data.nav, function(n){ #
+            # var cls = (_.findIndex(data.nav, function(n){ #
             #  return n.parentKey === item.key #
-            # }) >= 0 ? 'active' : ''; #
+            # }) >= 0 || data.currentKey === item.key) ? 'active' : ''; #
               <li class="#= cls #">
-                <a class="fn-list-item" data-key="#= item.key #">
+                <a class="fn-list-item btn btn-xs" data-key="#= item.key #" data-text="#= item.longText #">
                   #= item.text #
                 </a>
               </li>
             # } #
           </ul>
+      </div>
+      <div class="panel-footer clearfix">
+        <div class="pull-left input-sm">当前：&nbsp;#= data.currentText #</div>
+        <div class="pull-right">
+            <a class="btn btn-default btn-sm fn-ok">确定</a>
+        </div>
       </div>
   </div>
 </script>
