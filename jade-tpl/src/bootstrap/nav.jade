@@ -38,12 +38,12 @@ mixin nav-navbar
 mixin nav-item(href, active, toggle)
   - if(href == null){ href = 'javascript:;'; }
   - var cls = active === true ? 'active' : undefined
-    li(role='presentation', class=cls)&attributes(attributes)
+    li.nav-item(role='presentation', class=cls)&attributes(attributes)
       if toggle
-        a(role='tab', data-toggle='tab', href=href)
+        a.nav-link(role='tab', data-toggle='tab', href=href)
           block
       else
-        a(href=href)
+        a.nav-link(href=href)
           block
 
 mixin nav-toggle-item(href, active)
@@ -66,6 +66,10 @@ mixin nav-underline(size)
 
 mixin nav-content
   +nav.nav-content.nav-stacked&attributes(attributes)
+    block
+
+mixin nav-heavy
+  +nav.nav-heavy.nav-pills&attributes(attributes)
     block
 
 //- tabs

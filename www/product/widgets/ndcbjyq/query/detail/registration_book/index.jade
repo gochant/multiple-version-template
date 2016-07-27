@@ -1,30 +1,27 @@
-include ../../../../../../../jade-tpl/src/mixin.jade
+extends ../../../../../tools/pug-tpl/modal-box-layout.jade
 
-.navbar.navbar-inverse.navbar-static-top
-  .container
-    button.close(data-dismiss='modal')
-      span ×
-    .navbar-brand
-      | 登记簿 &nbsp;
-      small 详情
-.modal-body
-  .form-wrapper
-    .container
-      .aside
-        ul.nav.nav-content.nav-stacked
-          +nav-item('#', true) 基础信息
-          +nav-item 权证信息
-          +nav-item 流转信息
-          +nav-item 抵押信息
-          +nav-item 变更信息
-          +nav-item 附件
-      .content
-        +nav.nav-heavy.nav-pills
-          +nav-item('#', true) 基本信息
-          +nav-item 家庭成员
-          +nav-item 地块信息
-          +nav-item 地块示意图
-        div
+block heading
+  +modal-heading('登记簿', '详情')
+
+block aside
+  +nav-content(data-dynamic='main')
+    +nav-toggle-item('#', true) 基础信息
+    +nav-toggle-item 权证信息
+    +nav-toggle-item 流转信息
+    +nav-toggle-item 抵押信息
+    +nav-toggle-item 变更信息
+    +nav-toggle-item 附件
+
+block content
+  +tab-content(data-dynamic='main')
+    +tab-pane(null, true)   
+      +nav-heavy(data-dynamic='t11')
+        +nav-toggle-item('#', true) 基本信息
+        +nav-toggle-item 家庭成员
+        +nav-toggle-item 地块信息
+        +nav-toggle-item 地块示意图
+      +tab-content(data-dynamic='t11')
+        +tab-pane(null, true)
           +form-layout-t.wider.static
             +row-t
               +textblock-t('发包方全称：', 'OutsourcerName', 2)
@@ -47,9 +44,8 @@ include ../../../../../../../jade-tpl/src/mixin.jade
               +textblock-t('权证编号：', 'WarrantNumber', 2)
             +row-t
               +textblock-t('承包期限：', 'ContractDeadline', 2)
-  .navbar.navbar-inverse.navbar-fixed-bottom
-    .container
-      .navbar-form.navbar-right
-        .btn-toolbar
-          .btn-group
-            .btn.btn-success 保存
+
+  
+
+block action
+  +btn-group: +btn 关闭

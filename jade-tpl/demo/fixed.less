@@ -120,12 +120,12 @@ body {
     min-height: @navbar-sm-height;
     border: 0;
 
-    .navbar-nav > li > a {
+    .navbar-nav .nav-link {
         padding-top: @navbar-sm-padding-vertical;
         padding-bottom: @navbar-sm-padding-vertical;
     }
 
-    .nav-styled > li > a {
+    .nav-styled .nav-link {
         padding-top: 10px;
         padding-bottom: 9px;
     }
@@ -187,16 +187,16 @@ body {
 .nav-primary {
     background: lighten(@brand-primary, 10%);
 
-    > li > a {
+    .nav-link {
         color: @component-active-color;
         padding-left: @padding-large-horizontal * 2;
         padding-right: @padding-large-horizontal * 2;
-    }
 
-    > li > a:hover,
-    > li > a:active,
-    > li > a:focus {
-        background: transparent;
+        &:hover,
+        &:active,
+        &:focus {
+            background: transparent;
+        }
     }
     /*> .active > a,
     > .active > a:focus,
@@ -304,35 +304,19 @@ body {
 @nav-underline-bg: @label-primary-bg;
 
 .nav-underline {
-    > li.active {
-        :after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            margin-left: -3px;
-            width: 0;
-            height: 0;
-            border-left: 3px solid transparent;
-            border-right: 3px solid transparent;
-            border-bottom: 3px solid @nav-underline-bg;
-        }
+    .nav-link {
+        position: relative;
 
-
-
-        a {
-            position: relative;
-
-            &,
-            &:hover,
-            &:focus {
-                background-color: transparent;
-                color: inherit;
-            }
+        &,
+        &:hover,
+        &:focus {
+            background-color: transparent;
+            color: inherit;
         }
     }
 
-    > li {
+
+    .nav-item {
         &:before {
             content: "";
             width: 2px;
@@ -343,13 +327,28 @@ body {
             background: #eee;
         }
 
-        > a:hover,
-        > a:focus {
-            background-color: transparent;
-        }
-
         &:last-child:before {
             width: 0;
+        }
+
+        &.active {
+            :after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                margin-left: -3px;
+                width: 0;
+                height: 0;
+                border-left: 3px solid transparent;
+                border-right: 3px solid transparent;
+                border-bottom: 3px solid @nav-underline-bg;
+            }
+
+            .nav-link {
+                background-color: transparent;
+                color: inherit;
+            }
         }
     }
 
@@ -425,6 +424,7 @@ textarea {
 
 .tab-content {
     border: 0;
+    padding: 0;
 }
 
 .box-bottom {
@@ -441,7 +441,7 @@ textarea {
     right: 0;
     background: #eae8e9;
 
-    > .wrapper {
+    > .box-wrapper {
         padding: 0;
         height: 100%;
         overflow: auto;
@@ -450,20 +450,20 @@ textarea {
         border-left: 1px solid #dfdfdf;
         overflow: hidden;
 
-        > .aside {
+        > .box-aside {
             width: 180px;
             height: 100%;
             float: left;
         }
 
-        > .content {
+        > .box-content {
             background: white;
             margin-left: 180px;
             padding: 10px;
             height: 100%;
             overflow: auto;
 
-            > .nav-heavy {
+            .nav-heavy {
                 position: absolute;
                 top: -42px;
                 margin-left: 50px;
@@ -487,26 +487,24 @@ textarea {
 
 .nav-custom(@color, @bg, @hoverColor, @hoverBg, @activeColor, @activeBg) {
 
-    > li {
-        > a {
-            color: @color;
-            background-color: @bg;
+    .nav-link {
+        color: @color;
+        background-color: @bg;
 
-            &:hover,
-            &:focus {
-                color: @hoverColor;
-                background-color: @hoverBg;
-            }
+        &:hover,
+        &:focus {
+            color: @hoverColor;
+            background-color: @hoverBg;
         }
+    }
 
-        &.active > a {
+    .nav-item.active .nav-link {
 
-            &,
-            &:hover,
-            &:focus {
-                color: @activeColor;
-                background: @activeBg;
-            }
+        &,
+        &:hover,
+        &:focus {
+            color: @activeColor;
+            background: @activeBg;
         }
     }
 }
@@ -516,41 +514,23 @@ textarea {
     font-weight: 600;
     font-family: 'SimHei', sans-serif;
 
-    &.nav-pills > li > a {
+    &.nav-pills .nav-link {
         border-radius: 0;
     }
 
     .nav-custom(#a6a6a6, transparent, #8d8d8d, transparent, @component-active-bg, white);
 
-    > li {
+    .nav-item {
         margin-right: 20px;
     }
 }
 
 .nav-content {
     padding-top: 40px;
+    .nav-custom(#a6a6a6, inherit, #000, transparent, #000, white);
 
-    > li {
-        > a {
-            padding-left: 40px;
-            color: #a6a6a6;
-
-            &:hover,
-            &:focus {
-                color: #000;
-                background-color: transparent;
-            }
-        }
-
-        &.active > a {
-
-            &,
-            &:hover,
-            &:focus {
-                color: #000;
-                background: white;
-            }
-        }
+    .nav-link {
+        padding-left: 40px;
     }
 }
 

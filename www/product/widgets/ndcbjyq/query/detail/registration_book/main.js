@@ -10,6 +10,8 @@ define([
         },
         rendered: function (app) {
             var me = this;
+            debugger;
+            app.ext.dynamicTab(this.$el);
             app.request.getJSON(this.url('query'), {
                 id: this.options.id
             }).done(function (resp) {

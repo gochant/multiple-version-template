@@ -114,9 +114,9 @@ input[type="checkbox"] {
   background-color: #fff;
 }
 .tab-content {
-  border: 1px solid #C5D0DC;
-  padding: 16px 12px;
-  position: relative;
+  /*border: 1px solid @tab-border;
+        padding: 16px 12px;
+        position: relative;*/
 }
 .tab-content.no-padding {
   padding: 0;
