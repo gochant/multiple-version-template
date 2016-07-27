@@ -77,5 +77,30 @@ define([
             return result;
         }
 
+        app.ext || (app.ext = {});
+
+        app.ext.str = function () {
+            return Math.random().toString(36).substring(7);
+        }
+
+        app.ext.dynamicTab = function ($dom) {
+            var $dynamic = $dom.find('.nav[data-dynamic]');
+
+            $dynamic.each(function(i, el) {
+                var $nav = $(el);
+                var group = $nav.attr('data-dynamic');
+
+                var $content = $dom.find('[data-dynamic=' + group + ']');
+
+                var $tabs = $nav.find('[data-toggle=tab]');
+                var $panels = $content.find('.tab-pane');
+                $tabs.each(function(i, tab) {
+                    var rstr = app.ext.str();
+                    $(tab).attr('href', '#' + rstr);
+                    $($panels.get(i)).attr('id', rstr);
+                });
+            });
+   
+        }
     }
 });

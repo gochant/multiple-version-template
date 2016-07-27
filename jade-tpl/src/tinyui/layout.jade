@@ -1,4 +1,4 @@
-//- desktop
+//- -------------- desktop
 
 mixin sidebar
   aside.aside.sidebar-inverse&attributes(attributes)
@@ -8,7 +8,13 @@ mixin main
   main.main
     block
 
-//- grid layout
+//- ------------------- normal
+
+mixin container
+  .container&attributes(attributes)
+    block
+
+//- --------------- grid layout
 
 mixin row
   .row
@@ -17,9 +23,11 @@ mixin row
 mixin col(num, size)
   - size || (size = 'sm')
   - var cls = 'col-' + size + '-' + num
-  div(class=[cls])
+  div(class=[cls])&attributes(attributes)
+    block
 
-//- form layout
+//- ------------------- form layout
+
 mixin form-layout-t()
   table.table.table-condensed.table-bordered.table-hover.table-form-horizontal&attributes(attributes)
     block
@@ -37,18 +45,57 @@ mixin col-t(colspan)
       block
 
 mixin form-layout-h
-  .form-horizontal
+  .form-horizontal&attributes(attributes)
     block
 
 mixin row-h
-  .form-group
+  .form-group.form-group-sm&attributes(attributes)
     block
 
 mixin col-h(num)
-  +col(num, 'xs')
+  +col(num, 'xs')&attributes(attributes)
+    block
 
-//- utility
+//- ---------------- utility
 
 mixin right
   .pull-right
     block
+
+//- ------------------ panel layout
+
+mixin box-topbar
+  .box-top.navbar.navbar-inverse.navbar-static-top.no-margin&attributes(attributes)
+    block
+
+mixin box-bottombar
+  .box-bottom.navbar.navbar-inverse.navbar-static-bottom.no-margin&attributes(attributes)
+    block
+
+mixin box-body
+  .box-body
+    block
+
+mixin wrapper
+  .wrapper.container
+    block
+
+mixin aside
+  .aside
+    block
+
+mixin content
+  .content
+    block
+
+mixin modal-close
+  button.close(data-dismiss='modal')
+    span ×
+
+mixin modal-heading(title, subtitle)
+  +container
+    +modal-close
+    .navbar-brand
+      | #{title} &nbsp;
+      small #{subtitle}
+

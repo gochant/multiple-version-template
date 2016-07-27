@@ -2710,6 +2710,25 @@ body {
   line-height: 1.5;
   border-radius: 1px;
 }
+.form-horizontal {
+  max-width: 600px;
+}
+textarea {
+  min-height: 8em;
+}
+.k-autocomplete,
+.k-combobox,
+.k-datepicker,
+.k-timepicker,
+.k-datetimepicker,
+.k-colorpicker,
+.k-numerictextbox,
+.k-dropdown,
+.k-selectbox,
+.k-textbox,
+.k-toolbar .k-split-button {
+  width: 100%;
+}
 .k-window-maximized.k-window {
   padding-top: 0;
 }
@@ -2718,15 +2737,21 @@ body {
   min-height: 0;
   height: 0;
 }
-.form-wrapper {
+.tab-content {
+  border: 0;
+}
+.box-bottom .btn-primary {
+  min-width: 100px;
+}
+.box-body {
   position: absolute;
-  top: 0;
+  top: 50px;
   bottom: 50px;
   left: 0;
   right: 0;
   background: #eae8e9;
 }
-.form-wrapper > .container {
+.box-body > .wrapper {
   padding: 0;
   height: 100%;
   overflow: auto;
@@ -2735,25 +2760,32 @@ body {
   border-left: 1px solid #dfdfdf;
   overflow: hidden;
 }
-.form-wrapper > .container > .aside {
+.box-body > .wrapper > .aside {
   width: 180px;
   height: 100%;
   float: left;
 }
-.form-wrapper > .container > .content {
+.box-body > .wrapper > .content {
   background: white;
   margin-left: 180px;
   padding: 10px;
   height: 100%;
   overflow: auto;
 }
-.form-wrapper > .container > .content > .nav-heavy {
+.box-body > .wrapper > .content > .nav-heavy {
   position: absolute;
   top: -42px;
   margin-left: 50px;
 }
 .btn {
   transition: opacity 0.1s ease, background-color 0.1s ease, color 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
+}
+.navbar-static-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
 }
 .nav-heavy {
   font-size: 16px;
@@ -2790,11 +2822,8 @@ body {
 }
 .nav-content > li > a:hover,
 .nav-content > li > a:focus {
-  color: #0d7ce7;
+  color: #000;
   background-color: transparent;
-}
-.nav-content > li > a:hover {
-  text-decoration: underline;
 }
 .nav-content > li.active > a,
 .nav-content > li.active > a:hover,
@@ -2813,29 +2842,40 @@ body {
   bottom: 0;
   left: 0;
 }
-.modal-fullscreen {
+.modal-classy.biggest {
   position: fixed;
   top: 10px;
   right: 10px;
   bottom: 10px;
   left: 10px;
+}
+.modal-classy.biggest .modal-dialog {
+  border: 1px solid blue;
+}
+.modal-classy.fullscreen {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.modal-classy {
   overflow: hidden;
 }
-.modal-fullscreen .navbar-static-top {
+.modal-classy .navbar-static-top {
   z-index: auto;
 }
-.modal-fullscreen .navbar-inverse .navbar-brand {
+.modal-classy .navbar-inverse .navbar-brand {
   color: white;
 }
-.modal-fullscreen .modal-dialog {
+.modal-classy .modal-dialog {
   position: absolute;
-  border: 1px solid blue;
   margin: 0;
   width: 100%;
   height: 100%;
   padding: 0;
 }
-.modal-fullscreen .modal-content {
+.modal-classy .modal-content {
   border-radius: 0;
   box-shadow: none;
   position: absolute;
@@ -2844,7 +2884,7 @@ body {
   bottom: 0;
   left: 0;
 }
-.modal-fullscreen .modal-content .close {
+.modal-classy .modal-content .close {
   font-size: 30px;
   text-shadow: none;
   color: white;
@@ -2852,7 +2892,7 @@ body {
   font-weight: normal;
   line-height: 50px;
 }
-.modal-fullscreen .modal-content .modal-body {
+.modal-classy .modal-content .modal-body {
   position: absolute;
   top: 50px;
   bottom: 0;
@@ -2861,7 +2901,7 @@ body {
   padding: 0;
   background: #fff;
 }
-.modal-fullscreen .modal-content .modal-body > iframe {
+.modal-classy .modal-content .modal-body > iframe {
   border: 0;
   position: absolute;
   top: 0;

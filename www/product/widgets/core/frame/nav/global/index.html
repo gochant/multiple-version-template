@@ -1,6 +1,5 @@
 
-<div class="dropdown mega">
-  <div class="breadcrumb no-margin" data-toggle="dropdown" style="cursor:pointer"><span class="fn-current" data-bind="text: text"></span>&nbsp;&nbsp;<span class="caret"></span></div>
+<div class="dropdown mega breadcrumb no-margin"><span data-toggle="dropdown" style="cursor:pointer"><span class="fn-current" data-bind="text: text"></span>&nbsp;&nbsp;<span class="caret"></span></span>
   <div class="dropdown-menu no-padding fn-selector"></div>
 </div>
 <script id="region-selector-pane" type="text/template">
@@ -11,7 +10,7 @@
               #  var item = data.nav[i]  #
               #  var cls = data.requestKey === item.parentKey ? "active" : ""; #
                 <li class="#= cls #">
-                  <a class="fn-nav-item" data-parent-key="#= item.parentKey #"> #= item.text # </a>
+                  <a class="fn-nav-item" href="javascript:;" data-parent-key="#= item.parentKey #"> #= item.text # </a>
                 </li>
               # } #
           </ul>      

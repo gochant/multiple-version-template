@@ -41,6 +41,9 @@ requirejs([
         extension(app);
         page(app);
 
+        app.data.set('zoneKey', '5117021040020001');
+        app.data.set('zoneLongText', '四川省达州市通川区复兴镇凤舞社区1组');
+
         app.launch().done(function () {
             app.page.start(false);
         });

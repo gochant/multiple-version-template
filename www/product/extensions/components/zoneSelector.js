@@ -114,6 +114,10 @@ define([
                             });
                         });
                 },
+                setRequestKey: function (requestKey) {
+                    this.options.requestKey = requestKey;
+                    this.fetch(this.options.requestKey);
+                },
                 fetch: function (requestKey, currentKey) {
                     var me = this;
                     var url = this.options.url;

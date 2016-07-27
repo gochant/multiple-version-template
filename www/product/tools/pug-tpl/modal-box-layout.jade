@@ -1,0 +1,15 @@
+include ../../../../jade-tpl/src/mixin.jade
+
++box-topbar
+  block heading
++box-body
+  +wrapper
+    +aside
+      block aside
+    +content
+      block content
++box-bottombar
+  +container
+    .navbar-form.navbar-right
+      .btn-toolbar
+        block action

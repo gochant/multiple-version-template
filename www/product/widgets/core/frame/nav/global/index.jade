@@ -1,7 +1,7 @@
 include ../../../../../../../jade-tpl/src/mixin.jade
 
-div.dropdown.mega
-  .breadcrumb.no-margin(data-toggle='dropdown', style={ cursor:'pointer'})
+div.dropdown.mega.breadcrumb.no-margin
+  span(data-toggle='dropdown', style={ cursor:'pointer'})
     span.fn-current(data-bind='text: text')
     | &nbsp;&nbsp;
     span.caret
@@ -15,7 +15,7 @@ script#region-selector-pane(type='text/template').
               #  var item = data.nav[i]  #
               #  var cls = data.requestKey === item.parentKey ? "active" : ""; #
                 <li class="#= cls #">
-                  <a class="fn-nav-item" data-parent-key="#= item.parentKey #"> #= item.text # </a>
+                  <a class="fn-nav-item" href="javascript:;" data-parent-key="#= item.parentKey #"> #= item.text # </a>
                 </li>
               # } #
           </ul>      

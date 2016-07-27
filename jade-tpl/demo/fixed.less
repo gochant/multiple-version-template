@@ -391,6 +391,26 @@ body {
     }
 }
 
+.form-horizontal {
+    max-width: 600px;
+}
+
+textarea {
+    min-height: 8em;
+}
+
+.k-autocomplete,
+.k-combobox,
+.k-datepicker,
+.k-timepicker,
+.k-datetimepicker,
+.k-colorpicker,
+.k-numerictextbox,
+.k-dropdown, .k-selectbox,
+.k-textbox, .k-toolbar .k-split-button {
+    width: 100%;
+}
+
 .k-window-maximized {
     &.k-window {
         padding-top: 0;
@@ -403,15 +423,25 @@ body {
     }
 }
 
-.form-wrapper {
+.tab-content {
+    border: 0;
+}
+
+.box-bottom {
+    .btn-primary {
+        min-width: 100px;
+    }
+}
+
+.box-body {
     position: absolute;
-    top: 0;
+    top: 50px;
     bottom: 50px;
     left: 0;
     right: 0;
     background: #eae8e9;
 
-    > .container {
+    > .wrapper {
         padding: 0;
         height: 100%;
         overflow: auto;
@@ -445,6 +475,15 @@ body {
 .btn {
     transition: opacity .1s ease, background-color .1s ease, color .1s ease, box-shadow .1s ease, background .1s ease;
 }
+
+.navbar-static-bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+}
+
 
 .nav-custom(@color, @bg, @hoverColor, @hoverBg, @activeColor, @activeBg) {
 
@@ -498,12 +537,8 @@ body {
 
             &:hover,
             &:focus {
-                color: #0d7ce7;
+                color: #000;
                 background-color: transparent;
-            }
-
-            &:hover {
-                text-decoration: underline;
             }
         }
 
@@ -540,8 +575,19 @@ body {
     left: 0;
 }
 
-.modal-fullscreen {
+.modal-classy.biggest {
     .fixed-full(10px);
+
+    .modal-dialog {
+        border: 1px solid blue;
+    }
+}
+
+.modal-classy.fullscreen {
+    .fixed-full(0);
+}
+
+.modal-classy {
     overflow: hidden;
 
     .navbar-static-top {
@@ -554,7 +600,6 @@ body {
 
     .modal-dialog {
         position: absolute;
-        border: 1px solid blue;
         margin: 0;
         width: 100%;
         height: 100%;
@@ -637,6 +682,9 @@ body {
     }
 }
 
+
+
+// ¼¶ÁªÑ¡ÔñÆ÷
 .nested-selector {
     width: 450px;
 

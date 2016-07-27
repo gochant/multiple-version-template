@@ -9,24 +9,51 @@ define([
                 parents: 'g:[this].zone.parents'
             }
         },
-        initAttr: function () {
-            this.model({
-                text: '',
-                key: '51'
-            }, false);
+        initAttr: function (app) {
+            this.selectSelector = '.fn-selector';
+            this.defineAttr({
+                name: 'zoneKey',
+                source: 'global',
+            //    setup: 'init'
+            });
+            this.defineAttr({
+                name: 'zoneLongText',
+                source: 'global'
+            });
         },
-        rendered: function () {
-            var select = this.$('.fn-selector').kendoZoneSelector({
+        listen: function () {
+            this.listenTo(this, 'attr-changed', function (name, value) {
+                if (name === 'zoneLongText') {
+                    this.model({
+                        text: value
+                    });
+                }
+                if (name === 'zoneKey') {
+                    this._resetSelect(value);
+                }
+            });
+        },
+        _resetSelect: function (requestKey) {
+            var instance = this.instance(this.selectSelector);
+            instance.setRequestKey(requestKey);
+        },
+        _initSelect: function (app) {
+            var me = this;
+            var select = this.$(this.selectSelector).kendoZoneSelector({
                 url: this.url('read'),
                 headerUrl: this.url('parents'),
-                template: $('#region-selector-pane').html(),
-                requestKey: this.model().get('key')
+                template: $('#region-selector-pane').html()
             }).data('kendoZoneSelector');
-            var me = this;
+
             select.bind('selected', function (data) {
-                me.model(data);
                 me.$('[data-toggle=dropdown]').dropdown('toggle');
+
+                app.data.set('zoneKey', data.key);
+                app.data.set('zoneLongText', data.text);
             });
+        },
+        rendered: function (app) {
+            this._initSelect(app);
         }
     };
 });

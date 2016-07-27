@@ -13,16 +13,16 @@ define([
 
         app.view.base._bind = function () {
             var me = this;
-            // 重绑定视图模型
-            kendo.unbind(this.$el);
-            // 这里使用 data-role 的绑定，避免重复绑定
 
-            kendo.bind(this.$el, me.viewModel);
-            //$.each(this.$el.find('[data-role]'), function (i, el) {
-            //    if ($(el).closest('.k-bind-block').length === 0) {
-            //        kendo.bind($(el).parent(), me.viewModel);
-            //    }
-            //});
+            if (this.options.bindBlock) {
+                this.$el.find('.bind-block').each(function (i, el) {
+                    kendo.unbind($(el));
+                    kendo.bind($(el), me.viewModel);
+                });
+            } else {
+                kendo.unbind(this.$el);
+                kendo.bind(this.$el, me.viewModel);
+            }
         }
 
         app.view.base.instance = function (el) {

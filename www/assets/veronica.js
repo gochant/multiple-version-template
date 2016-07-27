@@ -5633,8 +5633,21 @@ define('app/view/view-attr',[],function () {
                             me.attr(options.name, value);
                         }
                     });
+                }
 
+                if (options.source === 'global') {
+                    if (options.getter == null) {
+                        options.getter = function () {
+                            return app.data.get(options.sourceKey);
+                        }
+                    }
 
+                    this.sub('change.' + options.sourceKey, function (value) {
+                        var originalValue = me.attr(options.name);
+                        if (value !== originalValue) {
+                            me.attr(options.name, value);
+                        }
+                    });
                 }
 
                 // 当事件发生时，设置该属性
@@ -6803,16 +6816,21 @@ define('app/data',[], function () {
              * @param {string} name - 名称
              * @param {*} value - 值
              */
-            set: function (name, value) {
+            set: function (name, value, emit) {
+                if (emit == null) {
+                    emit = true;
+                }
                 this._data[name] = value;
-                /**
-                 * **消息：** 数据改变时发布，消息名 'change.' + 数据名
-                 *
-                 * @event Application#data.change
-                 * @type {object}
-                 * @property {*} value - 数据值
-                 */
-                app.sandbox.emit('change.' + name, value);
+                if (emit) {
+                    /**
+                     * **消息：** 数据改变时发布，消息名 'change.' + 数据名
+                     *
+                     * @event Application#data.change
+                     * @type {object}
+                     * @property {*} value - 数据值
+                     */
+                    app.sandbox.emit('change.' + name, value);
+                }
             }
         };
         

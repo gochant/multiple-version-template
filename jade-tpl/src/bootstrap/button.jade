@@ -13,6 +13,10 @@ mixin btn-group
   .btn-group&attributes(attributes)
     block
 
+mixin btn-primary(size)
+  +btn('primary', size)&attributes(attributes)
+    block
+
 mixin caret
   span.caret
 

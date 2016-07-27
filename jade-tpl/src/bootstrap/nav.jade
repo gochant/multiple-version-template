@@ -36,6 +36,7 @@ mixin nav-navbar
     block
 
 mixin nav-item(href, active, toggle)
+  - if(href == null){ href = 'javascript:;'; }
   - var cls = active === true ? 'active' : undefined
     li(role='presentation', class=cls)&attributes(attributes)
       if toggle
@@ -44,6 +45,10 @@ mixin nav-item(href, active, toggle)
       else
         a(href=href)
           block
+
+mixin nav-toggle-item(href, active)
+  +nav-item(href, active, true)&attributes(attributes)
+    block
 
 mixin nav-vertical
   +nav(class=['nav-pills', 'nav-stacked'])
@@ -59,6 +64,9 @@ mixin nav-underline(size)
     size ? 'nav-' + size : undefined ])&attributes(attributes)
     block
 
+mixin nav-content
+  +nav.nav-content.nav-stacked&attributes(attributes)
+    block
 
 //- tabs
 
@@ -69,12 +77,12 @@ mixin tab-item(href, active)
   +nav-item(href, active, true)
 
 mixin tab-content
-  .tab-content
+  .tab-content&attributes(attributes)
     block
 
 mixin tab-pane(id, active)
   - var cls = active === true ? 'in active' : undefined
-  .tab-pane.fade(role='tabpanel', id=id, class=cls)
+  .tab-pane.fade(role='tabpanel', id=id, class=cls)&attributes(attributes)
     block
 
 

@@ -1,0 +1,31 @@
+extends ../../../../../tools/pug-tpl/modal-box-layout.jade
+
+block heading
+  +modal-heading('初始登记', '申请')
+
+block aside
+  +nav-content(data-dynamic='main')
+    +nav-toggle-item(null, true) 1 申请书信息
+    +nav-toggle-item() 2 登记信息
+    +nav-toggle-item() 3 家庭成员
+    +nav-toggle-item() 4 承包地
+    +nav-toggle-item() 5 附加信息
+    +nav-toggle-item() 6 附件2
+
+block content
+  +tab-content.bind-block(data-dynamic='main')
+    +tab-pane(null, true).application
+      +form-layout-h
+        +editor-h('申请类型：', 'PetitionType', 'dropdownlist')
+        +editor-h('申请人：', 'PetitionName', 'textbox')
+        +editor-h('申请日期：', 'PetitionDate', 'datepicker')
+        +editor-h('申请事由：', 'PetitionOptions', 'textarea')
+        
+    +tab-pane.registration() hehe2
+    +tab-pane.member() hehe3
+    +tab-pane.contracted_land() hehe4
+    +tab-pane.additional() hehe5
+    +tab-pane.attachment() hehe6
+
+block action
+  +btn-group: +btn-primary 保 存

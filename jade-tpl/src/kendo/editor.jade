@@ -1,5 +1,6 @@
 mixin label(text)
-  label.control-label #{text}
+  label.control-label&attributes(attributes)
+    | #{text}
 
 mixin editor(field, text, type, data)
   case type
@@ -25,8 +26,9 @@ mixin editor(field, text, type, data)
       +checkbox(field, text)&attributes(attributes)
     when 'checkboxlist'
       +checkboxlist(field, data)&attributes(attributes)
+    when 'textbox'
     default
-      +text(field)&attributes(attributes)
+      +textbox(field)&attributes(attributes)
 
 //- editor table
 mixin editor-t(text, field, type, data)
@@ -50,7 +52,7 @@ mixin editor-h(text, field, type, data)
     else
       +label(text)(class=['col-xs-3'])
     +col-h(9)
-      +editor(field, text, type, data)
+      +editor(field, text, type, data)&attributes(attributes)
 
 mixin textblock(field)
   - var bind = field ? 'text: data.' + field : null;
