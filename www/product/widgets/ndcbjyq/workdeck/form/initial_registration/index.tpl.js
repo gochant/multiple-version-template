@@ -1,8 +1,8 @@
 define(['pug'], function(pug) { if(pug && pug['runtime'] !== undefined) { pug = pug.runtime; }
 
-return function template(locals) {var pug_html = "", pug_mixins = {}, pug_interp;var pug_indent = [];
+return function template(locals) {var pug_html = "", pug_mixins = locals.mixin || {}, pug_interp;var pug_indent = [];
 pug_indent.push('');
-pug_mixins["modal-heading"]('初始登记2', '申请');
+pug_mixins["modal-heading"]('初始登记222222', '申请');
 pug_indent.pop();
 pug_indent.push('');
 pug_mixins["nav-content"].call({

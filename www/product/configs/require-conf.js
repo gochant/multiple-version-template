@@ -66,6 +66,7 @@
             'summernote-lang': framePath + '/summernote/0.8.1/lang/summernote-zh-CN',
             'echarts': framePath + '/echarts/3.2.1/echarts',
             'store': framePath + '/store/1.3.20/store',
+            'pug': 'assets/runtime',
             'esri': 'assets/arcgis/4.0/esri',
             'dojo': 'assets/arcgis/4.0/dojo',
             'dgrid': 'assets/arcgis/4.0/dgrid',

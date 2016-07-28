@@ -1,7 +1,7 @@
-extends '../../../../../tools/pug-tpl/modal-box-layout.jade'
+//- extends ../../../../../tools/pug-tpl/modal-box-layout.jade
 
 block heading
-  +modal-heading('初始登记', '申请')
+  +modal-heading('初始登记222222', '申请')
 
 block aside
   +nav-content(data-dynamic='main')
@@ -27,7 +27,7 @@ block content
           legend 基本信息
           +form-layout-t
             +row-t
-              +editor-t('发包方xx：', 'OutsourcerNumber', 'dropdownlist')(required)
+              +editor-t('发包方xxxx：', 'OutsourcerNumber', 'dropdownlist')(required)
               +editor-t('承包期限：', 'ContractBeginDate', 'checkbox', '永久')
             +row-t
               +editor-t('起止时间：', 'Outsourcers', 'datepicker')

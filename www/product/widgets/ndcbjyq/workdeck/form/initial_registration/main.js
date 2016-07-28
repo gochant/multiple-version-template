@@ -1,6 +1,8 @@
 define([
-    'text!./index.html'
+    //'text!./index.html'
+    './index.tpl'
 ], function (tpl) {
+    debugger;
     return {
         template: tpl,
         defaults: {

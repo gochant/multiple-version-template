@@ -12,9 +12,12 @@ module.exports = function (grunt) {
         pug: {
             options: {
                 pretty: true,
-                clientJs: true,
-                compileDebug: false,
-                amd: false
+                client: true,
+                debug: true,
+                namespace: false,
+                cache: false,
+                compileDebug: true,
+                amd: true
             },
             compile: {
                 files: [{
@@ -22,7 +25,18 @@ module.exports = function (grunt) {
                     cwd: srcDir,
                     src: ['**/*.jade', '**/*.pug'],
                     dest: 'www/',
-                    ext: '.js',
+                    ext: '.tpl.js'
+                }]
+            }
+        },
+        replace: {
+            compile: {
+                overwrite: true,
+                src: ['www/**/*.tpl.js'],
+
+                replacements: [{
+                    from: 'pug_mixins = {}',
+                    to: 'pug_mixins = locals.mixin || {}'
                 }]
             }
         },
@@ -46,29 +60,41 @@ module.exports = function (grunt) {
                     event: 'all'
                 }
             },
-            less: {
-                files: ['www/**/*.less'],
-                tasks: 'less',
+            replace: {
+                files: ['www/**/*.tpl.js'],
+                tasks: 'replace',
                 options: {
-                    spawn: false,
+                    overwrite: true
                 }
-            }
+            },
+            //less: {
+            //    files: ['www/**/*.less'],
+            //    tasks: 'less',
+            //    options: {
+            //        spawn: false,
+            //    }
+            //}
         }
     });
 
     grunt.event.on('watch', function (action, filepath, target) {
         var task = target;
         var config = grunt.config(task);
-        config.compile.files[0].src = path.relative(srcDir, filepath);
+        if (config.compile.files) {
+            config.compile.files[0].src = path.relative(srcDir, filepath);
+        } else {
+            config.compile.src = path.relative(srcDir, filepath);
+        }
         grunt.config(task, config);
     });
 
+    grunt.loadNpmTasks('grunt-text-replace');
     grunt.loadNpmTasks('grunt-veronica');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-pug');
     grunt.loadNpmTasks('grunt-contrib-less');
 
-    grunt.registerTask('default', ['watch:pug']);
+    grunt.registerTask('default', ['watch']);
     grunt.registerTask('build', ['veronica']);
 
 };
