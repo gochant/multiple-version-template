@@ -1,4 +1,4 @@
-extends ../../../../../tools/pug-tpl/modal-box-layout.jade
+extends '../../../../../tools/pug-tpl/modal-box-layout.jade'
 
 block heading
   +modal-heading('初始登记', '申请')
@@ -21,8 +21,54 @@ block content
         +editor-h('申请日期：', 'PetitionDate', 'datepicker')
         +editor-h('申请事由：', 'PetitionOptions', 'textarea')
         
-    +tab-pane.registration() hehe2
-    +tab-pane.member() hehe3
+    +tab-pane.registration()
+      form.data-validate-form
+        .fieldset
+          legend 基本信息
+          +form-layout-t
+            +row-t
+              +editor-t('发包方xx：', 'OutsourcerNumber', 'dropdownlist')(required)
+              +editor-t('承包期限：', 'ContractBeginDate', 'checkbox', '永久')
+            +row-t
+              +editor-t('起止时间：', 'Outsourcers', 'datepicker')
+              +editor-t('承包用途：', 'ContractPurpose', 'dropdownlist')
+            +row-t
+              +editor-t('承包方式：', 'ContractWay', 'dropdownlist')
+              +editor-t('登记日期：', 'RegisteDate', 'datepicker')
+        .fieldset
+          legend 承包方信息
+          +form-layout-t
+            +row-t
+              +editor-t('承包方类型：', 'ContractorType', 'dropdownlist')
+              +editor-t('承包方姓名：', 'Outsourcers', 'textbox')
+            +row-t
+              +editor-t('承包方编号：', 'FamilyNumber', 'datepicker')
+              +editor-t('合同编号：', 'Outsourcers', 'dropdownlist')
+            +row-t
+              +editor-t('证件类型：', 'ContractorCred', 'dropdownlist')
+              +editor-t('证件号码：', 'ContractorNumber', 'textbox')
+            +row-t
+              +editor-t('电话号码：', 'ContractorTel', 'textbox')
+              +editor-t('邮政编码：', 'ContractorZip', 'textbox')
+            +row-t
+              +editor-t('承包方住址：', 'ContractorAddress', 'textarea', null, 2)
+    +tab-pane.member()
+      +panel
+        +panel-toolbar('sm')
+          +btn-toolbar('sm')
+            +btn-icon('plus', '添加')
+            +btn-icon('plus', '从调查数据添加')
+            +btn-icon('edit', '编辑')
+            +btn-icon('trash-o', '删除')
+        +panel-body.no-padding
+            +kendo-grid([
+              { field: 'WarrantNumber', title: '姓名'},
+              { field: 'ContractorNumber', title: '证件号码' },
+              { field: 'ContractorName', title: '性别' },
+              { field: 'OutsourcerName', title: '出生日期' },
+              { field: 'RegisteDate', title: '与户主关系' }
+            ], 'source: source')(data-auto-bind='false', data-selectable='row', style={ height: '300px' })
+
     +tab-pane.contracted_land() hehe4
     +tab-pane.additional() hehe5
     +tab-pane.attachment() hehe6

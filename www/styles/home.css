@@ -2769,7 +2769,7 @@ textarea {
 .box-body > .box-wrapper > .box-content {
   background: white;
   margin-left: 180px;
-  padding: 10px;
+  padding: 20px 10px;
   height: 100%;
   overflow: auto;
 }
@@ -2954,4 +2954,59 @@ textarea {
 }
 .nested-selector.panel .panel-heading {
   padding-bottom: 0;
+}
+.table-form-horizontal td .control-label {
+  width: 100px;
+  margin-left: -110px;
+}
+.table-form-horizontal > tbody > tr > td {
+  padding-left: 110px;
+  padding-right: 30px;
+}
+.table-form-horizontal:not(.table-bordered) > tbody > tr > td {
+  border-top: none;
+}
+.k-textbox > input,
+.k-autocomplete .k-input,
+.k-picker-wrap .k-input,
+.k-numeric-wrap .k-input,
+.k-dropdown-wrap .k-input,
+.k-selectbox .k-input {
+  height: 2em;
+  line-height: 2em;
+}
+.k-picker-wrap .k-select,
+.k-numeric-wrap .k-select,
+.k-dropdown-wrap .k-select {
+  line-height: 2em;
+}
+legend {
+  font-size: 1.1em;
+  padding: .5em;
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+}
+.k-dropdown-wrap.k-state-default.k-state-active,
+.k-picker-wrap.k-state-default.k-state-active {
+  background-color: #EEE;
+}
+label {
+  font-weight: normal;
+}
+label.required:before {
+  font-size: 1.5em;
+  line-height: 1em;
+  vertical-align: middle;
+  padding-right: 5px;
+  font-weight: bold;
+}
+.checkbox input[type="checkbox"] {
+  margin-top: 5px;
+}
+.k-invalid-msg {
+  font-size: 18px;
+  color: #cf4c35;
+  float: right;
+  line-height: 34px;
+  margin-right: -30px;
 }

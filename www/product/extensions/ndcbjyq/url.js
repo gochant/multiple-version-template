@@ -15,9 +15,23 @@ define([
                 }
             },
             ndcbjyq: {
+                // 登记簿
                 registrationBook: {
                     query: domain + 'CBD/Search/SearchRegister',
                     detail: domain + 'CBD/Common/GetRegisterWithLandAndPerson'
+                },
+                // 发包方
+                contractIssuingParty: {
+                    query: domain + 'CBD/Contractee/Get'
+                },
+                // 公共部分
+                common: {
+                    dic: domain + 'CBD/Common/GetAgreementDic'
+
+                },
+                // 初始登记
+                initialRegistration: {
+                    defaults: domain + 'CBD/Init/GetDefaults'
                 }
             }
         });

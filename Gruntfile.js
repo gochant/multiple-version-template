@@ -12,7 +12,7 @@ module.exports = function (grunt) {
         pug: {
             options: {
                 pretty: true,
-                client: false,
+                clientJs: true,
                 compileDebug: false,
                 amd: false
             },
@@ -22,7 +22,7 @@ module.exports = function (grunt) {
                     cwd: srcDir,
                     src: ['**/*.jade', '**/*.pug'],
                     dest: 'www/',
-                    ext: '.html',
+                    ext: '.js',
                 }]
             }
         },

@@ -102,5 +102,16 @@ define([
             });
    
         }
+
+        app.request.getJSONCross = function (url, data) {
+            return $.ajax({
+                url: url,
+                dataType: 'json',
+                xhrFields: {
+                    withCredentials: true
+                },
+                data: data
+            });
+        }
     }
 });

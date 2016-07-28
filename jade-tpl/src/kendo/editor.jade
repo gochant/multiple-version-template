@@ -23,7 +23,7 @@ mixin editor(field, text, type, data)
     when 'textarea'
       +textarea(field)&attributes(attributes)
     when 'checkbox'
-      +checkbox(field, text)&attributes(attributes)
+      +checkbox(field, data)&attributes(attributes)
     when 'checkboxlist'
       +checkboxlist(field, data)&attributes(attributes)
     when 'textbox'
@@ -31,13 +31,13 @@ mixin editor(field, text, type, data)
       +textbox(field)&attributes(attributes)
 
 //- editor table
-mixin editor-t(text, field, type, data)
-  +col-t
+mixin editor-t(text, field, type, data, colspan)
+  +col-t(colspan)
     if attributes.required
-      +label(text)(required)
+      +label(text).required
     else
       +label(text)
-    +editor(field, text, type, data)
+    +editor(field, text, type, data)&attributes(attributes)
 
 mixin textblock-t(text, field, colspan)
   +col-t(colspan)
@@ -48,7 +48,7 @@ mixin textblock-t(text, field, colspan)
 mixin editor-h(text, field, type, data)
   +row-h
     if attributes.required
-      +label(text)(class=['col-xs-3'], required)
+      +label(text)(class=['col-xs-3 required'])
     else
       +label(text)(class=['col-xs-3'])
     +col-h(9)
@@ -86,10 +86,14 @@ mixin combobox(field)
   select(data-role='combobox', data-text-field='name',
    data-value-field='value', data-bind=bind)&attributes(attributes)
 
+mixin k-invalid-msg(field)
+  span.k-invalid-msg(data-for=field)
+
 mixin dropdownlist(field)
   - var bind = 'source: '+ field +'List, value: data.' + field
   select(data-role='dropdownlist', data-text-field='name',
-   data-value-field='value', data-bind=bind)&attributes(attributes)
+   data-value-field='value', data-bind=bind, name=field)&attributes(attributes)
+  +k-invalid-msg(field)
 
 mixin datepicker(field)
   - var bind = 'value: data.' + field
