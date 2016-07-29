@@ -9,7 +9,7 @@ function pug_escape(e){var a=""+e,t=pug_match_html.exec(a);if(!t)return e;var r,
 var pug_has_own_property=Object.prototype.hasOwnProperty;
 var pug_match_html=/["&<>]/;
 function pug_merge(r,e){if(1===arguments.length){for(var t=r[0],a=1;a<r.length;a++)t=pug_merge(t,r[a]);return t}for(var g in e)if("class"===g){var l=r[g]||[];r[g]=(Array.isArray(l)?l:[l]).concat(e[g]||[])}else if("style"===g){var l=pug_style(r[g]),n=pug_style(e[g]);r[g]=l+(l&&n&&";")+n}else r[g]=e[g];return r}
-function pug_style(r){if(!r)return"";if("object"==typeof r){var e="",t="";for(var n in r)pug_has_own_property.call(r,n)&&(e=e+t+n+":"+r[n],t=";");return e}return r=""+r,";"===r[r.length-1]?r.slice(0,-1):r}function template(locals) {var pug_html = "", pug_mixins = {}, pug_interp;pug_mixins["btn"] = pug_interp = function(style, size){
+function pug_style(r){if(!r)return"";if("object"==typeof r){var e="",t="";for(var n in r)pug_has_own_property.call(r,n)&&(e=e+t+n+":"+r[n],t=";");return e}return r=""+r,";"===r[r.length-1]?r.slice(0,-1):r}function template(locals) {var pug_html = "", pug_mixins = {}, pug_interp;;var locals_for_with = (locals || {});(function (JSON) {pug_mixins["btn"] = pug_interp = function(style, size){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
 var styleCls = style ? 'btn-' + style : 'btn-default'
 var sizeCls = size ? 'btn-' + size : null
@@ -61,34 +61,34 @@ pug_html = pug_html + "\u003Cspan class=\"caret\"\u003E\u003C\u002Fspan\u003E";
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+pug_mixins["btn-refresh"] = pug_interp = function(){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_mixins["btn-icon"].call({
+block: function(){
+block && block();
+},
+attributes: pug_merge([{"data-action": "refresh"},attributes])
+}, 'refresh', '刷新');
+};
+pug_mixins["btn-search"] = pug_interp = function(text, action){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+text || (text = '查询')
+pug_mixins["btn-icon"].call({
+block: function(){
+block && block();
+},
+attributes: pug_merge([{"data-action": pug_escape(action ? action : 'search')},attributes])
+}, 'search', text);
+};
+pug_mixins["btn-detail"] = pug_interp = function(){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_mixins["btn-icon"].call({
+block: function(){
+block && block();
+},
+attributes: pug_merge([{"data-action": "detail"},attributes])
+}, 'file-text-o', '详情');
+};
 pug_mixins["btn-export"] = pug_interp = function(){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
 pug_mixins["btn-icon"].call({
@@ -98,36 +98,36 @@ block && block();
 attributes: attributes
 }, 'download', '导出');
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+pug_mixins["btn-export-dropdown"] = pug_interp = function(){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_mixins["btn-group"].call({
+block: function(){
+pug_mixins["btn-export"].call({
+block: function(){
+pug_html = pug_html + "&nbsp;";
+pug_mixins["caret"]();
+},
+attributes: pug_merge([{"data-toggle": "dropdown"},attributes])
+});
+block && block();
+}
+});
+};
+pug_mixins["btn-more-dropdown"] = pug_interp = function(){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_mixins["btn-group"].call({
+block: function(){
+pug_mixins["btn-icon"].call({
+block: function(){
+pug_html = pug_html + "&nbsp;";
+pug_mixins["caret"]();
+},
+attributes: pug_merge([{"data-toggle": "dropdown"},attributes])
+}, 'chain', '更多数据');
+block && block();
+}
+});
+};
 pug_mixins["btn-search-icon"] = pug_interp = function(){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
 pug_mixins["btn-icon"].call({
@@ -284,25 +284,38 @@ pug_html = pug_html + "\u003C\u002Fli\u003E";
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+pug_mixins["dropdown-menu"] = pug_interp = function(){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_html = pug_html + "\u003Cul" + (pug_attrs(pug_merge([{"class": "dropdown-menu"},attributes]), false)) + "\u003E";
+block && block();
+pug_html = pug_html + "\u003C\u002Ful\u003E";
+};
+pug_mixins["menu-item"] = pug_interp = function(href, active){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_mixins["nav-item"].call({
+block: function(){
+block && block();
+},
+attributes: attributes
+}, href, active);
+};
 pug_mixins["panel"] = pug_interp = function(type){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
 type || (type = 'default')
 pug_html = pug_html + "\u003Cdiv" + (pug_attrs(pug_merge([{"class": pug_classes(["panel",['panel-' + type]], [false,true])},attributes]), false)) + "\u003E";
+block && block();
+pug_html = pug_html + "\u003C\u002Fdiv\u003E";
+};
+pug_mixins["panel-toolbar"] = pug_interp = function(size){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_html = pug_html + "\u003Cdiv" + (pug_attrs(pug_merge([{"class": pug_classes(["panel-toolbar","clearfix",[size ? 'panel-toolbar-' + size : undefined]], [false,false,true])},attributes]), false)) + "\u003E";
+block && block();
+pug_html = pug_html + "\u003C\u002Fdiv\u003E";
+};
+pug_mixins["btn-toolbar"] = pug_interp = function(size){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+var cls = size ? 'btn-toolbar-' + size : undefined;
+pug_html = pug_html + "\u003Cdiv" + (pug_attrs(pug_merge([{"class": pug_classes(["btn-toolbar",[cls]], [false,true])},attributes]), false)) + "\u003E";
 block && block();
 pug_html = pug_html + "\u003C\u002Fdiv\u003E";
 };
@@ -316,25 +329,12 @@ pug_html = pug_html + "\u003C\u002Fdiv\u003E";
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+pug_mixins["panel-body"] = pug_interp = function(){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_html = pug_html + "\u003Cdiv" + (pug_attrs(pug_merge([{"class": "panel-body"},attributes]), false)) + "\u003E";
+block && block();
+pug_html = pug_html + "\u003C\u002Fdiv\u003E";
+};
 pug_mixins["icon"] = pug_interp = function(name){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
 pug_mixins["icon-fa"].call({
@@ -401,11 +401,11 @@ attributes: attributes
 
 
 
-
-
-
-
-
+pug_mixins["kendo-grid"] = pug_interp = function(columns, bind){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+var cstr = JSON.stringify(columns)
+pug_html = pug_html + "\u003Cdiv" + (pug_attrs(pug_merge([{"data-role": "grid","data-columns": columns,"data-bind": pug_escape(bind)},attributes]), false)) + "\u003E\u003C\u002Fdiv\u003E";
+};
 pug_mixins["label"] = pug_interp = function(text){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
 pug_html = pug_html + "\u003Clabel" + (pug_attrs(pug_merge([{"class": "control-label"},attributes]), false)) + "\u003E" + (pug_escape(null == (pug_interp = text) ? "" : pug_interp)) + "\u003C\u002Flabel\u003E";
@@ -692,12 +692,12 @@ block && block();
 attributes: attributes
 }, num, 'xs');
 };
-
-
-
-
-
-
+pug_mixins["right"] = pug_interp = function(){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_html = pug_html + "\u003Cdiv class=\"pull-right\"\u003E";
+block && block();
+pug_html = pug_html + "\u003C\u002Fdiv\u003E";
+};
 
 
 
@@ -746,7 +746,98 @@ pug_html = pug_html + "\u003Cbutton class=\"close\" data-dismiss=\"modal\"\u003E
 
 
 
-;return pug_html;}
+
+pug_mixins["panel"].call({
+block: function(){
+pug_mixins["panel-toolbar"].call({
+block: function(){
+pug_mixins["btn-toolbar"].call({
+block: function(){
+pug_mixins["btn-refresh"]();
+pug_mixins["btn-search"]('高级查询22');
+pug_mixins["btn-detail"]();
+pug_mixins["btn-icon"]('dashboard', '汇总登记簿');
+pug_mixins["btn-export-dropdown"].call({
+block: function(){
+pug_mixins["dropdown-menu"].call({
+block: function(){
+pug_mixins["menu-item"].call({
+block: function(){
+pug_html = pug_html + "登记簿";
+}
+}, '#');
+pug_mixins["menu-item"].call({
+block: function(){
+pug_html = pug_html + "有效登记簿清册";
+}
+}, '#');
+pug_mixins["menu-item"].call({
+block: function(){
+pug_html = pug_html + "确权颁证信息表";
+}
+}, '#');
+}
+});
+}
+});
+pug_mixins["btn-more-dropdown"].call({
+block: function(){
+pug_mixins["dropdown-menu"].call({
+block: function(){
+pug_mixins["menu-item"].call({
+block: function(){
+pug_html = pug_html + "历史回溯";
+}
+}, '#');
+pug_mixins["menu-item"].call({
+block: function(){
+pug_html = pug_html + "权证信息";
+}
+}, '#');
+pug_mixins["menu-item"].call({
+block: function(){
+pug_html = pug_html + "权源流转合同";
+}
+}, '#');
+pug_mixins["menu-item"].call({
+block: function(){
+pug_html = pug_html + "附加信息";
+}
+}, '#');
+}
+});
+}
+});
+},
+attributes: {"class": "pull-left"}
+}, 'sm');
+pug_mixins["right"].call({
+block: function(){
+pug_mixins["searchbox"].call({
+attributes: {"class": "input-group-sm input-md-width"}
+});
+}
+});
+}
+}, 'sm');
+pug_mixins["panel-body"].call({
+block: function(){
+pug_mixins["kendo-grid"].call({
+attributes: {"data-pageable": true,"style": "height:100%"}
+}, [
+      { field: 'WarrantNumber', title: '权属信息'},
+      { field: 'zjhm', title: '证件号码' },
+      { field: 'cbf', title: '承包方' },
+      { field: 'fbf', title: '发包方' },
+      { field: 'djrq', title: '登记日期' },
+      { field: 'zt', title: '状态' }
+    ], 'source: hehe');
+},
+attributes: {"class": "no-padding block-abs-body"}
+});
+},
+attributes: {"class": "block-abs-3"}
+});}.call(this,"JSON" in locals_for_with?locals_for_with.JSON:typeof JSON!=="undefined"?JSON:undefined));;return pug_html;}
 return template;
 
 });

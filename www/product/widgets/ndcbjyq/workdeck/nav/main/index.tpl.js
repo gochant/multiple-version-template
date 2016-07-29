@@ -227,15 +227,15 @@ pug_html = pug_html + "\u003C\u002Fli\u003E";
 
 
 
-
-
-
-
-
-
-
-
-
+pug_mixins["nav-primary"] = pug_interp = function(){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_mixins["nav"].call({
+block: function(){
+block && block();
+},
+attributes: {"class": "nav-pills nav-primary"}
+});
+};
 
 
 
@@ -746,7 +746,31 @@ pug_html = pug_html + "\u003Cbutton class=\"close\" data-dismiss=\"modal\"\u003E
 
 
 
-;return pug_html;}
+
+pug_mixins["nav-primary"].call({
+block: function(){
+pug_mixins["nav-item"].call({
+block: function(){
+pug_html = pug_html + "业务办理";
+}
+}, '#', true);
+pug_mixins["nav-item"].call({
+block: function(){
+pug_html = pug_html + "我的业务";
+}
+}, '#');
+pug_mixins["nav-item"].call({
+block: function(){
+pug_html = pug_html + "待办业务";
+}
+}, '#');
+pug_mixins["nav-item"].call({
+block: function(){
+pug_html = pug_html + "业务跟踪";
+}
+}, '#');
+}
+});;return pug_html;}
 return template;
 
 });

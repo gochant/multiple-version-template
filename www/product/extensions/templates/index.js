@@ -4,16 +4,17 @@ define([
     './query-list-layout.tpl'
 ], function (mixin, layout1, layout2) {
     return function (app) {
-        app.tpl || (app.tpl = {});
-
+        app.pugMixin || (app.pugMixin = {});
+        app.pugOutput || (app.pugOutput = { html: '' });
         var locals = {
-            mixin: app.tpl
+            mixin: app.pugMixin,
+            output: app.pugOutput
         }
 
         mixin(locals);
         layout1(locals);
         layout2(locals);
 
-        app.tpl = locals.mixin;
+        app.pugMixin = locals.mixin;
     }
 });

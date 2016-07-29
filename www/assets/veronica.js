@@ -6119,6 +6119,8 @@ define('app/view/view-render',[],function () {
              */
             template: null,
 
+            templateEngine: 'underscore',
+
             /**
              * 模板路径
              * @type {string|Function}
@@ -6189,7 +6191,16 @@ define('app/view/view-render',[],function () {
             _html: function (html) {
                 this.$el.get(0).innerHTML = html;
             },
-
+            _compileTemplate: function (templateText) {
+                return _.template(templateText, { variable: 'data' });
+            },
+            _executeTemplate: function (compiled) {
+                return compiled(_.extend({ lang: app.lang[this.options.langClass] }, this.options));
+            },
+            _renderTemplate: function (template) {
+                var compiled = _.isFunction(template) ? template : this._compileTemplate(template);
+                return this._executeTemplate(compiled);
+            },
             _render: function (template, isHtml) {
                 var hasTpl = !!template;
                 var options = this.options;
@@ -6200,10 +6211,7 @@ define('app/view/view-render',[],function () {
                     if (isHtml) {
                         html = template;  // 为了提高效率，不使用 jquery 的 html() 方法
                     } else {
-                        var tpl = _.isFunction(template) ?
-                            template : _.template(template, { variable: 'data' });  // 如果使用 Lodash，这里调用方式有差异
-
-                        html = tpl(_.extend({ lang: app.lang[this.options.langClass] }, this.options));
+                        html = this._renderTemplate(template);
                     }
 
                     html && (this._html(html));

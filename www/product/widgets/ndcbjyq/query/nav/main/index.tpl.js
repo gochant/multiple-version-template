@@ -227,15 +227,15 @@ pug_html = pug_html + "\u003C\u002Fli\u003E";
 
 
 
-
-
-
-
-
-
-
-
-
+pug_mixins["nav-primary"] = pug_interp = function(){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_mixins["nav"].call({
+block: function(){
+block && block();
+},
+attributes: {"class": "nav-pills nav-primary"}
+});
+};
 
 
 
@@ -746,7 +746,33 @@ pug_html = pug_html + "\u003Cbutton class=\"close\" data-dismiss=\"modal\"\u003E
 
 
 
-;return pug_html;}
+
+pug_mixins["nav-primary"].call({
+block: function(){
+pug_mixins["nav-item"].call({
+block: function(){
+pug_html = pug_html + "权属信息";
+},
+attributes: {"data-group": "ndcbjyq_query_right"}
+}, '#ndcbjyq_query_right_register', true);
+pug_mixins["nav-item"].call({
+block: function(){
+pug_html = pug_html + "流转信息";
+},
+attributes: {"data-group": "ndcbjyq_query_circulation"}
+}, '#ndcbjyq_query_circulation_contract');
+pug_mixins["nav-item"].call({
+block: function(){
+pug_html = pug_html + "抵押信息";
+}
+}, '#');
+pug_mixins["nav-item"].call({
+block: function(){
+pug_html = pug_html + "档案信息";
+}
+}, '#');
+}
+});;return pug_html;}
 return template;
 
 });

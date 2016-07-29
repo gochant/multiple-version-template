@@ -746,7 +746,8 @@ pug_html = pug_html + "\u003Cbutton class=\"close\" data-dismiss=\"modal\"\u003E
 
 
 
-;return pug_html;}
+
+pug_html = pug_html + "\u003Cdiv class=\"nihilo block-abs-1\"\u003E\n\u003Cdiv id=\"searchDiv\"\u003E\u003C\u002Fdiv\u003E\n\u003Cdiv id=\"viewDiv\"\u003E\u003C\u002Fdiv\u003E\n\u003C\u002Fdiv\u003E";;return pug_html;}
 return template;
 
 });

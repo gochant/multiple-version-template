@@ -218,15 +218,15 @@ pug_html = pug_html + "\u003C\u002Fli\u003E";
 
 
 
-
-
-
-
-
-
-
-
-
+pug_mixins["nav-vertical"] = pug_interp = function(){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_mixins["nav"].call({
+block: function(){
+block && block();
+},
+attributes: {"class": "nav-pills nav-stacked"}
+});
+};
 
 
 
@@ -357,14 +357,14 @@ pug_html = pug_html + ("&nbsp;" + (pug_escape(null == (pug_interp = text) ? "" :
 }
 block && block();
 };
-
-
-
-
-
-
-
-
+pug_mixins["i-nav-text"] = pug_interp = function(name, text){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_mixins["icon-nav"].call({
+attributes: attributes
+}, name);
+pug_html = pug_html + ("&nbsp;" + (pug_escape(null == (pug_interp = text) ? "" : pug_interp)));
+block && block();
+};
 pug_mixins["icon-fa"] = pug_interp = function(name, type){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
 var typeCls = type == null ? null : 'fa-' + type;
@@ -614,12 +614,12 @@ var block = (this && this.block), attributes = (this && this.attributes) || {};
 var bind = 'source: '+ field +'List, value: data.' + field
 pug_html = pug_html + "\u003Cinput" + (pug_attrs(pug_merge([{"data-role": "autocomplete","data-text-field": "name","data-value-field": "value","data-bind": pug_escape(bind)},attributes]), false)) + "\u002F\u003E";
 };
-
-
-
-
-
-
+pug_mixins["sidebar"] = pug_interp = function(){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_html = pug_html + "\u003Caside" + (pug_attrs(pug_merge([{"class": "aside sidebar-inverse"},attributes]), false)) + "\u003E";
+block && block();
+pug_html = pug_html + "\u003C\u002Faside\u003E";
+};
 
 
 
@@ -746,7 +746,31 @@ pug_html = pug_html + "\u003Cbutton class=\"close\" data-dismiss=\"modal\"\u003E
 
 
 
-;return pug_html;}
+
+pug_mixins["sidebar"].call({
+block: function(){
+pug_mixins["nav-vertical"].call({
+block: function(){
+pug_mixins["nav-item"].call({
+block: function(){
+pug_mixins["i-nav-text"]('home', '模块一');
+}
+}, '#');
+pug_mixins["nav-item"].call({
+block: function(){
+pug_mixins["i-nav-text"]('calculator', '模块二');
+}
+}, '#', true);
+pug_mixins["nav-item"].call({
+block: function(){
+pug_mixins["i-nav-text"]('pencil', '模块三');
+}
+}, '#');
+}
+});
+},
+attributes: {"class": "desktop-sidebar"}
+});;return pug_html;}
 return template;
 
 });

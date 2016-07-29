@@ -218,15 +218,15 @@ pug_html = pug_html + "\u003C\u002Fli\u003E";
 
 
 
-
-
-
-
-
-
-
-
-
+pug_mixins["nav-vertical"] = pug_interp = function(){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_mixins["nav"].call({
+block: function(){
+block && block();
+},
+attributes: {"class": "nav-pills nav-stacked"}
+});
+};
 
 
 
@@ -614,12 +614,12 @@ var block = (this && this.block), attributes = (this && this.attributes) || {};
 var bind = 'source: '+ field +'List, value: data.' + field
 pug_html = pug_html + "\u003Cinput" + (pug_attrs(pug_merge([{"data-role": "autocomplete","data-text-field": "name","data-value-field": "value","data-bind": pug_escape(bind)},attributes]), false)) + "\u002F\u003E";
 };
-
-
-
-
-
-
+pug_mixins["sidebar"] = pug_interp = function(){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_html = pug_html + "\u003Caside" + (pug_attrs(pug_merge([{"class": "aside sidebar-inverse"},attributes]), false)) + "\u003E";
+block && block();
+pug_html = pug_html + "\u003C\u002Faside\u003E";
+};
 
 
 
@@ -746,7 +746,43 @@ pug_html = pug_html + "\u003Cbutton class=\"close\" data-dismiss=\"modal\"\u003E
 
 
 
-;return pug_html;}
+
+pug_mixins["sidebar"].call({
+block: function(){
+pug_mixins["nav-vertical"].call({
+block: function(){
+pug_mixins["nav-item"].call({
+block: function(){
+pug_mixins["i-text"].call({
+block: function(){
+pug_html = pug_html + " ";
+}
+}, 'list-alt', '办件中心');
+},
+attributes: {"data-group": "ndcbjyq_workdeck"}
+}, '#ndcbjyq_workdeck_handle', true);
+pug_mixins["nav-item"].call({
+block: function(){
+pug_mixins["i-text"]('search', '数据查询');
+},
+attributes: {"data-group": "ndcbjyq_query"}
+}, '#ndcbjyq_query_right_register');
+pug_mixins["nav-item"].call({
+block: function(){
+pug_mixins["i-text"]('dashboard', '统计汇总');
+}
+}, '#');
+pug_mixins["nav-item"].call({
+block: function(){
+pug_mixins["i-text"]('map-marker', '以图管地');
+},
+attributes: {"data-group": "ndcbjyq_map"}
+}, '#ndcbjyq_map_home');
+}
+});
+},
+attributes: {"class": "desktop-sidebar"}
+});;return pug_html;}
 return template;
 
 });

@@ -236,15 +236,17 @@ pug_html = pug_html + "\u003C\u002Fli\u003E";
 
 
 
-
-
-
-
-
-
-
-
-
+pug_mixins["nav-underline"] = pug_interp = function(size){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_mixins["nav"].call({
+block: function(){
+block && block();
+},
+attributes: pug_merge([{"class": pug_classes([['nav-pills',
+   'nav-underline',
+    size ? 'nav-' + size : undefined ]], [true])},attributes])
+});
+};
 
 
 
@@ -746,7 +748,26 @@ pug_html = pug_html + "\u003Cbutton class=\"close\" data-dismiss=\"modal\"\u003E
 
 
 
-;return pug_html;}
+
+pug_mixins["nav-underline"].call({
+block: function(){
+pug_mixins["nav-item"].call({
+block: function(){
+pug_html = pug_html + "承包信息2";
+}
+}, '#');
+pug_mixins["nav-item"].call({
+block: function(){
+pug_html = pug_html + "登记簿信息";
+}
+}, '#', true);
+pug_mixins["nav-item"].call({
+block: function(){
+pug_html = pug_html + "合同信息";
+}
+}, '#');
+}
+}, 'sm');;return pug_html;}
 return template;
 
 });

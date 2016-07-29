@@ -746,7 +746,8 @@ pug_html = pug_html + "\u003Cbutton class=\"close\" data-dismiss=\"modal\"\u003E
 
 
 
-;return pug_html;}
+
+pug_html = pug_html + "\u003C!DOCTYPE html\u003E\u003Chtml\u003E\u003Chead\u003E\u003Ctitle\u003E 土地承包管理信息系统\u003C\u002Ftitle\u003E\u003Cmeta http-equiv=\"content-type\" content=\"text\u002Fhtml;charset=UTF-8\"\u003E\u003Clink href=\"..\u002F..\u002Fstyles\u002Fhome.css\" rel=\"stylesheet\"\u003E\u003Clink href=\"..\u002F..\u002Fassets\u002Farcgis\u002F4.0\u002Fesri\u002Fcss\u002Fmain.css\" rel=\"stylesheet\"\u003E\u003Clink href=\"..\u002F..\u002Fstyles\u002Fmodule.css\" rel=\"stylesheet\"\u003E\u003C\u002Fhead\u003E\u003Cbody class=\"desktop\"\u003E\u003Cdiv id=\"header\"\u003E\u003C\u002Fdiv\u003E\u003Cdiv id=\"sidebar\"\u003E\u003C\u002Fdiv\u003E\u003Cdiv class=\"main\" id=\"main\"\u003E\u003Cdiv id=\"nav-global\"\u003E\u003C\u002Fdiv\u003E\u003Cdiv id=\"nav-sub\"\u003E\u003C\u002Fdiv\u003E\u003Cdiv id=\"nav-three\"\u003E\u003C\u002Fdiv\u003E\u003Cdiv class=\"v-render-body\" id=\"content\"\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E\u003Cdiv id=\"glb_loading\" style=\"display:none\"\u003E页面加载中\u003C\u002Fdiv\u003E\u003Cscript src=\"..\u002F..\u002Fassets\u002Frequire.js\" data-main=\"..\u002Fentries\u002Fndcbjyq\"\u003E\u003C\u002Fscript\u003E\u003C\u002Fbody\u003E\u003C\u002Fhtml\u003E";;return pug_html;}
 return template;
 
 });

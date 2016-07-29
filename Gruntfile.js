@@ -11,12 +11,12 @@ module.exports = function (grunt) {
         veronica: options,
         pug: {
             options: {
-                pretty: true,
+                pretty: false,
                 client: true,
-                debug: true,
+                debug: false,
                 namespace: false,
                 cache: false,
-                compileDebug: true,
+                compileDebug: false,
                 amd: true
             },
             compile: {
@@ -25,7 +25,7 @@ module.exports = function (grunt) {
                     cwd: srcDir,
                     src: ['**/*.jade', '**/*.pug'],
                     dest: 'www/',
-                    ext: '.tpl.js'
+                    ext: '.tpl2.js'
                 }]
             }
         },

@@ -2,16 +2,29 @@ define([
     //'text!./index.html'
     './index.tpl'
 ], function (tpl) {
-    debugger;
     return {
         template: tpl,
         defaults: {
+            autoAction: true,
             bindBlock: true,
             url: {
                 defaults: 'g:[this].initialRegistration.defaults',
                 contractIssuingParty: 'g:[this].contractIssuingParty.query',
                 dic: 'g:[this].common.dic'
 
+            }
+          
+        },
+        staticModel: function (app) {
+            var me = this;
+            return {
+                tabIndex: 0,
+                prevStatus: function (a, aa, aaa) {
+                    return this.get('tabIndex') === 0;
+                },
+                nextStatus: function (a, aa, aaa) {
+                    return this.get('tabIndex') === 5;
+                }
             }
         },
         requestData: function (app) {
@@ -82,6 +95,7 @@ define([
             this.model({}, false);
         },
         rendered: function (app) {
+            var me = this;
             app.ext.dynamicTab(this.$el);
             this.requestData(app);
             this.$('.data-validate-form').kendoValidator({
@@ -91,6 +105,17 @@ define([
                 }
 
             });
+
+            this.$('[data-dynamic=main] [data-toggle="tab"]').on('shown.bs.tab', function(e) {
+                var idx = $(e.target).closest('.nav-item').index();
+                me.model().set('tabIndex', idx);
+            });
+        },
+        prevHandler: function () {
+            this.$('[data-dynamic=main]').find('.active').prev().find('[data-toggle=tab]').tab('show');
+        },
+        nextHandler: function () {
+            this.$('[data-dynamic=main]').find('.active').next().find('[data-toggle=tab]').tab('show');
         }
     };
 });

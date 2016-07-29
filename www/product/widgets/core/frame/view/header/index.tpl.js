@@ -137,59 +137,59 @@ block && block();
 attributes: attributes
 }, 'search');
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+pug_mixins["navbar"] = pug_interp = function(container){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_html = pug_html + "\u003Cnav" + (pug_attrs(pug_merge([{"class": "navbar"},attributes]), false)) + "\u003E";
+switch (container){
+case 'fluid':
+pug_html = pug_html + "\u003Cdiv class=\"container-fluid\"\u003E";
+block && block();
+pug_html = pug_html + "\u003C\u002Fdiv\u003E";
+  break;
+case true:
+pug_html = pug_html + "\u003Cdiv class=\"container\"\u003E";
+block && block();
+pug_html = pug_html + "\u003C\u002Fdiv\u003E";
+  break;
+default:
+block && block();
+  break;
+}
+pug_html = pug_html + "\u003C\u002Fnav\u003E";
+};
+pug_mixins["navbar-header"] = pug_interp = function(){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_html = pug_html + "\u003Cdiv class=\"navbar-header\"\u003E";
+block && block();
+pug_html = pug_html + "\u003C\u002Fdiv\u003E";
+};
+pug_mixins["navbar-brand"] = pug_interp = function(text, href){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_html = pug_html + "\u003Ca" + (" class=\"navbar-brand\""+pug_attr("href", href, true, false)) + "\u003E ";
+block && block();
+pug_html = pug_html + (pug_escape(null == (pug_interp = text) ? "" : pug_interp)) + "\u003C\u002Fa\u003E";
+};
+pug_mixins["navbar-right"] = pug_interp = function(){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_html = pug_html + "\u003Cdiv class=\"navbar-right\"\u003E";
+block && block();
+pug_html = pug_html + "\u003C\u002Fdiv\u003E";
+};
 pug_mixins["nav"] = pug_interp = function(){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
 pug_html = pug_html + "\u003Cul" + (pug_attrs(pug_merge([{"class": "nav","role": "tablist"},attributes]), false)) + "\u003E";
 block && block();
 pug_html = pug_html + "\u003C\u002Ful\u003E";
 };
-
-
-
-
-
-
-
-
-
+pug_mixins["nav-navbar"] = pug_interp = function(){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_mixins["nav"].call({
+block: function(){
+block && block();
+},
+attributes: pug_merge([{"class": "navbar-nav"},attributes])
+});
+};
 pug_mixins["nav-item"] = pug_interp = function(href, active, toggle){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
 if(href == null){ href = 'javascript:;'; }
@@ -746,7 +746,49 @@ pug_html = pug_html + "\u003Cbutton class=\"close\" data-dismiss=\"modal\"\u003E
 
 
 
-;return pug_html;}
+
+pug_mixins["navbar"].call({
+block: function(){
+pug_mixins["navbar-header"].call({
+block: function(){
+pug_mixins["navbar-brand"].call({
+block: function(){
+pug_html = pug_html + "承包经营权管理系统";
+}
+});
+}
+});
+pug_mixins["navbar-right"].call({
+block: function(){
+pug_mixins["nav-navbar"].call({
+block: function(){
+pug_mixins["nav-item"].call({
+block: function(){
+pug_mixins["i-text"]('home', 'Home');
+}
+}, '#', true);
+pug_mixins["nav-item"].call({
+block: function(){
+pug_mixins["i-text"]('book', 'Library');
+}
+}, '#');
+pug_mixins["nav-item"].call({
+block: function(){
+pug_mixins["i-text"]('pencil', 'Applications');
+}
+}, '#');
+pug_mixins["nav-item"].call({
+block: function(){
+pug_mixins["i-text"]('cog', 'Settings');
+}
+}, '#');
+}
+});
+}
+});
+},
+attributes: {"class": "navbar-primary"}
+}, 'fluid');;return pug_html;}
 return template;
 
 });

@@ -25,3 +25,10 @@ mixin i-nav-text(name, text)
 mixin icon-fa(name, type)
   - var typeCls = type == null ? null : 'fa-' + type;
   i(class=['fa', 'fa-' + name, typeCls], aria-hidden='true')&attributes(attributes)
+
+//- mixin icontest
+//-   +icon
+//-   +icon-nav
+//-   +icon-fa
+//-   +i-text
+//-   +i-nav-text
