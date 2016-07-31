@@ -1,250 +1,258 @@
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.jade = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-'use strict';
+    'use strict';
 
-/**
- * Merge two attribute objects giving precedence
- * to values in object `b`. Classes are special-cased
- * allowing for arrays and merging/joining appropriately
- * resulting in a string.
- *
- * @param {Object} a
- * @param {Object} b
- * @return {Object} a
- * @api private
- */
+    var pug_has_own_property = Object.prototype.hasOwnProperty;
 
-exports.merge = function merge(a, b) {
-  if (arguments.length === 1) {
-    var attrs = a[0];
-    for (var i = 1; i < a.length; i++) {
-      attrs = merge(attrs, a[i]);
-    }
-    return attrs;
-  }
-  var ac = a['class'];
-  var bc = b['class'];
+    /**
+     * Merge two attribute objects giving precedence
+     * to values in object `b`. Classes are special-cased
+     * allowing for arrays and merging/joining appropriately
+     * resulting in a string.
+     *
+     * @param {Object} a
+     * @param {Object} b
+     * @return {Object} a
+     * @api private
+     */
 
-  if (ac || bc) {
-    ac = ac || [];
-    bc = bc || [];
-    if (!Array.isArray(ac)) ac = [ac];
-    if (!Array.isArray(bc)) bc = [bc];
-    a['class'] = ac.concat(bc).filter(nulls);
-  }
-
-  for (var key in b) {
-    if (key != 'class') {
-      a[key] = b[key];
-    }
-  }
-
-  return a;
-};
-
-/**
- * Filter null `val`s.
- *
- * @param {*} val
- * @return {Boolean}
- * @api private
- */
-
-function nulls(val) {
-  return val != null && val !== '';
-}
-
-/**
- * join array as classes.
- *
- * @param {*} val
- * @return {String}
- */
-exports.joinClasses = joinClasses;
-function joinClasses(val) {
-  return (Array.isArray(val) ? val.map(joinClasses) :
-    (val && typeof val === 'object') ? Object.keys(val).filter(function (key) { return val[key]; }) :
-    [val]).filter(nulls).join(' ');
-}
-
-/**
- * Render the given classes.
- *
- * @param {Array} classes
- * @param {Array.<Boolean>} escaped
- * @return {String}
- */
-exports.cls = function cls(classes, escaped) {
-  var buf = [];
-  for (var i = 0; i < classes.length; i++) {
-    if (escaped && escaped[i]) {
-      buf.push(exports.escape(joinClasses([classes[i]])));
-    } else {
-      buf.push(joinClasses(classes[i]));
-    }
-  }
-  var text = joinClasses(buf);
-  if (text.length) {
-    return ' class="' + text + '"';
-  } else {
-    return '';
-  }
-};
-
-
-exports.style = function (val) {
-  if (val && typeof val === 'object') {
-    return Object.keys(val).map(function (style) {
-      return style + ':' + val[style];
-    }).join(';');
-  } else {
-    return val;
-  }
-};
-/**
- * Render the given attribute.
- *
- * @param {String} key
- * @param {String} val
- * @param {Boolean} escaped
- * @param {Boolean} terse
- * @return {String}
- */
-exports.attr = function attr(key, val, escaped, terse) {
-  if (key === 'style') {
-    val = exports.style(val);
-  }
-  if ('boolean' == typeof val || null == val) {
-    if (val) {
-      return ' ' + (terse ? key : key + '="' + key + '"');
-    } else {
-      return '';
-    }
-  } else if (0 == key.indexOf('data') && 'string' != typeof val) {
-    if (JSON.stringify(val).indexOf('&') !== -1) {
-      console.warn('Since Jade 2.0.0, ampersands (`&`) in data attributes ' +
-                   'will be escaped to `&amp;`');
-    };
-    if (val && typeof val.toISOString === 'function') {
-      console.warn('Jade will eliminate the double quotes around dates in ' +
-                   'ISO form after 2.0.0');
-    }
-    return ' ' + key + "='" + JSON.stringify(val).replace(/'/g, '&apos;') + "'";
-  } else if (escaped) {
-    if (val && typeof val.toISOString === 'function') {
-      console.warn('Jade will stringify dates in ISO form after 2.0.0');
-    }
-    return ' ' + key + '="' + exports.escape(val) + '"';
-  } else {
-    if (val && typeof val.toISOString === 'function') {
-      console.warn('Jade will stringify dates in ISO form after 2.0.0');
-    }
-    return ' ' + key + '="' + val + '"';
-  }
-};
-
-/**
- * Render the given attributes object.
- *
- * @param {Object} obj
- * @param {Object} escaped
- * @return {String}
- */
-exports.attrs = function attrs(obj, terse){
-  var buf = [];
-
-  var keys = Object.keys(obj);
-
-  if (keys.length) {
-    for (var i = 0; i < keys.length; ++i) {
-      var key = keys[i]
-        , val = obj[key];
-
-      if ('class' == key) {
-        if (val = joinClasses(val)) {
-          buf.push(' ' + key + '="' + val + '"');
+    exports.merge = pug_merge;
+    function pug_merge(a, b) {
+        if (arguments.length === 1) {
+            var attrs = a[0];
+            for (var i = 1; i < a.length; i++) {
+                attrs = pug_merge(attrs, a[i]);
+            }
+            return attrs;
         }
-      } else {
-        buf.push(exports.attr(key, val, false, terse));
-      }
+
+        for (var key in b) {
+            if (key === 'class') {
+                var valA = a[key] || [];
+                a[key] = (Array.isArray(valA) ? valA : [valA]).concat(b[key] || []);
+            } else if (key === 'style') {
+                var valA = pug_style(a[key]);
+                var valB = pug_style(b[key]);
+                a[key] = valA + (valA && valB && ';') + valB;
+            } else {
+                a[key] = b[key];
+            }
+        }
+
+        return a;
+    };
+
+    /**
+     * Process array, object, or string as a string of classes delimited by a space.
+     *
+     * If `val` is an array, all members of it and its subarrays are counted as
+     * classes. If `escaping` is an array, then whether or not the item in `val` is
+     * escaped depends on the corresponding item in `escaping`. If `escaping` is
+     * not an array, no escaping is done.
+     *
+     * If `val` is an object, all the keys whose value is truthy are counted as
+     * classes. No escaping is done.
+     *
+     * If `val` is a string, it is counted as a class. No escaping is done.
+     *
+     * @param {(Array.<string>|Object.<string, boolean>|string)} val
+     * @param {?Array.<string>} escaping
+     * @return {String}
+     */
+    exports.classes = pug_classes;
+    function pug_classes_array(val, escaping) {
+        var classString = '', className, padding = '', escapeEnabled = Array.isArray(escaping);
+        for (var i = 0; i < val.length; i++) {
+            className = pug_classes(val[i]);
+            if (!className) continue;
+            escapeEnabled && escaping[i] && (className = pug_escape(className));
+            classString = classString + padding + className;
+            padding = ' ';
+        }
+        return classString;
     }
-  }
+    function pug_classes_object(val) {
+        var classString = '', padding = '';
+        for (var key in val) {
+            if (key && val[key] && pug_has_own_property.call(val, key)) {
+                classString = classString + padding + key;
+                padding = ' ';
+            }
+        }
+        return classString;
+    }
+    function pug_classes(val, escaping) {
+        if (Array.isArray(val)) {
+            return pug_classes_array(val, escaping);
+        } else if (val && typeof val === 'object') {
+            return pug_classes_object(val);
+        } else {
+            return val || '';
+        }
+    }
 
-  return buf.join('');
-};
+    /**
+     * Convert object or string to a string of CSS styles delimited by a semicolon.
+     *
+     * @param {(Object.<string, string>|string)} val
+     * @return {String}
+     */
 
-/**
- * Escape the given string of `html`.
- *
- * @param {String} html
- * @return {String}
- * @api private
- */
+    exports.style = pug_style;
+    function pug_style(val) {
+        if (!val) return '';
+        if (typeof val === 'object') {
+            var out = '', delim = '';
+            for (var style in val) {
+                /* istanbul ignore else */
+                if (pug_has_own_property.call(val, style)) {
+                    out = out + delim + style + ':' + val[style];
+                    delim = ';';
+                }
+            }
+            return out;
+        } else {
+            val = '' + val;
+            if (val[val.length - 1] === ';') return val.slice(0, -1);
+            return val;
+        }
+    };
 
-var jade_encode_html_rules = {
-  '&': '&amp;',
-  '<': '&lt;',
-  '>': '&gt;',
-  '"': '&quot;'
-};
-var jade_match_html = /[&<>"]/g;
+    /**
+     * Render the given attribute.
+     *
+     * @param {String} key
+     * @param {String} val
+     * @param {Boolean} escaped
+     * @param {Boolean} terse
+     * @return {String}
+     */
+    exports.attr = pug_attr;
+    function pug_attr(key, val, escaped, terse) {
+        if (val === false || val == null || !val && (key === 'class' || key === 'style')) {
+            return '';
+        }
+        if (val === true) {
+            return ' ' + (terse ? key : key + '="' + key + '"');
+        }
+        if (typeof val.toJSON === 'function') {
+            val = val.toJSON();
+        }
+        if (typeof val !== 'string') {
+            val = JSON.stringify(val);
+            if (!escaped && val.indexOf('"') !== -1) {
+                return ' ' + key + '=\'' + val.replace(/'/g, '&#39;') + '\'';
+            }
+        }
+        if (escaped) val = pug_escape(val);
+        return ' ' + key + '="' + val + '"';
+    };
 
-function jade_encode_char(c) {
-  return jade_encode_html_rules[c] || c;
-}
+    /**
+     * Render the given attributes object.
+     *
+     * @param {Object} obj
+     * @param {Object} terse whether to use HTML5 terse boolean attributes
+     * @return {String}
+     */
+    exports.attrs = pug_attrs;
+    function pug_attrs(obj, terse) {
+        var attrs = '';
 
-exports.escape = jade_escape;
-function jade_escape(html){
-  var result = String(html).replace(jade_match_html, jade_encode_char);
-  if (result === '' + html) return html;
-  else return result;
-};
+        for (var key in obj) {
+            if (pug_has_own_property.call(obj, key)) {
+                var val = obj[key];
 
-/**
- * Re-throw the given `err` in context to the
- * the jade in `filename` at the given `lineno`.
- *
- * @param {Error} err
- * @param {String} filename
- * @param {String} lineno
- * @api private
- */
+                if ('class' === key) {
+                    val = pug_classes(val);
+                    attrs = pug_attr(key, val, false, terse) + attrs;
+                    continue;
+                }
+                if ('style' === key) {
+                    val = pug_style(val);
+                }
+                attrs += pug_attr(key, val, false, terse);
+            }
+        }
 
-exports.rethrow = function rethrow(err, filename, lineno, str){
-  if (!(err instanceof Error)) throw err;
-  if ((typeof window != 'undefined' || !filename) && !str) {
-    err.message += ' on line ' + lineno;
-    throw err;
-  }
-  try {
-    str = str || require('fs').readFileSync(filename, 'utf8')
-  } catch (ex) {
-    rethrow(err, null, lineno)
-  }
-  var context = 3
-    , lines = str.split('\n')
-    , start = Math.max(lineno - context, 0)
-    , end = Math.min(lines.length, lineno + context);
+        return attrs;
+    };
 
-  // Error context
-  var context = lines.slice(start, end).map(function(line, i){
-    var curr = i + start + 1;
-    return (curr == lineno ? '  > ' : '    ')
-      + curr
-      + '| '
-      + line;
-  }).join('\n');
+    /**
+     * Escape the given string of `html`.
+     *
+     * @param {String} html
+     * @return {String}
+     * @api private
+     */
 
-  // Alter exception message
-  err.path = filename;
-  err.message = (filename || 'Jade') + ':' + lineno
-    + '\n' + context + '\n\n' + err.message;
-  throw err;
-};
+    var pug_match_html = /["&<>]/;
+    exports.escape = pug_escape;
+    function pug_escape(_html) {
+        var html = '' + _html;
+        var regexResult = pug_match_html.exec(html);
+        if (!regexResult) return _html;
 
-exports.DebugItem = function DebugItem(lineno, filename) {
-  this.lineno = lineno;
-  this.filename = filename;
-}
+        var result = '';
+        var i, lastIndex, escape;
+        for (i = regexResult.index, lastIndex = 0; i < html.length; i++) {
+            switch (html.charCodeAt(i)) {
+                case 34: escape = '&quot;'; break;
+                case 38: escape = '&amp;'; break;
+                case 60: escape = '&lt;'; break;
+                case 62: escape = '&gt;'; break;
+                default: continue;
+            }
+            if (lastIndex !== i) result += html.substring(lastIndex, i);
+            lastIndex = i + 1;
+            result += escape;
+        }
+        if (lastIndex !== i) return result + html.substring(lastIndex, i);
+        else return result;
+    };
+
+    /**
+     * Re-throw the given `err` in context to the
+     * the pug in `filename` at the given `lineno`.
+     *
+     * @param {Error} err
+     * @param {String} filename
+     * @param {String} lineno
+     * @param {String} str original source
+     * @api private
+     */
+
+    exports.rethrow = pug_rethrow;
+    function pug_rethrow(err, filename, lineno, str) {
+        if (!(err instanceof Error)) throw err;
+        if ((typeof window != 'undefined' || !filename) && !str) {
+            err.message += ' on line ' + lineno;
+            throw err;
+        }
+        try {
+            str = str || require('fs').readFileSync(filename, 'utf8')
+        } catch (ex) {
+            pug_rethrow(err, null, lineno)
+        }
+        var context = 3
+          , lines = str.split('\n')
+          , start = Math.max(lineno - context, 0)
+          , end = Math.min(lines.length, lineno + context);
+
+        // Error context
+        var context = lines.slice(start, end).map(function (line, i) {
+            var curr = i + start + 1;
+            return (curr == lineno ? '  > ' : '    ')
+              + curr
+              + '| '
+              + line;
+        }).join('\n');
+
+        // Alter exception message
+        err.path = filename;
+        err.message = (filename || 'Pug') + ':' + lineno
+          + '\n' + context + '\n\n' + err.message;
+        throw err;
+    };
 
 },{"fs":2}],2:[function(require,module,exports){
 

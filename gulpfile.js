@@ -6,19 +6,21 @@ var replace = require('gulp-replace');
 var watch = require('gulp-watch');
 var cache = require('gulp-cached');
 
-gulp.task('pug', function() {
-    gulp.src('www/**/*.jade')
+gulp.task('pug', function () {
+    gulp.src('www/**/initial_registration/index.jade')
         //.pipe(cache('linting'))
-        .pipe(watch('www/**/*.jade'))
+        //.pipe(watch('www/**/*.jade'))
         .pipe(rename(function (path) {
             path.extname = ".tpl.js";
         }))
         .pipe(pug({
+            basedir: 'jade-tpl/src',
             client: true,
             pretty: false,
             compileDebug: false,
             debug: false,
-            cache: false
+            cache: true,
+            inlineRuntimeFunctions: false
         })).pipe(wrap({
             exports: 'template'
         }))
@@ -31,4 +33,4 @@ gulp.task('watch', function () {
     gulp.watch('www/**/*.jade', ['pug']);
 });
 
-gulp.task('default', ['watch', 'pug']);
+gulp.task('default', ['pug']);

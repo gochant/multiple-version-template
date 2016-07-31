@@ -1,19 +1,490 @@
 define(function(require,exports,module){
 
-function pug_attr(t,e,n,r){if(e===!1||null==e||!e&&("class"===t||"style"===t))return"";if(e===!0)return" "+(r?t:t+'="'+t+'"');if("function"==typeof e.toISOString)e=e.toISOString();else if("string"!=typeof e&&(e=JSON.stringify(e),!n&&-1!==e.indexOf('"')))return" "+t+"='"+e.replace(/'/g,"&#39;")+"'";return n&&(e=pug_escape(e))," "+t+'="'+e+'"'}
-function pug_attrs(t,r){var a="";for(var s in t)if(pug_has_own_property.call(t,s)){var u=t[s];if("class"===s){u=pug_classes(u),a=pug_attr(s,u,!1,r)+a;continue}"style"===s&&(u=pug_style(u)),a+=pug_attr(s,u,!1,r)}return a}
-function pug_classes(s,r){return Array.isArray(s)?pug_classes_array(s,r):s&&"object"==typeof s?pug_classes_object(s):s||""}
-function pug_classes_array(r,a){for(var s,e="",u="",c=Array.isArray(a),g=0;g<r.length;g++)s=pug_classes(r[g]),s&&(c&&a[g]&&(s=pug_escape(s)),e=e+u+s,u=" ");return e}
-function pug_classes_object(r){var a="",n="";for(var o in r)o&&r[o]&&pug_has_own_property.call(r,o)&&(a=a+n+o,n=" ");return a}
-function pug_escape(e){var a=""+e,t=pug_match_html.exec(a);if(!t)return e;var r,c,n,s="";for(r=t.index,c=0;r<a.length;r++){switch(a.charCodeAt(r)){case 34:n="&quot;";break;case 38:n="&amp;";break;case 60:n="&lt;";break;case 62:n="&gt;";break;default:continue}c!==r&&(s+=a.substring(c,r)),c=r+1,s+=n}return c!==r?s+a.substring(c,r):s}
-var pug_has_own_property=Object.prototype.hasOwnProperty;
-var pug_match_html=/["&<>]/;
-function pug_merge(r,e){if(1===arguments.length){for(var t=r[0],a=1;a<r.length;a++)t=pug_merge(t,r[a]);return t}for(var g in e)if("class"===g){var l=r[g]||[];r[g]=(Array.isArray(l)?l:[l]).concat(e[g]||[])}else if("style"===g){var l=pug_style(r[g]),n=pug_style(e[g]);r[g]=l+(l&&n&&";")+n}else r[g]=e[g];return r}
-function pug_style(r){if(!r)return"";if("object"==typeof r){var e="",t="";for(var n in r)pug_has_own_property.call(r,n)&&(e=e+t+n+":"+r[n],t=";");return e}return r=""+r,";"===r[r.length-1]?r.slice(0,-1):r}function template(locals) {var pug_html = "", pug_mixins = {}, pug_interp;;var locals_for_with = (locals || {});(function (JSON) {pug_mixins["btn"] = pug_interp = function(style, size){
+function template(locals) {var pug_html = "", pug_mixins = {}, pug_interp;;var locals_for_with = (locals || {});(function (JSON, Object, contextModel, model) {pug_mixins["navbar"] = pug_interp = function(container){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_html = pug_html + "\u003Cnav" + (pug.attrs(pug.merge([{"class": "navbar"},attributes]), false)) + "\u003E";
+switch (container){
+case 'fluid':
+pug_html = pug_html + "\u003Cdiv class=\"container-fluid\"\u003E";
+block && block();
+pug_html = pug_html + "\u003C\u002Fdiv\u003E";
+  break;
+case true:
+pug_html = pug_html + "\u003Cdiv class=\"container\"\u003E";
+block && block();
+pug_html = pug_html + "\u003C\u002Fdiv\u003E";
+  break;
+default:
+block && block();
+  break;
+}
+pug_html = pug_html + "\u003C\u002Fnav\u003E";
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+pug_mixins["nav"] = pug_interp = function(){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_html = pug_html + "\u003Cul" + (pug.attrs(pug.merge([{"class": "nav","role": "tablist"},attributes]), false)) + "\u003E";
+block && block();
+pug_html = pug_html + "\u003C\u002Ful\u003E";
+};
+
+
+
+
+
+
+
+
+
+pug_mixins["nav-item"] = pug_interp = function(href, active, toggle){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+if(href == null){ href = 'javascript:;'; }
+var cls = active === true ? 'active' : undefined
+{
+pug_html = pug_html + "\u003Cli" + (pug.attrs(pug.merge([{"class": pug.classes(["nav-item",cls], [false,true]),"role": "presentation"},attributes]), false)) + "\u003E";
+if (toggle) {
+pug_html = pug_html + "\u003Ca" + (" class=\"nav-link\""+" role=\"tab\" data-toggle=\"tab\""+pug.attr("href", href, true, false)) + "\u003E";
+block && block();
+pug_html = pug_html + "\u003C\u002Fa\u003E";
+}
+else {
+pug_html = pug_html + "\u003Ca" + (" class=\"nav-link\""+pug.attr("href", href, true, false)) + "\u003E";
+block && block();
+pug_html = pug_html + "\u003C\u002Fa\u003E";
+}
+pug_html = pug_html + "\u003C\u002Fli\u003E";
+}
+};
+pug_mixins["nav-toggle-item"] = pug_interp = function(href, active){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_mixins["nav-item"].call({
+block: function(){
+block && block();
+},
+attributes: attributes
+}, href, active, true);
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+pug_mixins["nav-content"] = pug_interp = function(){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_mixins["nav"].call({
+block: function(){
+block && block();
+},
+attributes: pug.merge([{"class": "nav-content nav-stacked"},attributes])
+});
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+pug_mixins["tab-content"] = pug_interp = function(){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_html = pug_html + "\u003Cdiv" + (pug.attrs(pug.merge([{"class": "tab-content"},attributes]), false)) + "\u003E";
+block && block();
+pug_html = pug_html + "\u003C\u002Fdiv\u003E";
+};
+pug_mixins["tab-pane"] = pug_interp = function(id, active){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+var cls = active === true ? 'in active' : undefined
+pug_html = pug_html + "\u003Cdiv" + (pug.attrs(pug.merge([{"class": pug.classes(["tab-pane","fade",cls], [false,false,true]),"role": "tabpanel","id": pug.escape(id)},attributes]), false)) + "\u003E";
+block && block();
+pug_html = pug_html + "\u003C\u002Fdiv\u003E";
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+pug_mixins["panel"] = pug_interp = function(type){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+type || (type = 'default')
+pug_html = pug_html + "\u003Cdiv" + (pug.attrs(pug.merge([{"class": pug.classes(["panel",['panel-' + type]], [false,true])},attributes]), false)) + "\u003E";
+block && block();
+pug_html = pug_html + "\u003C\u002Fdiv\u003E";
+};
+pug_mixins["panel-toolbar"] = pug_interp = function(size){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_html = pug_html + "\u003Cdiv" + (pug.attrs(pug.merge([{"class": pug.classes(["panel-toolbar","clearfix",[size ? 'panel-toolbar-' + size : undefined]], [false,false,true])},attributes]), false)) + "\u003E";
+block && block();
+pug_html = pug_html + "\u003C\u002Fdiv\u003E";
+};
+pug_mixins["btn-toolbar"] = pug_interp = function(size){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+var cls = size ? 'btn-toolbar-' + size : undefined;
+pug_html = pug_html + "\u003Cdiv" + (pug.attrs(pug.merge([{"class": pug.classes(["btn-toolbar",[cls]], [false,true])},attributes]), false)) + "\u003E";
+block && block();
+pug_html = pug_html + "\u003C\u002Fdiv\u003E";
+};
+
+
+
+
+
+
+
+
+
+
+pug_mixins["panel-body"] = pug_interp = function(){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_html = pug_html + "\u003Cdiv" + (pug.attrs(pug.merge([{"class": "panel-body"},attributes]), false)) + "\u003E";
+block && block();
+pug_html = pug_html + "\u003C\u002Fdiv\u003E";
+};
+pug_mixins["label"] = pug_interp = function(text){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_html = pug_html + "\u003Clabel" + (pug.attrs(pug.merge([{"class": "control-label"},attributes]), false)) + "\u003E" + (pug.escape(null == (pug_interp = text) ? "" : pug_interp)) + "\u003C\u002Flabel\u003E";
+};
+
+
+
+
+
+
+
+pug_mixins["editor"] = pug_interp = function(name, text, ui, data){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+switch (ui){
+case 'textblock':
+pug_mixins["textblock"].call({
+attributes: attributes
+}, name, data);
+  break;
+case 'combobox':
+pug_mixins["combobox"].call({
+attributes: attributes
+}, name, data);
+  break;
+case 'dropdownlist':
+pug_mixins["dropdownlist"].call({
+attributes: attributes
+}, name, data);
+  break;
+case 'datepicker':
+pug_mixins["datepicker"].call({
+attributes: attributes
+}, name, data);
+  break;
+case 'timepicker':
+pug_mixins["timepicker"].call({
+attributes: attributes
+}, name, data);
+  break;
+case 'numeric':
+pug_mixins["numeric"].call({
+attributes: attributes
+}, name, data);
+  break;
+case 'multiselect':
+pug_mixins["multiselect"].call({
+attributes: attributes
+}, name, data);
+  break;
+case 'autocomplete':
+pug_mixins["autocomplete"].call({
+attributes: attributes
+}, name, data);
+  break;
+case 'textarea':
+pug_mixins["textarea"].call({
+attributes: attributes
+}, name, data);
+  break;
+case 'checkbox':
+pug_mixins["checkbox"].call({
+attributes: attributes
+}, name, data);
+  break;
+case 'checkboxlist':
+pug_mixins["checkboxlist"].call({
+attributes: attributes
+}, name, data);
+  break;
+case 'textbox':
+default:
+pug_mixins["textbox"].call({
+attributes: attributes
+}, name, data);
+  break;
+}
+};
+pug_mixins["editor-for"] = pug_interp = function(name, model, data, style){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+var field = model[name] 
+var uiHintMap = { 'string': 'textbox', 'date': 'datepicker', 'number': 'numeric' }
+if(field.uiHint == null) { field.uiHint = uiHintMap[field.type] }
+var text = field.name
+var ui = field.uiHint
+
+//- 将验证参数附加到HTML属性
+attributes = Object.assign({}, field.validation, attributes)
+
+switch (style){
+case 't':
+pug_mixins["editor-t"].call({
+attributes: attributes
+}, name, text, ui, data);
+  break;
+case 'h':
+pug_mixins["editor-h"].call({
+attributes: attributes
+}, name, text, ui, data);
+  break;
+default:
+pug_mixins["editor"].call({
+attributes: attributes
+}, name, text, ui, data);
+  break;
+}
+};
+pug_mixins["editor-for-t"] = pug_interp = function(name, model, data){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_mixins["editor-for"].call({
+attributes: attributes
+}, name, model, data, 't');
+};
+pug_mixins["editor-for-h"] = pug_interp = function(name, model, data){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_mixins["editor-for"].call({
+attributes: attributes
+}, name, model, data, 'h');
+};
+pug_mixins["editor-for-model"] = pug_interp = function(model, fields, data){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+fields || (fields = Object.keys(model))
+// iterate fields
+var pug_obj0 = fields;
+if ('number' == typeof pug_obj0.length) {
+
+  for (var pug_index0 = 0, pug_length0 = pug_obj0.length; pug_index0 < pug_length0; pug_index0++) {
+    var name = pug_obj0[pug_index0];
+
+pug_mixins["editor-for-h"](name, model, data);
+  }
+
+} else {
+  var pug_length0 = 0;
+  for (var pug_index0 in pug_obj0) {
+    pug_length0++;
+    var name = pug_obj0[pug_index0];
+
+pug_mixins["editor-for-h"](name, model, data);
+  }
+
+}
+
+};
+pug_mixins["editor-t"] = pug_interp = function(name, text, ui, data, colspan){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+data || (data= { })
+var labelCls = attributes.required ? ['required'] : ['']
+pug_mixins["col-t"].call({
+block: function(){
+pug_mixins["label"].call({
+attributes: {"class": pug.classes([labelCls], [true])}
+}, text);
+pug_mixins["editor"].call({
+attributes: attributes
+}, name, text, ui, data);
+}
+}, colspan);
+};
+
+
+
+
+
+
+
+
+
+pug_mixins["editor-h"] = pug_interp = function(name, text, ui, data){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+data || (data= {})
+var labelCls = attributes.required ? ['col-xs-3 required'] : ['col-xs-3']
+pug_mixins["row-h"].call({
+block: function(){
+pug_mixins["label"].call({
+attributes: {"class": pug.classes([labelCls], [true])}
+}, text);
+pug_mixins["col-h"].call({
+block: function(){
+pug_mixins["editor"].call({
+attributes: attributes
+}, name, text, ui, data);
+}
+}, 9);
+}
+});
+};
+pug_mixins["textblock"] = pug_interp = function(name){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+var bind = name ? 'text: data.' + name : null;
+pug_html = pug_html + "\u003Cspan" + (pug.attrs(pug.merge([{"class": "form-control","data-bind": pug.escape(bind)},attributes]), false)) + "\u003E\u003C\u002Fspan\u003E";
+};
+pug_mixins["textbox"] = pug_interp = function(name){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+var bind = name ? 'value: data.' + name : null;
+pug_html = pug_html + "\u003Cinput" + (pug.attrs(pug.merge([{"class": "form-control","type": "text","data-bind": pug.escape(bind)},attributes]), false)) + "\u002F\u003E";
+};
+pug_mixins["textarea"] = pug_interp = function(name){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+var bind = 'value: data.' + name
+pug_html = pug_html + "\u003Ctextarea" + (pug.attrs(pug.merge([{"class": "form-control","data-bind": pug.escape(bind)},attributes]), false)) + "\u003E\u003C\u002Ftextarea\u003E";
+};
+pug_mixins["checkbox"] = pug_interp = function(name, data){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+var bind = 'value: data.' + name
+pug_html = pug_html + "\u003Cdiv class=\"checkbox\"\u003E\u003Clabel\u003E\u003Cinput" + (pug.attrs(pug.merge([{"type": "checkbox","data-bind": pug.escape(bind)},attributes]), false)) + "\u002F\u003E" + (pug.escape(null == (pug_interp = data.text) ? "" : pug_interp)) + "\u003C\u002Flabel\u003E\u003C\u002Fdiv\u003E";
+};
+pug_mixins["checkboxlist"] = pug_interp = function(name, data){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+var bind = 'checked: data.' + name
+pug_html = pug_html + "\u003Cdiv class=\"checkbox-group\"\u003E";
+// iterate data.list
+var pug_obj1 = data.list;
+if ('number' == typeof pug_obj1.length) {
+
+  for (var index = 0, pug_length1 = pug_obj1.length; index < pug_length1; index++) {
+    var item = pug_obj1[index];
+
+pug_html = pug_html + "\u003Clabel class=\"checkbox-inline\"\u003E\u003Cinput" + (pug.attrs(pug.merge([{"type": "checkbox","data-bind": pug.escape(bind),"value": pug.escape(item.value)},attributes]), false)) + "\u002F\u003E" + (pug.escape(null == (pug_interp = item.name) ? "" : pug_interp)) + "\u003C\u002Flabel\u003E";
+  }
+
+} else {
+  var pug_length1 = 0;
+  for (var index in pug_obj1) {
+    pug_length1++;
+    var item = pug_obj1[index];
+
+pug_html = pug_html + "\u003Clabel class=\"checkbox-inline\"\u003E\u003Cinput" + (pug.attrs(pug.merge([{"type": "checkbox","data-bind": pug.escape(bind),"value": pug.escape(item.value)},attributes]), false)) + "\u002F\u003E" + (pug.escape(null == (pug_interp = item.name) ? "" : pug_interp)) + "\u003C\u002Flabel\u003E";
+  }
+
+}
+
+pug_html = pug_html + "\u003C\u002Fdiv\u003E";
+};
+pug_mixins["combobox"] = pug_interp = function(name){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+var bind = 'source: '+ name +'List, value: data.' + name
+pug_html = pug_html + "\u003Cselect" + (pug.attrs(pug.merge([{"data-role": "combobox","data-text-field": "name","data-value-field": "value","data-bind": pug.escape(bind)},attributes]), false)) + "\u003E\u003C\u002Fselect\u003E";
+};
+pug_mixins["k-invalid-msg"] = pug_interp = function(name){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_html = pug_html + "\u003Cspan" + (" class=\"k-invalid-msg\""+pug.attr("data-for", name, true, false)) + "\u003E\u003C\u002Fspan\u003E";
+};
+pug_mixins["dropdownlist"] = pug_interp = function(name){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+var bind = 'source: '+ name +'List, value: data.' + name
+pug_html = pug_html + "\u003Cselect" + (pug.attrs(pug.merge([{"data-role": "dropdownlist","data-text-field": "name","data-value-field": "value","data-bind": pug.escape(bind),"name": pug.escape(name)},attributes]), false)) + "\u003E\u003C\u002Fselect\u003E";
+pug_mixins["k-invalid-msg"](name);
+};
+pug_mixins["datepicker"] = pug_interp = function(name){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+var bind = 'value: data.' + name
+pug_html = pug_html + "\u003Cinput" + (pug.attrs(pug.merge([{"data-role": "datepicker","data-bind": pug.escape(bind)},attributes]), false)) + "\u002F\u003E";
+};
+pug_mixins["timepicker"] = pug_interp = function(name){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+var bind = 'value: data.' + name
+pug_html = pug_html + "\u003Cinput" + (pug.attrs(pug.merge([{"data-role": "timepicker","data-bind": pug.escape(bind)},attributes]), false)) + "\u002F\u003E";
+};
+pug_mixins["numeric"] = pug_interp = function(name){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+var bind = 'value: data.' + name
+pug_html = pug_html + "\u003Cinput" + (pug.attrs(pug.merge([{"data-role": "numerictextbox","data-bind": pug.escape(bind)},attributes]), false)) + "\u002F\u003E";
+};
+pug_mixins["multiselect"] = pug_interp = function(name){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+var bind = 'value: data.' + name
+pug_html = pug_html + "\u003Cselect" + (pug.attrs(pug.merge([{"data-role": "multiselect","data-text-field": "name","multiple": "multiple","data-value-field": "value","data-bind": pug.escape(bind)},attributes]), false)) + "\u003E\u003C\u002Fselect\u003E";
+};
+pug_mixins["autocomplete"] = pug_interp = function(name){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+var bind = 'source: '+ name +'List, value: data.' + name
+pug_html = pug_html + "\u003Cinput" + (pug.attrs(pug.merge([{"data-role": "autocomplete","data-text-field": "name","data-value-field": "value","data-bind": pug.escape(bind)},attributes]), false)) + "\u002F\u003E";
+};
+pug_mixins["kendo-grid"] = pug_interp = function(columns, bind){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+var cstr = JSON.stringify(columns)
+pug_html = pug_html + "\u003Cdiv" + (pug.attrs(pug.merge([{"data-role": "grid","data-columns": columns,"data-bind": pug.escape(bind)},attributes]), false)) + "\u003E\u003C\u002Fdiv\u003E";
+};
+pug_mixins["btn"] = pug_interp = function(style, size){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
 var styleCls = style ? 'btn-' + style : 'btn-default'
 var sizeCls = size ? 'btn-' + size : null
-pug_html = pug_html + "\u003Ca" + (pug_attrs(pug_merge([{"class": pug_classes(["btn",[styleCls, sizeCls]], [false,true])},attributes]), false)) + "\u003E";
+pug_html = pug_html + "\u003Ca" + (pug.attrs(pug.merge([{"class": pug.classes(["btn",[styleCls, sizeCls]], [false,true])},attributes]), false)) + "\u003E";
 block && block();
 pug_html = pug_html + "\u003C\u002Fa\u003E";
 };
@@ -29,7 +500,7 @@ attributes: attributes
 };
 pug_mixins["btn-group"] = pug_interp = function(){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_html = pug_html + "\u003Cdiv" + (pug_attrs(pug_merge([{"class": "btn-group"},attributes]), false)) + "\u003E";
+pug_html = pug_html + "\u003Cdiv" + (pug.attrs(pug.merge([{"class": "btn-group"},attributes]), false)) + "\u003E";
 block && block();
 pug_html = pug_html + "\u003C\u002Fdiv\u003E";
 };
@@ -128,212 +599,19 @@ attributes: attributes
 
 
 
-pug_mixins["btn-search-icon"] = pug_interp = function(){
+
+
+
+
+
+
+
+
+
+pug_mixins["icon-fa"] = pug_interp = function(name, type){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_mixins["btn-icon"].call({
-block: function(){
-block && block();
-},
-attributes: attributes
-}, 'search');
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-pug_mixins["nav"] = pug_interp = function(){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_html = pug_html + "\u003Cul" + (pug_attrs(pug_merge([{"class": "nav","role": "tablist"},attributes]), false)) + "\u003E";
-block && block();
-pug_html = pug_html + "\u003C\u002Ful\u003E";
-};
-
-
-
-
-
-
-
-
-
-pug_mixins["nav-item"] = pug_interp = function(href, active, toggle){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-if(href == null){ href = 'javascript:;'; }
-var cls = active === true ? 'active' : undefined
-{
-pug_html = pug_html + "\u003Cli" + (pug_attrs(pug_merge([{"class": pug_classes(["nav-item",cls], [false,true]),"role": "presentation"},attributes]), false)) + "\u003E";
-if (toggle) {
-pug_html = pug_html + "\u003Ca" + (" class=\"nav-link\""+" role=\"tab\" data-toggle=\"tab\""+pug_attr("href", href, true, false)) + "\u003E";
-block && block();
-pug_html = pug_html + "\u003C\u002Fa\u003E";
-}
-else {
-pug_html = pug_html + "\u003Ca" + (" class=\"nav-link\""+pug_attr("href", href, true, false)) + "\u003E";
-block && block();
-pug_html = pug_html + "\u003C\u002Fa\u003E";
-}
-pug_html = pug_html + "\u003C\u002Fli\u003E";
-}
-};
-pug_mixins["nav-toggle-item"] = pug_interp = function(href, active){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_mixins["nav-item"].call({
-block: function(){
-block && block();
-},
-attributes: attributes
-}, href, active, true);
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-pug_mixins["nav-content"] = pug_interp = function(){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_mixins["nav"].call({
-block: function(){
-block && block();
-},
-attributes: pug_merge([{"class": "nav-content nav-stacked"},attributes])
-});
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-pug_mixins["tab-content"] = pug_interp = function(){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_html = pug_html + "\u003Cdiv" + (pug_attrs(pug_merge([{"class": "tab-content"},attributes]), false)) + "\u003E";
-block && block();
-pug_html = pug_html + "\u003C\u002Fdiv\u003E";
-};
-pug_mixins["tab-pane"] = pug_interp = function(id, active){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-var cls = active === true ? 'in active' : undefined
-pug_html = pug_html + "\u003Cdiv" + (pug_attrs(pug_merge([{"class": pug_classes(["tab-pane","fade",cls], [false,false,true]),"role": "tabpanel","id": pug_escape(id)},attributes]), false)) + "\u003E";
-block && block();
-pug_html = pug_html + "\u003C\u002Fdiv\u003E";
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-pug_mixins["panel"] = pug_interp = function(type){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-type || (type = 'default')
-pug_html = pug_html + "\u003Cdiv" + (pug_attrs(pug_merge([{"class": pug_classes(["panel",['panel-' + type]], [false,true])},attributes]), false)) + "\u003E";
-block && block();
-pug_html = pug_html + "\u003C\u002Fdiv\u003E";
-};
-pug_mixins["panel-toolbar"] = pug_interp = function(size){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_html = pug_html + "\u003Cdiv" + (pug_attrs(pug_merge([{"class": pug_classes(["panel-toolbar","clearfix",[size ? 'panel-toolbar-' + size : undefined]], [false,false,true])},attributes]), false)) + "\u003E";
-block && block();
-pug_html = pug_html + "\u003C\u002Fdiv\u003E";
-};
-pug_mixins["btn-toolbar"] = pug_interp = function(size){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-var cls = size ? 'btn-toolbar-' + size : undefined;
-pug_html = pug_html + "\u003Cdiv" + (pug_attrs(pug_merge([{"class": pug_classes(["btn-toolbar",[cls]], [false,true])},attributes]), false)) + "\u003E";
-block && block();
-pug_html = pug_html + "\u003C\u002Fdiv\u003E";
-};
-
-
-
-
-
-
-
-
-
-
-pug_mixins["panel-body"] = pug_interp = function(){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_html = pug_html + "\u003Cdiv" + (pug_attrs(pug_merge([{"class": "panel-body"},attributes]), false)) + "\u003E";
-block && block();
-pug_html = pug_html + "\u003C\u002Fdiv\u003E";
+var typeCls = type == null ? null : 'fa-' + type;
+pug_html = pug_html + "\u003Ci" + (pug.attrs(pug.merge([{"class": pug.classes([['fa', 'fa-' + name, typeCls]], [true]),"aria-hidden": "true"},attributes]), false)) + "\u003E\u003C\u002Fi\u003E";
 };
 pug_mixins["icon"] = pug_interp = function(name){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
@@ -353,7 +631,7 @@ pug_mixins["icon"].call({
 attributes: attributes
 }, name);
 if (text) {
-pug_html = pug_html + ("&nbsp;" + (pug_escape(null == (pug_interp = text) ? "" : pug_interp)));
+pug_html = pug_html + ("&nbsp;" + (pug.escape(null == (pug_interp = text) ? "" : pug_interp)));
 }
 block && block();
 };
@@ -365,255 +643,6 @@ block && block();
 
 
 
-pug_mixins["icon-fa"] = pug_interp = function(name, type){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-var typeCls = type == null ? null : 'fa-' + type;
-pug_html = pug_html + "\u003Ci" + (pug_attrs(pug_merge([{"class": pug_classes([['fa', 'fa-' + name, typeCls]], [true]),"aria-hidden": "true"},attributes]), false)) + "\u003E\u003C\u002Fi\u003E";
-};
-pug_mixins["input-group-btn"] = pug_interp = function(placeholder){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-
-pug_html = pug_html + "\u003Cdiv" + (pug_attrs(pug_merge([{"class": "input-group"},attributes]), false)) + "\u003E";
-pug_mixins["textbox"].call({
-attributes: {"placeholder": pug_escape(placeholder)}
-});
-pug_html = pug_html + "\u003Cdiv class=\"input-group-btn\"\u003E";
-block && block();
-pug_html = pug_html + "\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E";
-};
-pug_mixins["searchbox"] = pug_interp = function(placeholder, action){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_mixins["input-group-btn"].call({
-block: function(){
-pug_mixins["btn-search-icon"].call({
-attributes: {"data-action": pug_escape(action)}
-});
-},
-attributes: attributes
-}, placeholder);
-};
-
-
-
-
-
-
-
-
-
-pug_mixins["kendo-grid"] = pug_interp = function(columns, bind){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-var cstr = JSON.stringify(columns)
-pug_html = pug_html + "\u003Cdiv" + (pug_attrs(pug_merge([{"data-role": "grid","data-columns": columns,"data-bind": pug_escape(bind)},attributes]), false)) + "\u003E\u003C\u002Fdiv\u003E";
-};
-pug_mixins["label"] = pug_interp = function(text){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_html = pug_html + "\u003Clabel" + (pug_attrs(pug_merge([{"class": "control-label"},attributes]), false)) + "\u003E" + (pug_escape(null == (pug_interp = text) ? "" : pug_interp)) + "\u003C\u002Flabel\u003E";
-};
-pug_mixins["editor"] = pug_interp = function(field, text, type, data){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-switch (type){
-case 'textblock':
-pug_mixins["textblock"].call({
-attributes: attributes
-}, field);
-  break;
-case 'combobox':
-pug_mixins["combobox"].call({
-attributes: attributes
-}, field);
-  break;
-case 'dropdownlist':
-pug_mixins["dropdownlist"].call({
-attributes: attributes
-}, field);
-  break;
-case 'datepicker':
-pug_mixins["datepicker"].call({
-attributes: attributes
-}, field);
-  break;
-case 'timepicker':
-pug_mixins["timepicker"].call({
-attributes: attributes
-}, field);
-  break;
-case 'numeric':
-pug_mixins["numeric"].call({
-attributes: attributes
-}, field);
-  break;
-case 'multiselect':
-pug_mixins["multiselect"].call({
-attributes: attributes
-}, field);
-  break;
-case 'autocomplete':
-pug_mixins["autocomplete"].call({
-attributes: attributes
-}, field);
-  break;
-case 'textarea':
-pug_mixins["textarea"].call({
-attributes: attributes
-}, field);
-  break;
-case 'checkbox':
-pug_mixins["checkbox"].call({
-attributes: attributes
-}, field, data);
-  break;
-case 'checkboxlist':
-pug_mixins["checkboxlist"].call({
-attributes: attributes
-}, field, data);
-  break;
-case 'textbox':
-default:
-pug_mixins["textbox"].call({
-attributes: attributes
-}, field);
-  break;
-}
-};
-pug_mixins["editor-t"] = pug_interp = function(text, field, type, data, colspan){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_mixins["col-t"].call({
-block: function(){
-if (attributes.required) {
-pug_mixins["label"].call({
-attributes: {"class": "required"}
-}, text);
-}
-else {
-pug_mixins["label"](text);
-}
-pug_mixins["editor"].call({
-attributes: attributes
-}, field, text, type, data);
-}
-}, colspan);
-};
-
-
-
-
-
-
-
-
-
-pug_mixins["editor-h"] = pug_interp = function(text, field, type, data){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_mixins["row-h"].call({
-block: function(){
-if (attributes.required) {
-pug_mixins["label"].call({
-attributes: {"class": "col-xs-3 required"}
-}, text);
-}
-else {
-pug_mixins["label"].call({
-attributes: {"class": "col-xs-3"}
-}, text);
-}
-pug_mixins["col-h"].call({
-block: function(){
-pug_mixins["editor"].call({
-attributes: attributes
-}, field, text, type, data);
-}
-}, 9);
-}
-});
-};
-pug_mixins["textblock"] = pug_interp = function(field){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-var bind = field ? 'text: data.' + field : null;
-pug_html = pug_html + "\u003Cspan" + (pug_attrs(pug_merge([{"class": "form-control","data-bind": pug_escape(bind)},attributes]), false)) + "\u003E\u003C\u002Fspan\u003E";
-};
-pug_mixins["textbox"] = pug_interp = function(field){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-var bind = field ? 'value: data.' + field : null;
-pug_html = pug_html + "\u003Cinput" + (pug_attrs(pug_merge([{"class": "form-control","type": "text","data-bind": pug_escape(bind)},attributes]), false)) + "\u002F\u003E";
-};
-pug_mixins["textarea"] = pug_interp = function(field){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-var bind = 'value: data.' + field
-pug_html = pug_html + "\u003Ctextarea" + (pug_attrs(pug_merge([{"class": "form-control","data-bind": pug_escape(bind)},attributes]), false)) + "\u003E\u003C\u002Ftextarea\u003E";
-};
-pug_mixins["checkbox"] = pug_interp = function(field, text){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-var bind = 'value: data.' + field
-pug_html = pug_html + "\u003Cdiv class=\"checkbox\"\u003E\u003Clabel\u003E\u003Cinput" + (" type=\"checkbox\""+pug_attr("data-bind", bind, true, false)) + "\u002F\u003E" + (pug_escape(null == (pug_interp = text) ? "" : pug_interp)) + "\u003C\u002Flabel\u003E\u003C\u002Fdiv\u003E";
-};
-pug_mixins["checkboxlist"] = pug_interp = function(field, list){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-var bind = 'checked: data.' + field
-pug_html = pug_html + "\u003Cdiv class=\"checkbox-group\"\u003E";
-// iterate list
-var pug_obj0 = list;
-if ('number' == typeof pug_obj0.length) {
-
-  for (var index = 0, pug_length0 = pug_obj0.length; index < pug_length0; index++) {
-    var item = pug_obj0[index];
-
-pug_html = pug_html + "\u003Clabel class=\"checkbox-inline\"\u003E\u003Cinput" + (" type=\"checkbox\""+pug_attr("data-bind", bind, true, false)+pug_attr("value", item.value, true, false)) + "\u002F\u003E" + (pug_escape(null == (pug_interp = item.name) ? "" : pug_interp)) + "\u003C\u002Flabel\u003E";
-  }
-
-} else {
-  var pug_length0 = 0;
-  for (var index in pug_obj0) {
-    pug_length0++;
-    var item = pug_obj0[index];
-
-pug_html = pug_html + "\u003Clabel class=\"checkbox-inline\"\u003E\u003Cinput" + (" type=\"checkbox\""+pug_attr("data-bind", bind, true, false)+pug_attr("value", item.value, true, false)) + "\u002F\u003E" + (pug_escape(null == (pug_interp = item.name) ? "" : pug_interp)) + "\u003C\u002Flabel\u003E";
-  }
-
-}
-
-pug_html = pug_html + "\u003C\u002Fdiv\u003E";
-};
-pug_mixins["combobox"] = pug_interp = function(field){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-var bind = 'source: '+ field +'List, value: data.' + field
-pug_html = pug_html + "\u003Cselect" + (pug_attrs(pug_merge([{"data-role": "combobox","data-text-field": "name","data-value-field": "value","data-bind": pug_escape(bind)},attributes]), false)) + "\u003E\u003C\u002Fselect\u003E";
-};
-pug_mixins["k-invalid-msg"] = pug_interp = function(field){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_html = pug_html + "\u003Cspan" + (" class=\"k-invalid-msg\""+pug_attr("data-for", field, true, false)) + "\u003E\u003C\u002Fspan\u003E";
-};
-pug_mixins["dropdownlist"] = pug_interp = function(field){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-var bind = 'source: '+ field +'List, value: data.' + field
-pug_html = pug_html + "\u003Cselect" + (pug_attrs(pug_merge([{"data-role": "dropdownlist","data-text-field": "name","data-value-field": "value","data-bind": pug_escape(bind),"name": pug_escape(field)},attributes]), false)) + "\u003E\u003C\u002Fselect\u003E";
-pug_mixins["k-invalid-msg"](field);
-};
-pug_mixins["datepicker"] = pug_interp = function(field){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-var bind = 'value: data.' + field
-pug_html = pug_html + "\u003Cinput" + (pug_attrs(pug_merge([{"data-role": "datepicker","data-bind": pug_escape(bind)},attributes]), false)) + "\u002F\u003E";
-};
-pug_mixins["timepicker"] = pug_interp = function(field){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-var bind = 'value: data.' + field
-pug_html = pug_html + "\u003Cinput" + (pug_attrs(pug_merge([{"data-role": "timepicker","data-bind": pug_escape(bind)},attributes]), false)) + "\u002F\u003E";
-};
-pug_mixins["numeric"] = pug_interp = function(field){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-var bind = 'value: data.' + field
-pug_html = pug_html + "\u003Cinput" + (pug_attrs(pug_merge([{"data-role": "numerictextbox","data-bind": pug_escape(bind)},attributes]), false)) + "\u002F\u003E";
-};
-pug_mixins["multiselect"] = pug_interp = function(field){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-var bind = 'value: data.' + field
-pug_html = pug_html + "\u003Cselect" + (pug_attrs(pug_merge([{"data-role": "multiselect","data-text-field": "name","multiple": "multiple","data-value-field": "value","data-bind": pug_escape(bind)},attributes]), false)) + "\u003E\u003C\u002Fselect\u003E";
-};
-pug_mixins["autocomplete"] = pug_interp = function(field){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-var bind = 'source: '+ field +'List, value: data.' + field
-pug_html = pug_html + "\u003Cinput" + (pug_attrs(pug_merge([{"data-role": "autocomplete","data-text-field": "name","data-value-field": "value","data-bind": pug_escape(bind)},attributes]), false)) + "\u002F\u003E";
-};
 
 
 
@@ -628,7 +657,7 @@ pug_html = pug_html + "\u003Cinput" + (pug_attrs(pug_merge([{"data-role": "autoc
 
 pug_mixins["container"] = pug_interp = function(){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_html = pug_html + "\u003Cdiv" + (pug_attrs(pug_merge([{"class": "container"},attributes]), false)) + "\u003E";
+pug_html = pug_html + "\u003Cdiv" + (pug.attrs(pug.merge([{"class": "container"},attributes]), false)) + "\u003E";
 block && block();
 pug_html = pug_html + "\u003C\u002Fdiv\u003E";
 };
@@ -642,44 +671,44 @@ pug_mixins["col"] = pug_interp = function(num, size){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
 size || (size = 'sm')
 var cls = 'col-' + size + '-' + num
-pug_html = pug_html + "\u003Cdiv" + (pug_attrs(pug_merge([{"class": pug_classes([[cls]], [true])},attributes]), false)) + "\u003E";
+pug_html = pug_html + "\u003Cdiv" + (pug.attrs(pug.merge([{"class": pug.classes([[cls]], [true])},attributes]), false)) + "\u003E";
 block && block();
 pug_html = pug_html + "\u003C\u002Fdiv\u003E";
 };
 pug_mixins["form-layout-t"] = pug_interp = function(){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_html = pug_html + "\u003Ctable" + (pug_attrs(pug_merge([{"class": "table table-form-horizontal"},attributes]), false)) + "\u003E";
+pug_html = pug_html + "\u003Ctable" + (pug.attrs(pug.merge([{"class": "table table-form-horizontal"},attributes]), false)) + "\u003E";
 block && block();
 pug_html = pug_html + "\u003C\u002Ftable\u003E";
 };
 pug_mixins["row-t"] = pug_interp = function(){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_html = pug_html + "\u003Ctr" + (pug_attrs(attributes, false)) + "\u003E";
+pug_html = pug_html + "\u003Ctr" + (pug.attrs(attributes, false)) + "\u003E";
 block && block();
 pug_html = pug_html + "\u003C\u002Ftr\u003E";
 };
 pug_mixins["col-t"] = pug_interp = function(colspan){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
 if (colspan) {
-pug_html = pug_html + "\u003Ctd" + (pug_attrs(pug_merge([{"colspan": pug_escape(colspan)},attributes]), false)) + "\u003E";
+pug_html = pug_html + "\u003Ctd" + (pug.attrs(pug.merge([{"colspan": pug.escape(colspan)},attributes]), false)) + "\u003E";
 block && block();
 pug_html = pug_html + "\u003C\u002Ftd\u003E";
 }
 else {
-pug_html = pug_html + "\u003Ctd" + (pug_attrs(attributes, false)) + "\u003E";
+pug_html = pug_html + "\u003Ctd" + (pug.attrs(attributes, false)) + "\u003E";
 block && block();
 pug_html = pug_html + "\u003C\u002Ftd\u003E";
 }
 };
 pug_mixins["form-layout-h"] = pug_interp = function(){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_html = pug_html + "\u003Cdiv" + (pug_attrs(pug_merge([{"class": "form-horizontal"},attributes]), false)) + "\u003E";
+pug_html = pug_html + "\u003Cdiv" + (pug.attrs(pug.merge([{"class": "form-horizontal"},attributes]), false)) + "\u003E";
 block && block();
 pug_html = pug_html + "\u003C\u002Fdiv\u003E";
 };
 pug_mixins["row-h"] = pug_interp = function(){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_html = pug_html + "\u003Cdiv" + (pug_attrs(pug_merge([{"class": "form-group form-group-sm"},attributes]), false)) + "\u003E";
+pug_html = pug_html + "\u003Cdiv" + (pug.attrs(pug.merge([{"class": "form-group form-group-sm"},attributes]), false)) + "\u003E";
 block && block();
 pug_html = pug_html + "\u003C\u002Fdiv\u003E";
 };
@@ -700,13 +729,13 @@ attributes: attributes
 
 pug_mixins["box-topbar"] = pug_interp = function(){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_html = pug_html + "\u003Cdiv" + (pug_attrs(pug_merge([{"class": "box-top navbar navbar-inverse navbar-static-top no-margin"},attributes]), false)) + "\u003E";
+pug_html = pug_html + "\u003Cdiv" + (pug.attrs(pug.merge([{"class": "box-top navbar navbar-inverse navbar-static-top no-margin"},attributes]), false)) + "\u003E";
 block && block();
 pug_html = pug_html + "\u003C\u002Fdiv\u003E";
 };
 pug_mixins["box-bottombar"] = pug_interp = function(){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_html = pug_html + "\u003Cdiv" + (pug_attrs(pug_merge([{"class": "box-bottom navbar navbar-inverse navbar-static-bottom no-margin"},attributes]), false)) + "\u003E";
+pug_html = pug_html + "\u003Cdiv" + (pug.attrs(pug.merge([{"class": "box-bottom navbar navbar-inverse navbar-static-bottom no-margin"},attributes]), false)) + "\u003E";
 block && block();
 pug_html = pug_html + "\u003C\u002Fdiv\u003E";
 };
@@ -743,13 +772,13 @@ var block = (this && this.block), attributes = (this && this.attributes) || {};
 pug_mixins["container"].call({
 block: function(){
 pug_mixins["modal-close"]();
-pug_html = pug_html + "\u003Cdiv class=\"navbar-brand\"\u003E" + (pug_escape(null == (pug_interp = title) ? "" : pug_interp)) + " &nbsp;\u003Csmall\u003E" + (pug_escape(null == (pug_interp = subtitle) ? "" : pug_interp)) + "\u003C\u002Fsmall\u003E\u003C\u002Fdiv\u003E";
+pug_html = pug_html + "\u003Cdiv class=\"navbar-brand\"\u003E" + (pug.escape(null == (pug_interp = title) ? "" : pug_interp)) + " &nbsp;\u003Csmall\u003E" + (pug.escape(null == (pug_interp = subtitle) ? "" : pug_interp)) + "\u003C\u002Fsmall\u003E\u003C\u002Fdiv\u003E";
 }
 });
 };
 pug_mixins["box-topbar"].call({
 block: function(){
-pug_mixins["modal-heading"]('初始登记2222', '申请');
+pug_mixins["modal-heading"]('初始登记', '申请');
 }
 });
 pug_mixins["box-body"].call({
@@ -803,10 +832,7 @@ pug_mixins["tab-pane"].call({
 block: function(){
 pug_mixins["form-layout-h"].call({
 block: function(){
-pug_mixins["editor-h"]('申请类型：', 'PetitionType', 'dropdownlist');
-pug_mixins["editor-h"]('申请人：', 'PetitionName', 'textbox');
-pug_mixins["editor-h"]('申请日期：', 'PetitionDate', 'datepicker');
-pug_mixins["editor-h"]('申请事由：', 'PetitionOptions', 'textarea');
+pug_mixins["editor-for-model"](contextModel.registrationApplication);
 }
 });
 },
@@ -814,27 +840,27 @@ attributes: {"class": "application"}
 }, null, true);
 pug_mixins["tab-pane"].call({
 block: function(){
-pug_html = pug_html + "\u003Cform class=\"data-validate-form\"\u003E\u003Cdiv class=\"fieldset\"\u003E\u003Clegend\u003E基本信息\u003C\u002Flegend\u003E";
+pug_html = pug_html + "\u003Cform class=\"data-validate-form\"\u003E\u003Cdiv class=\"fieldset\"\u003E\u003Clegend\u003E基本信息22\u003C\u002Flegend\u003E";
 pug_mixins["form-layout-t"].call({
 block: function(){
 pug_mixins["row-t"].call({
 block: function(){
 pug_mixins["editor-t"].call({
 attributes: {"required": true}
-}, '发包方：', 'OutsourcerNumber', 'dropdownlist');
-pug_mixins["editor-t"]('承包期限：', 'ContractBeginDate', 'checkbox', '永久');
+}, 'OutsourcerNumber','发包方：', 'dropdownlist');
+pug_mixins["editor-t"]('ContractBeginDate', '承包期限：', 'checkbox', { text: '永久' });
 }
 });
 pug_mixins["row-t"].call({
 block: function(){
-pug_mixins["editor-t"]('起止时间：', 'Outsourcers', 'datepicker');
-pug_mixins["editor-t"]('承包用途：', 'ContractPurpose', 'dropdownlist');
+pug_mixins["editor-t"]('Outsourcers', '起止时间：', 'datepicker');
+pug_mixins["editor-t"]('ContractPurpose', '承包用途：', 'dropdownlist');
 }
 });
 pug_mixins["row-t"].call({
 block: function(){
-pug_mixins["editor-t"]('承包方式：', 'ContractWay', 'dropdownlist');
-pug_mixins["editor-t"]('登记日期：', 'RegisteDate', 'datepicker');
+pug_mixins["editor-for-t"]('ContractWay', model);
+pug_mixins["editor-for-t"]('RegisteDate', model);
 }
 });
 }
@@ -844,31 +870,31 @@ pug_mixins["form-layout-t"].call({
 block: function(){
 pug_mixins["row-t"].call({
 block: function(){
-pug_mixins["editor-t"]('承包方类型：', 'ContractorType', 'dropdownlist');
-pug_mixins["editor-t"]('承包方姓名：', 'Outsourcers', 'textbox');
+pug_mixins["editor-t"]('ContractorType', '承包方类型：', 'dropdownlist');
+pug_mixins["editor-t"]('Outsourcers', '承包方姓名：', 'textbox');
 }
 });
 pug_mixins["row-t"].call({
 block: function(){
-pug_mixins["editor-t"]('承包方编号：', 'FamilyNumber', 'datepicker');
-pug_mixins["editor-t"]('合同编号：', 'Outsourcers', 'dropdownlist');
+pug_mixins["editor-t"]('FamilyNumber', '承包方编号：', 'datepicker');
+pug_mixins["editor-t"]('Outsourcers', '合同编号：', 'dropdownlist');
 }
 });
 pug_mixins["row-t"].call({
 block: function(){
-pug_mixins["editor-t"]('证件类型：', 'ContractorCred', 'dropdownlist');
-pug_mixins["editor-t"]('证件号码：', 'ContractorNumber', 'textbox');
+pug_mixins["editor-t"]('ContractorCred', '证件类型：', 'dropdownlist');
+pug_mixins["editor-t"]('ContractorNumber', '证件号码：', 'textbox');
 }
 });
 pug_mixins["row-t"].call({
 block: function(){
-pug_mixins["editor-t"]('电话号码：', 'ContractorTel', 'textbox');
-pug_mixins["editor-t"]('邮政编码：', 'ContractorZip', 'textbox');
+pug_mixins["editor-t"]('ContractorTel', '电话号码：', 'textbox');
+pug_mixins["editor-t"]('ContractorZip', '邮政编码：', 'textbox');
 }
 });
 pug_mixins["row-t"].call({
 block: function(){
-pug_mixins["editor-t"]('承包方住址：', 'ContractorAddress', 'textarea', null, 2);
+pug_mixins["editor-t"]('ContractorAddress', '承包方住址：', 'textarea', null, 2);
 }
 });
 }
@@ -943,7 +969,7 @@ pug_mixins["box-bottombar"].call({
 block: function(){
 pug_mixins["container"].call({
 block: function(){
-pug_html = pug_html + "\u003Cdiv class=\"navbar-form navbar-right\"\u003E\u003Cdiv class=\"btn-toolbar\"\u003E\u003Cdiv class=\"bind-block\"\u003E";
+pug_html = pug_html + "\u003Cdiv class=\"navbar-form navbar-right\"\u003E\u003Cdiv class=\"btn-toolbar bind-block\"\u003E";
 pug_mixins["btn-group"].call({
 block: function(){
 pug_mixins["btn"].call({
@@ -974,11 +1000,11 @@ attributes: {"data-action": "save"}
 });
 }
 });
-pug_html = pug_html + "\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E";
+pug_html = pug_html + "\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E";
 }
 });
 }
-});}.call(this,"JSON" in locals_for_with?locals_for_with.JSON:typeof JSON!=="undefined"?JSON:undefined));;return pug_html;}
+});}.call(this,"JSON" in locals_for_with?locals_for_with.JSON:typeof JSON!=="undefined"?JSON:undefined,"Object" in locals_for_with?locals_for_with.Object:typeof Object!=="undefined"?Object:undefined,"contextModel" in locals_for_with?locals_for_with.contextModel:typeof contextModel!=="undefined"?contextModel:undefined,"model" in locals_for_with?locals_for_with.model:typeof model!=="undefined"?model:undefined));;return pug_html;}
 return template;
 
 });

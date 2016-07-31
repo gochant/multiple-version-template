@@ -7,6 +7,7 @@ define([
         defaults: {
             autoAction: true,
             bindBlock: true,
+            modelName: 'registrationBook',
             url: {
                 defaults: 'g:[this].initialRegistration.defaults',
                 contractIssuingParty: 'g:[this].contractIssuingParty.query',

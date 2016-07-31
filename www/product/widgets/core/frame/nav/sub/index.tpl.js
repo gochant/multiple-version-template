@@ -1,6 +1,6 @@
 define(function(require,exports,module){
 
-function pug_attr(t,e,n,r){if(e===!1||null==e||!e&&("class"===t||"style"===t))return"";if(e===!0)return" "+(r?t:t+'="'+t+'"');if("function"==typeof e.toISOString)e=e.toISOString();else if("string"!=typeof e&&(e=JSON.stringify(e),!n&&-1!==e.indexOf('"')))return" "+t+"='"+e.replace(/'/g,"&#39;")+"'";return n&&(e=pug_escape(e))," "+t+'="'+e+'"'}
+function pug_attr(t,e,n,f){return e!==!1&&null!=e&&(e||"class"!==t&&"style"!==t)?e===!0?" "+(f?t:t+'="'+t+'"'):("function"==typeof e.toJSON&&(e=e.toJSON()),"string"==typeof e||(e=JSON.stringify(e),n||e.indexOf('"')===-1)?(n&&(e=pug_escape(e))," "+t+'="'+e+'"'):" "+t+"='"+e.replace(/'/g,"&#39;")+"'"):""}
 function pug_attrs(t,r){var a="";for(var s in t)if(pug_has_own_property.call(t,s)){var u=t[s];if("class"===s){u=pug_classes(u),a=pug_attr(s,u,!1,r)+a;continue}"style"===s&&(u=pug_style(u)),a+=pug_attr(s,u,!1,r)}return a}
 function pug_classes(s,r){return Array.isArray(s)?pug_classes_array(s,r):s&&"object"==typeof s?pug_classes_object(s):s||""}
 function pug_classes_array(r,a){for(var s,e="",u="",c=Array.isArray(a),g=0;g<r.length;g++)s=pug_classes(r[g]),s&&(c&&a[g]&&(s=pug_escape(s)),e=e+u+s,u=" ");return e}
@@ -137,26 +137,26 @@ block && block();
 attributes: attributes
 }, 'search');
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+pug_mixins["navbar"] = pug_interp = function(container){
+var block = (this && this.block), attributes = (this && this.attributes) || {};
+pug_html = pug_html + "\u003Cnav" + (pug_attrs(pug_merge([{"class": "navbar"},attributes]), false)) + "\u003E";
+switch (container){
+case 'fluid':
+pug_html = pug_html + "\u003Cdiv class=\"container-fluid\"\u003E";
+block && block();
+pug_html = pug_html + "\u003C\u002Fdiv\u003E";
+  break;
+case true:
+pug_html = pug_html + "\u003Cdiv class=\"container\"\u003E";
+block && block();
+pug_html = pug_html + "\u003C\u002Fdiv\u003E";
+  break;
+default:
+block && block();
+  break;
+}
+pug_html = pug_html + "\u003C\u002Fnav\u003E";
+};
 
 
 
@@ -236,6 +236,10 @@ block && block();
 attributes: {"class": "nav-pills nav-primary"}
 });
 };
+
+
+
+
 
 
 
@@ -410,210 +414,120 @@ pug_mixins["label"] = pug_interp = function(text){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
 pug_html = pug_html + "\u003Clabel" + (pug_attrs(pug_merge([{"class": "control-label"},attributes]), false)) + "\u003E" + (pug_escape(null == (pug_interp = text) ? "" : pug_interp)) + "\u003C\u002Flabel\u003E";
 };
-pug_mixins["editor"] = pug_interp = function(field, text, type, data){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+pug_mixins["textbox"] = pug_interp = function(name){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
-switch (type){
-case 'textblock':
-pug_mixins["textblock"].call({
-attributes: attributes
-}, field);
-  break;
-case 'combobox':
-pug_mixins["combobox"].call({
-attributes: attributes
-}, field);
-  break;
-case 'dropdownlist':
-pug_mixins["dropdownlist"].call({
-attributes: attributes
-}, field);
-  break;
-case 'datepicker':
-pug_mixins["datepicker"].call({
-attributes: attributes
-}, field);
-  break;
-case 'timepicker':
-pug_mixins["timepicker"].call({
-attributes: attributes
-}, field);
-  break;
-case 'numeric':
-pug_mixins["numeric"].call({
-attributes: attributes
-}, field);
-  break;
-case 'multiselect':
-pug_mixins["multiselect"].call({
-attributes: attributes
-}, field);
-  break;
-case 'autocomplete':
-pug_mixins["autocomplete"].call({
-attributes: attributes
-}, field);
-  break;
-case 'textarea':
-pug_mixins["textarea"].call({
-attributes: attributes
-}, field);
-  break;
-case 'checkbox':
-pug_mixins["checkbox"].call({
-attributes: attributes
-}, field, data);
-  break;
-case 'checkboxlist':
-pug_mixins["checkboxlist"].call({
-attributes: attributes
-}, field, data);
-  break;
-case 'textbox':
-default:
-pug_mixins["textbox"].call({
-attributes: attributes
-}, field);
-  break;
-}
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-pug_mixins["textblock"] = pug_interp = function(field){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-var bind = field ? 'text: data.' + field : null;
-pug_html = pug_html + "\u003Cspan" + (pug_attrs(pug_merge([{"class": "form-control","data-bind": pug_escape(bind)},attributes]), false)) + "\u003E\u003C\u002Fspan\u003E";
-};
-pug_mixins["textbox"] = pug_interp = function(field){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-var bind = field ? 'value: data.' + field : null;
+var bind = name ? 'value: data.' + name : null;
 pug_html = pug_html + "\u003Cinput" + (pug_attrs(pug_merge([{"class": "form-control","type": "text","data-bind": pug_escape(bind)},attributes]), false)) + "\u002F\u003E";
 };
-pug_mixins["textarea"] = pug_interp = function(field){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-var bind = 'value: data.' + field
-pug_html = pug_html + "\u003Ctextarea" + (pug_attrs(pug_merge([{"class": "form-control","data-bind": pug_escape(bind)},attributes]), false)) + "\u003E\u003C\u002Ftextarea\u003E";
-};
-pug_mixins["checkbox"] = pug_interp = function(field, text){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-var bind = 'value: data.' + field
-pug_html = pug_html + "\u003Cdiv class=\"checkbox\"\u003E\u003Clabel\u003E\u003Cinput" + (" type=\"checkbox\""+pug_attr("data-bind", bind, true, false)) + "\u002F\u003E" + (pug_escape(null == (pug_interp = text) ? "" : pug_interp)) + "\u003C\u002Flabel\u003E\u003C\u002Fdiv\u003E";
-};
-pug_mixins["checkboxlist"] = pug_interp = function(field, list){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-var bind = 'checked: data.' + field
-pug_html = pug_html + "\u003Cdiv class=\"checkbox-group\"\u003E";
-// iterate list
-var pug_obj0 = list;
-if ('number' == typeof pug_obj0.length) {
 
-  for (var index = 0, pug_length0 = pug_obj0.length; index < pug_length0; index++) {
-    var item = pug_obj0[index];
 
-pug_html = pug_html + "\u003Clabel class=\"checkbox-inline\"\u003E\u003Cinput" + (" type=\"checkbox\""+pug_attr("data-bind", bind, true, false)+pug_attr("value", item.value, true, false)) + "\u002F\u003E" + (pug_escape(null == (pug_interp = item.name) ? "" : pug_interp)) + "\u003C\u002Flabel\u003E";
-  }
 
-} else {
-  var pug_length0 = 0;
-  for (var index in pug_obj0) {
-    pug_length0++;
-    var item = pug_obj0[index];
 
-pug_html = pug_html + "\u003Clabel class=\"checkbox-inline\"\u003E\u003Cinput" + (" type=\"checkbox\""+pug_attr("data-bind", bind, true, false)+pug_attr("value", item.value, true, false)) + "\u002F\u003E" + (pug_escape(null == (pug_interp = item.name) ? "" : pug_interp)) + "\u003C\u002Flabel\u003E";
-  }
 
-}
 
-pug_html = pug_html + "\u003C\u002Fdiv\u003E";
-};
-pug_mixins["combobox"] = pug_interp = function(field){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+pug_mixins["k-invalid-msg"] = pug_interp = function(name){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
-var bind = 'source: '+ field +'List, value: data.' + field
-pug_html = pug_html + "\u003Cselect" + (pug_attrs(pug_merge([{"data-role": "combobox","data-text-field": "name","data-value-field": "value","data-bind": pug_escape(bind)},attributes]), false)) + "\u003E\u003C\u002Fselect\u003E";
+pug_html = pug_html + "\u003Cspan" + (" class=\"k-invalid-msg\""+pug_attr("data-for", name, true, false)) + "\u003E\u003C\u002Fspan\u003E";
 };
-pug_mixins["k-invalid-msg"] = pug_interp = function(field){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_html = pug_html + "\u003Cspan" + (" class=\"k-invalid-msg\""+pug_attr("data-for", field, true, false)) + "\u003E\u003C\u002Fspan\u003E";
-};
-pug_mixins["dropdownlist"] = pug_interp = function(field){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-var bind = 'source: '+ field +'List, value: data.' + field
-pug_html = pug_html + "\u003Cselect" + (pug_attrs(pug_merge([{"data-role": "dropdownlist","data-text-field": "name","data-value-field": "value","data-bind": pug_escape(bind),"name": pug_escape(field)},attributes]), false)) + "\u003E\u003C\u002Fselect\u003E";
-pug_mixins["k-invalid-msg"](field);
-};
-pug_mixins["datepicker"] = pug_interp = function(field){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-var bind = 'value: data.' + field
-pug_html = pug_html + "\u003Cinput" + (pug_attrs(pug_merge([{"data-role": "datepicker","data-bind": pug_escape(bind)},attributes]), false)) + "\u002F\u003E";
-};
-pug_mixins["timepicker"] = pug_interp = function(field){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-var bind = 'value: data.' + field
-pug_html = pug_html + "\u003Cinput" + (pug_attrs(pug_merge([{"data-role": "timepicker","data-bind": pug_escape(bind)},attributes]), false)) + "\u002F\u003E";
-};
-pug_mixins["numeric"] = pug_interp = function(field){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-var bind = 'value: data.' + field
-pug_html = pug_html + "\u003Cinput" + (pug_attrs(pug_merge([{"data-role": "numerictextbox","data-bind": pug_escape(bind)},attributes]), false)) + "\u002F\u003E";
-};
-pug_mixins["multiselect"] = pug_interp = function(field){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-var bind = 'value: data.' + field
-pug_html = pug_html + "\u003Cselect" + (pug_attrs(pug_merge([{"data-role": "multiselect","data-text-field": "name","multiple": "multiple","data-value-field": "value","data-bind": pug_escape(bind)},attributes]), false)) + "\u003E\u003C\u002Fselect\u003E";
-};
-pug_mixins["autocomplete"] = pug_interp = function(field){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-var bind = 'source: '+ field +'List, value: data.' + field
-pug_html = pug_html + "\u003Cinput" + (pug_attrs(pug_merge([{"data-role": "autocomplete","data-text-field": "name","data-value-field": "value","data-bind": pug_escape(bind)},attributes]), false)) + "\u002F\u003E";
-};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -658,40 +572,40 @@ pug_html = pug_html + "\u003C\u002Fdiv\u003E";
 
 
 
-pug_mixins["col-t"] = pug_interp = function(colspan){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-if (colspan) {
-pug_html = pug_html + "\u003Ctd" + (pug_attrs(pug_merge([{"colspan": pug_escape(colspan)},attributes]), false)) + "\u003E";
-block && block();
-pug_html = pug_html + "\u003C\u002Ftd\u003E";
-}
-else {
-pug_html = pug_html + "\u003Ctd" + (pug_attrs(attributes, false)) + "\u003E";
-block && block();
-pug_html = pug_html + "\u003C\u002Ftd\u003E";
-}
-};
 
 
 
 
 
 
-pug_mixins["row-h"] = pug_interp = function(){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_html = pug_html + "\u003Cdiv" + (pug_attrs(pug_merge([{"class": "form-group form-group-sm"},attributes]), false)) + "\u003E";
-block && block();
-pug_html = pug_html + "\u003C\u002Fdiv\u003E";
-};
-pug_mixins["col-h"] = pug_interp = function(num){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_mixins["col"].call({
-block: function(){
-block && block();
-},
-attributes: attributes
-}, num, 'xs');
-};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

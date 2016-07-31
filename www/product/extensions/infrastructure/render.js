@@ -1,4 +1,8 @@
-define(function () {
+define([
+    'assets/runtime'
+], function (pug) {
+
+    window.pug = pug;
 
     return function (app) {
         var _ = app.core._;
@@ -15,11 +19,15 @@ define(function () {
         var oldExecuteTemplate = app.view.base._executeTemplate;
         app.view.base._executeTemplate = function (compiled) {
 
+            var contextModel = app.modelProvider[this.options._source];
             if (this.options.templateEngine === 'pug') {
-                var result = compiled(_.extend({}, this.options, {
+                var result = compiled(_.extend({},{
                    // mixin: app.pugMixin,
-                   // output: app.pugOutput,
-                    model: this.options
+                    // output: app.pugOutput,
+                    options: this.options,
+                    globalModel: app.modelProvider,
+                    contextModel: contextModel,
+                    model: contextModel[this.options.modelName]
                 }));
                 //app.pugOutput.html = '';
                 return result;

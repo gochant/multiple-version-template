@@ -1,7 +1,13 @@
-extends ../../../../../extensions/templates/modal-box-layout.jade
+extends /layout/modal-box-layout.jade
+include /bootstrap/nav.jade
+include /bootstrap/panel.jade
+include /kendo/editor.jade
+include /kendo/grid.jade
+include /bootstrap/button.jade
+include /bootstrap/icon.jade
 
 block heading
-  +modal-heading('初始登记2222', '申请')
+  +modal-heading('初始登记', '申请')
 
 block aside
   +nav-content(data-dynamic='main')
@@ -16,42 +22,39 @@ block content
   +tab-content.bind-block(data-dynamic='main')
     +tab-pane(null, true).application
       +form-layout-h
-        +editor-h('申请类型：', 'PetitionType', 'dropdownlist')
-        +editor-h('申请人：', 'PetitionName', 'textbox')
-        +editor-h('申请日期：', 'PetitionDate', 'datepicker')
-        +editor-h('申请事由：', 'PetitionOptions', 'textarea')
+        +editor-for-model(contextModel.registrationApplication)
         
     +tab-pane.registration()
       form.data-validate-form
         .fieldset
-          legend 基本信息
+          legend 基本信息22
           +form-layout-t
             +row-t
-              +editor-t('发包方：', 'OutsourcerNumber', 'dropdownlist')(required)
-              +editor-t('承包期限：', 'ContractBeginDate', 'checkbox', '永久')
+              +editor-t('OutsourcerNumber','发包方：', 'dropdownlist')(required)
+              +editor-t('ContractBeginDate', '承包期限：', 'checkbox', { text: '永久' })
             +row-t
-              +editor-t('起止时间：', 'Outsourcers', 'datepicker')
-              +editor-t('承包用途：', 'ContractPurpose', 'dropdownlist')
+              +editor-t('Outsourcers', '起止时间：', 'datepicker')
+              +editor-t('ContractPurpose', '承包用途：', 'dropdownlist')
             +row-t
-              +editor-t('承包方式：', 'ContractWay', 'dropdownlist')
-              +editor-t('登记日期：', 'RegisteDate', 'datepicker')
+              +editor-for-t('ContractWay', model)
+              +editor-for-t('RegisteDate', model)
         .fieldset
           legend 承包方信息
           +form-layout-t
             +row-t
-              +editor-t('承包方类型：', 'ContractorType', 'dropdownlist')
-              +editor-t('承包方姓名：', 'Outsourcers', 'textbox')
+              +editor-t('ContractorType', '承包方类型：', 'dropdownlist')
+              +editor-t('Outsourcers', '承包方姓名：', 'textbox')
             +row-t
-              +editor-t('承包方编号：', 'FamilyNumber', 'datepicker')
-              +editor-t('合同编号：', 'Outsourcers', 'dropdownlist')
+              +editor-t('FamilyNumber', '承包方编号：', 'datepicker')
+              +editor-t('Outsourcers', '合同编号：', 'dropdownlist')
             +row-t
-              +editor-t('证件类型：', 'ContractorCred', 'dropdownlist')
-              +editor-t('证件号码：', 'ContractorNumber', 'textbox')
+              +editor-t('ContractorCred', '证件类型：', 'dropdownlist')
+              +editor-t('ContractorNumber', '证件号码：', 'textbox')
             +row-t
-              +editor-t('电话号码：', 'ContractorTel', 'textbox')
-              +editor-t('邮政编码：', 'ContractorZip', 'textbox')
+              +editor-t('ContractorTel', '电话号码：', 'textbox')
+              +editor-t('ContractorZip', '邮政编码：', 'textbox')
             +row-t
-              +editor-t('承包方住址：', 'ContractorAddress', 'textarea', null, 2)
+              +editor-t('ContractorAddress', '承包方住址：', 'textarea', null, 2)
     +tab-pane.member()
       +panel
         +panel-toolbar('sm')
@@ -73,8 +76,8 @@ block content
     +tab-pane.additional() hehe5
     +tab-pane.attachment() hehe6
 
-block action
-  .bind-block
+block bottom
+  .btn-toolbar.bind-block
     +btn-group: +btn(data-action='prev', data-bind='css: { disabled : prevStatus }') 上一步
     +btn-group: +btn(data-action='next', data-bind='css: { disabled : nextStatus }') 下一步
     +btn-group: +btn-primary(data-action='save') 保 存

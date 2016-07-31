@@ -11,11 +11,11 @@ module.exports = function (grunt) {
         veronica: options,
         pug: {
             options: {
-                pretty: false,
+                pretty: true,
                 client: true,
                 debug: false,
                 namespace: false,
-                cache: false,
+                cache: true,
                 compileDebug: false,
                 amd: true
             },
@@ -23,7 +23,7 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     cwd: srcDir,
-                    src: ['**/*.jade', '**/*.pug'],
+                    src: ['**/initial_registration/*.jade', '**/*.pug'],
                     dest: 'www/',
                     ext: '.tpl2.js'
                 }]
@@ -94,7 +94,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-pug');
     grunt.loadNpmTasks('grunt-contrib-less');
 
-    grunt.registerTask('default', ['watch']);
+    grunt.registerTask('default', ['watch:pug']);
     grunt.registerTask('build', ['veronica']);
 
 };

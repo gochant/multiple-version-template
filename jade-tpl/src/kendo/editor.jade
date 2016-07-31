@@ -2,137 +2,156 @@ mixin label(text)
   label.control-label&attributes(attributes)
     | #{text}
 
-mixin editor(field, text, type, data)
-  case type
+mixin label-for(name, model)
+  -
+    var field = model[name]
+    var text = field.text
+  +label(text)&attributes(attributes)
+
+
+mixin editor(name, text, ui, data)
+  case ui
     when 'textblock'
-      +textblock(field)&attributes(attributes)
+      +textblock(name, data)&attributes(attributes)
     when 'combobox'
-      +combobox(field)&attributes(attributes)
+      +combobox(name, data)&attributes(attributes)
     when 'dropdownlist'
-      +dropdownlist(field)&attributes(attributes)
+      +dropdownlist(name, data)&attributes(attributes)
     when 'datepicker'
-      +datepicker(field)&attributes(attributes)
+      +datepicker(name, data)&attributes(attributes)
     when 'timepicker'
-      +timepicker(field)&attributes(attributes)
+      +timepicker(name, data)&attributes(attributes)
     when 'numeric'
-      +numeric(field)&attributes(attributes)
+      +numeric(name, data)&attributes(attributes)
     when 'multiselect'
-      +multiselect(field)&attributes(attributes)
+      +multiselect(name, data)&attributes(attributes)
     when 'autocomplete'
-      +autocomplete(field)&attributes(attributes)
+      +autocomplete(name, data)&attributes(attributes)
     when 'textarea'
-      +textarea(field)&attributes(attributes)
+      +textarea(name, data)&attributes(attributes)
     when 'checkbox'
-      +checkbox(field, data)&attributes(attributes)
+      +checkbox(name, data)&attributes(attributes)
     when 'checkboxlist'
-      +checkboxlist(field, data)&attributes(attributes)
+      +checkboxlist(name, data)&attributes(attributes)
     when 'textbox'
     default
-      +textbox(field)&attributes(attributes)
+      +textbox(name, data)&attributes(attributes)
+
+mixin editor-for(name, model, data, style)
+  - 
+    var field = model[name] 
+    var uiHintMap = { 'string': 'textbox', 'date': 'datepicker', 'number': 'numeric' }
+    if(field.uiHint == null) { field.uiHint = uiHintMap[field.type] }
+    var text = field.name
+    var ui = field.uiHint
+
+    //- 将验证参数附加到HTML属性
+    attributes = Object.assign({}, field.validation, attributes)
+
+  //- 根据不同的样式类型，呈现不同的布局
+  case style
+    when 't'
+      +editor-t(name, text, ui, data)&attributes(attributes)
+    when 'h'
+      +editor-h(name, text, ui, data)&attributes(attributes)
+    default
+      +editor(name, text, ui, data)&attributes(attributes)
+
+
+mixin editor-for-t(name, model, data)
+  +editor-for(name, model, data, 't')&attributes(attributes)
+
+mixin editor-for-h(name, model, data)
+  +editor-for(name, model, data, 'h')&attributes(attributes)
+
+mixin editor-for-model(model, fields, data)
+  - fields || (fields = Object.keys(model))
+  each name in fields
+    +editor-for-h(name, model, data)
 
 //- editor table
-mixin editor-t(text, field, type, data, colspan)
+mixin editor-t(name, text, ui, data, colspan)
+  -
+    data || (data= { })
+    var labelCls = attributes.required ? ['required'] : ['']
   +col-t(colspan)
-    if attributes.required
-      +label(text).required
-    else
-      +label(text)
-    +editor(field, text, type, data)&attributes(attributes)
+    +label(text)(class=labelCls)
+    +editor(name, text, ui, data)&attributes(attributes)
 
-mixin textblock-t(text, field, colspan)
+mixin textblock-t(text, name, colspan)
   +col-t(colspan)
       +label(text)
-      +editor(field, text, 'textblock')
+      +editor(name, text, 'textblock')
 
 //- editor horizontal
-mixin editor-h(text, field, type, data)
+mixin editor-h(name, text, ui, data)
+  -
+    data || (data= {})
+    var labelCls = attributes.required ? ['col-xs-3 required'] : ['col-xs-3']
   +row-h
-    if attributes.required
-      +label(text)(class=['col-xs-3 required'])
-    else
-      +label(text)(class=['col-xs-3'])
+    +label(text)(class=labelCls)
     +col-h(9)
-      +editor(field, text, type, data)&attributes(attributes)
+      +editor(name, text, ui, data)&attributes(attributes)
 
-mixin textblock(field)
-  - var bind = field ? 'text: data.' + field : null;
+mixin textblock(name)
+  - var bind = name ? 'text: data.' + name : null;
   span.form-control(data-bind=bind)&attributes(attributes)
 
-mixin textbox(field)
-  - var bind = field ? 'value: data.' + field : null;
+mixin textbox(name)
+  - var bind = name ? 'value: data.' + name : null;
   input.form-control(type='text', data-bind=bind)&attributes(attributes)
 
-mixin textarea(field)
-  - var bind = 'value: data.' + field
+mixin textarea(name)
+  - var bind = 'value: data.' + name
   textarea.form-control(data-bind=bind)&attributes(attributes)
 
-mixin checkbox(field, text)
-  - var bind = 'value: data.' + field
+mixin checkbox(name, data)
+  - var bind = 'value: data.' + name
   .checkbox
     label
-      input(type='checkbox', data-bind=bind)
-      | #{text}
+      input(type='checkbox', data-bind=bind)&attributes(attributes)
+      | #{data.text}
 
-mixin checkboxlist(field, list)
-  - var bind = 'checked: data.' + field
+mixin checkboxlist(name, data)
+  - var bind = 'checked: data.' + name
   .checkbox-group
-    each item, index in list
+    each item, index in data.list
       label.checkbox-inline
-        input(type='checkbox', data-bind=bind, value=item.value)
+        input(type='checkbox', data-bind=bind, value=item.value)&attributes(attributes)
         | #{item.name}
 	    
-mixin combobox(field)
-  - var bind = 'source: '+ field +'List, value: data.' + field
+mixin combobox(name)
+  - var bind = 'source: '+ name +'List, value: data.' + name
   select(data-role='combobox', data-text-field='name',
    data-value-field='value', data-bind=bind)&attributes(attributes)
 
-mixin k-invalid-msg(field)
-  span.k-invalid-msg(data-for=field)
+mixin k-invalid-msg(name)
+  span.k-invalid-msg(data-for=name)
 
-mixin dropdownlist(field)
-  - var bind = 'source: '+ field +'List, value: data.' + field
+mixin dropdownlist(name)
+  - var bind = 'source: '+ name +'List, value: data.' + name
   select(data-role='dropdownlist', data-text-field='name',
-   data-value-field='value', data-bind=bind, name=field)&attributes(attributes)
-  +k-invalid-msg(field)
+   data-value-field='value', data-bind=bind, name=name)&attributes(attributes)
+  +k-invalid-msg(name)
 
-mixin datepicker(field)
-  - var bind = 'value: data.' + field
+mixin datepicker(name)
+  - var bind = 'value: data.' + name
   input(data-role='datepicker', data-bind=bind)&attributes(attributes)
 
-mixin timepicker(field)
-  - var bind = 'value: data.' + field
+mixin timepicker(name)
+  - var bind = 'value: data.' + name
   input(data-role='timepicker', data-bind=bind)&attributes(attributes)
 
-mixin numeric(field)
-  - var bind = 'value: data.' + field
+mixin numeric(name)
+  - var bind = 'value: data.' + name
   input(data-role='numerictextbox', data-bind=bind)&attributes(attributes)
 
-mixin multiselect(field)
-  - var bind = 'value: data.' + field
+mixin multiselect(name)
+  - var bind = 'value: data.' + name
   select(data-role='multiselect', data-text-field='name', multiple='multiple'
    data-value-field='value', data-bind=bind)&attributes(attributes)
 
-mixin autocomplete(field)
-  - var bind = 'source: '+ field +'List, value: data.' + field
+mixin autocomplete(name)
+  - var bind = 'source: '+ name +'List, value: data.' + name
   input(data-role='autocomplete', data-text-field='name',
    data-value-field='value', data-bind=bind)&attributes(attributes)
-
-//- mixin editortest
-//-   +label
-//-   +editor
-//-   +editor-t
-//-   +textblock-t
-//-   +editor-h
-//-   +textblock
-//-   +textbox
-//-   +textarea
-//-   +checkbox
-//-   +checkboxlist
-//-   +combobox
-//-   +k-invalid-msg
-//-   +dropdownlist
-//-   +datepicker
-//-   +timepicker
-//-   +numeric
-//-   +multiselect
-//-   +autocomplete
