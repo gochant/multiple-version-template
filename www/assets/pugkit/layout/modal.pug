@@ -1,0 +1,11 @@
+
+mixin modal-close
+  button.close(data-dismiss='modal')
+    span ×
+
+mixin modal-heading(title, subtitle)
+  +container
+    +modal-close
+    .navbar-brand
+      | #{title} &nbsp;
+      small #{subtitle}

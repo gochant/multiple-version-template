@@ -52,6 +52,7 @@ define(function () {
                         };
                     }
                     templateContent._widgetName = obj._widgetName;
+                    templateContent._source = app.widget.splitNameParts(resourceName).source;
                     callback(templateContent);
 
                 });

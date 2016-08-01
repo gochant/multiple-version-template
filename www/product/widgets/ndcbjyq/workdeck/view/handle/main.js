@@ -6,15 +6,10 @@ define([
         defaults: {
             autoAction: true
         },
-        initialRegistrationHandler: function () {
-            var me = this;
+        initialRegistrationHandler: function (e, app) {
             // 打开窗口
-            this.widgetWindow('ndcbjyq-workdeck-form-initial_registration', {
-                _source: 'ndcbjyq'
-            }, {
-                type: 'modal',
-                template: me.$('#modal-template').html()
-            });
+            this.widgetWindow('ndcbjyq-workdeck-form-initial_registration', null,
+                app.configProvider.fullModal());
         }
     }
 });

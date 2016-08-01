@@ -6,15 +6,19 @@ var replace = require('gulp-replace');
 var watch = require('gulp-watch');
 var cache = require('gulp-cached');
 
-gulp.task('pug', function () {
-    gulp.src('www/**/initial_registration/index.jade')
-        //.pipe(cache('linting'))
-        //.pipe(watch('www/**/*.jade'))
+var pugBaseUrl = 'www/assets/pugkit';
+var tplFiles = 'www/**/*.tpl.pug';
+var htmlFiles = 'www/**/*.html.pug';
+
+gulp.task('pug:tpl', function () {
+
+    gulp.src(tplFiles)
+        .pipe(cache('pug'))
         .pipe(rename(function (path) {
-            path.extname = ".tpl.js";
+            path.extname = ".js";
         }))
         .pipe(pug({
-            basedir: 'jade-tpl/src',
+            basedir: pugBaseUrl,
             client: true,
             pretty: false,
             compileDebug: false,
@@ -24,13 +28,32 @@ gulp.task('pug', function () {
         })).pipe(wrap({
             exports: 'template'
         }))
-        //.pipe(replace(/pug_mixins\s?=\s?\{\}/g, 'pug_mixins = locals.mixin || {}'))
-        //.pipe(replace(/pug_html\s?=\s?""/g, 'pug_html = locals.output.html || ""'))
         .pipe(gulp.dest("www/"));
+
 });
 
-gulp.task('watch', function () {
-    gulp.watch('www/**/*.jade', ['pug']);
+gulp.task('watch', function() {
+    gulp.watch(tplFiles, ['pug:tpl']);
+    gulp.watch(htmlFiles, ['pug:html']);
 });
 
-gulp.task('default', ['pug']);
+gulp.task('pug:html', function () {
+
+    gulp.src(htmlFiles)
+    .pipe(cache('pug'))
+    .pipe(rename(function (path) {
+        path.extname = "";
+    }))
+    .pipe(pug({
+        basedir: pugBaseUrl,
+        client: false,
+        pretty: true,
+        compileDebug: false,
+        debug: false,
+        cache: true
+    }))
+    .pipe(gulp.dest("www/"));
+
+});
+
+gulp.task('default', ['watch', 'pug:tpl', 'pug:html']);

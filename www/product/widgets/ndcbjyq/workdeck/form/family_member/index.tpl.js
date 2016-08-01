@@ -1,6 +1,6 @@
 define(function(require,exports,module){
 
-function template(locals) {var pug_html = "", pug_mixins = {}, pug_interp;;var locals_for_with = (locals || {});(function (JSON, Object, contextModel, model) {
+function template(locals) {var pug_html = "", pug_mixins = {}, pug_interp;;var locals_for_with = (locals || {});(function (Object, model) {
 
 
 
@@ -30,15 +30,15 @@ pug_html = pug_html + "\u003Cdiv" + (pug.attrs(pug.merge([{"class": "btn-group"}
 block && block();
 pug_html = pug_html + "\u003C\u002Fdiv\u003E";
 };
-pug_mixins["btn-primary"] = pug_interp = function(size){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_mixins["btn"].call({
-block: function(){
-block && block();
-},
-attributes: attributes
-}, 'primary', size);
-};
+
+
+
+
+
+
+
+
+
 pug_mixins["caret"] = pug_interp = function(){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
 pug_html = pug_html + "\u003Cspan class=\"caret\"\u003E\u003C\u002Fspan\u003E";
@@ -240,12 +240,12 @@ attributes: attributes
   break;
 }
 };
-pug_mixins["editor-for-t"] = pug_interp = function(name, model, data){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_mixins["editor-for"].call({
-attributes: attributes
-}, name, model, data, 't');
-};
+
+
+
+
+
+
 pug_mixins["editor-for-h"] = pug_interp = function(name, model, data){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
 pug_mixins["editor-for"].call({
@@ -474,42 +474,6 @@ attributes: attributes
 
 
 
-pug_mixins["box-topbar"] = pug_interp = function(){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_html = pug_html + "\u003Cdiv" + (pug.attrs(pug.merge([{"class": "box-top navbar navbar-inverse navbar-static-top no-margin"},attributes]), false)) + "\u003E";
-block && block();
-pug_html = pug_html + "\u003C\u002Fdiv\u003E";
-};
-pug_mixins["box-bottombar"] = pug_interp = function(){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_html = pug_html + "\u003Cdiv" + (pug.attrs(pug.merge([{"class": "box-bottom navbar navbar-inverse navbar-static-bottom no-margin"},attributes]), false)) + "\u003E";
-block && block();
-pug_html = pug_html + "\u003C\u002Fdiv\u003E";
-};
-pug_mixins["box-body"] = pug_interp = function(){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_html = pug_html + "\u003Cdiv class=\"box-body\"\u003E";
-block && block();
-pug_html = pug_html + "\u003C\u002Fdiv\u003E";
-};
-pug_mixins["box-wrapper"] = pug_interp = function(){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_html = pug_html + "\u003Cdiv class=\"box-wrapper container\"\u003E";
-block && block();
-pug_html = pug_html + "\u003C\u002Fdiv\u003E";
-};
-pug_mixins["box-aside"] = pug_interp = function(){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_html = pug_html + "\u003Cdiv class=\"box-aside\"\u003E";
-block && block();
-pug_html = pug_html + "\u003C\u002Fdiv\u003E";
-};
-pug_mixins["box-content"] = pug_interp = function(){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_html = pug_html + "\u003Cdiv class=\"box-content\"\u003E";
-block && block();
-pug_html = pug_html + "\u003C\u002Fdiv\u003E";
-};
 
 
 
@@ -522,18 +486,54 @@ pug_html = pug_html + "\u003C\u002Fdiv\u003E";
 
 
 
-pug_mixins["form-layout-t"] = pug_interp = function(){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_html = pug_html + "\u003Ctable" + (pug.attrs(pug.merge([{"class": "table table-form-horizontal"},attributes]), false)) + "\u003E";
-block && block();
-pug_html = pug_html + "\u003C\u002Ftable\u003E";
-};
-pug_mixins["row-t"] = pug_interp = function(){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_html = pug_html + "\u003Ctr" + (pug.attrs(attributes, false)) + "\u003E";
-block && block();
-pug_html = pug_html + "\u003C\u002Ftr\u003E";
-};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 pug_mixins["col-t"] = pug_interp = function(colspan){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
 if (colspan) {
@@ -592,15 +592,15 @@ pug_mixins["modal-close"] = pug_interp = function(){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
 pug_html = pug_html + "\u003Cbutton class=\"close\" data-dismiss=\"modal\"\u003E\u003Cspan\u003E×\u003C\u002Fspan\u003E\u003C\u002Fbutton\u003E";
 };
-pug_mixins["modal-heading"] = pug_interp = function(title, subtitle){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_mixins["container"].call({
-block: function(){
-pug_mixins["modal-close"]();
-pug_html = pug_html + "\u003Cdiv class=\"navbar-brand\"\u003E" + (pug.escape(null == (pug_interp = title) ? "" : pug_interp)) + " &nbsp;\u003Csmall\u003E" + (pug.escape(null == (pug_interp = subtitle) ? "" : pug_interp)) + "\u003C\u002Fsmall\u003E\u003C\u002Fdiv\u003E";
-}
-});
-};
+
+
+
+
+
+
+
+
+
 pug_mixins["panel"] = pug_interp = function(type){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
 type || (type = 'default')
@@ -608,19 +608,6 @@ pug_html = pug_html + "\u003Cdiv" + (pug.attrs(pug.merge([{"class": pug.classes(
 block && block();
 pug_html = pug_html + "\u003C\u002Fdiv\u003E";
 };
-pug_mixins["panel-toolbar"] = pug_interp = function(size){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_html = pug_html + "\u003Cdiv" + (pug.attrs(pug.merge([{"class": pug.classes(["panel-toolbar","clearfix",[size ? 'panel-toolbar-' + size : undefined]], [false,false,true])},attributes]), false)) + "\u003E";
-block && block();
-pug_html = pug_html + "\u003C\u002Fdiv\u003E";
-};
-pug_mixins["btn-toolbar"] = pug_interp = function(size){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-var cls = size ? 'btn-toolbar-' + size : undefined;
-pug_html = pug_html + "\u003Cdiv" + (pug.attrs(pug.merge([{"class": pug.classes(["btn-toolbar",[cls]], [false,true])},attributes]), false)) + "\u003E";
-block && block();
-pug_html = pug_html + "\u003C\u002Fdiv\u003E";
-};
 
 
 
@@ -631,12 +618,25 @@ pug_html = pug_html + "\u003C\u002Fdiv\u003E";
 
 
 
-pug_mixins["panel-body"] = pug_interp = function(){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_html = pug_html + "\u003Cdiv" + (pug.attrs(pug.merge([{"class": "panel-body"},attributes]), false)) + "\u003E";
-block && block();
-pug_html = pug_html + "\u003C\u002Fdiv\u003E";
-};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 pug_mixins["nav"] = pug_interp = function(){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
 pug_html = pug_html + "\u003Cul" + (pug.attrs(pug.merge([{"class": "nav","role": "tablist"},attributes]), false)) + "\u003E";
@@ -662,15 +662,6 @@ pug_html = pug_html + "\u003C\u002Fa\u003E";
 pug_html = pug_html + "\u003C\u002Fli\u003E";
 }
 };
-pug_mixins["nav-toggle-item"] = pug_interp = function(href, active){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_mixins["nav-item"].call({
-block: function(){
-block && block();
-},
-attributes: attributes
-}, href, active, true);
-};
 
 
 
@@ -722,15 +713,6 @@ attributes: attributes
 
 
 
-pug_mixins["nav-content"] = pug_interp = function(){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_mixins["nav"].call({
-block: function(){
-block && block();
-},
-attributes: pug.merge([{"class": "nav-content nav-stacked"},attributes])
-});
-};
 
 
 
@@ -786,255 +768,59 @@ attributes: pug.merge([{"class": "nav-content nav-stacked"},attributes])
 
 
 
-pug_mixins["tab-content"] = pug_interp = function(){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-pug_html = pug_html + "\u003Cdiv" + (pug.attrs(pug.merge([{"class": "tab-content"},attributes]), false)) + "\u003E";
-block && block();
-pug_html = pug_html + "\u003C\u002Fdiv\u003E";
-};
-pug_mixins["tab-pane"] = pug_interp = function(id, active){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-var cls = active === true ? 'in active' : undefined
-pug_html = pug_html + "\u003Cdiv" + (pug.attrs(pug.merge([{"class": pug.classes(["tab-pane","fade",cls], [false,false,true]),"role": "tabpanel","id": pug.escape(id)},attributes]), false)) + "\u003E";
-block && block();
-pug_html = pug_html + "\u003C\u002Fdiv\u003E";
-};
-pug_mixins["kendo-grid"] = pug_interp = function(columns, bind){
-var block = (this && this.block), attributes = (this && this.attributes) || {};
-var cstr = JSON.stringify(columns)
-pug_html = pug_html + "\u003Cdiv" + (pug.attrs(pug.merge([{"data-role": "grid","data-columns": columns,"data-bind": pug.escape(bind)},attributes]), false)) + "\u003E\u003C\u002Fdiv\u003E";
-};
-pug_mixins["box-topbar"].call({
-block: function(){
-pug_mixins["modal-heading"]('初始登记', '申请');
-}
-});
-pug_mixins["box-body"].call({
-block: function(){
-pug_mixins["box-wrapper"].call({
-block: function(){
-pug_mixins["box-aside"].call({
-block: function(){
-pug_mixins["nav-content"].call({
-block: function(){
-pug_mixins["nav-toggle-item"].call({
-block: function(){
-pug_html = pug_html + "1 申请书信息";
-}
-}, null, true);
-pug_mixins["nav-toggle-item"].call({
-block: function(){
-pug_html = pug_html + "2 登记信息";
-}
-});
-pug_mixins["nav-toggle-item"].call({
-block: function(){
-pug_html = pug_html + "3 家庭成员";
-}
-});
-pug_mixins["nav-toggle-item"].call({
-block: function(){
-pug_html = pug_html + "4 承包地";
-}
-});
-pug_mixins["nav-toggle-item"].call({
-block: function(){
-pug_html = pug_html + "5 附加信息";
-}
-});
-pug_mixins["nav-toggle-item"].call({
-block: function(){
-pug_html = pug_html + "6 附件";
-}
-});
-},
-attributes: {"data-dynamic": "main"}
-});
-}
-});
-pug_mixins["box-content"].call({
-block: function(){
-pug_mixins["tab-content"].call({
-block: function(){
-pug_mixins["tab-pane"].call({
-block: function(){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+pug_html = pug_html + "\u003Cdiv class=\"modal-header\"\u003E";
+pug_mixins["modal-close"]();
+pug_html = pug_html + "\u003Ch4 class=\"modal-title\"\u003E家庭成员\u003C\u002Fh4\u003E\u003C\u002Fdiv\u003E\u003Cdiv class=\"modal-body\"\u003E";
 pug_mixins["form-layout-h"].call({
 block: function(){
-pug_mixins["editor-for-model"](contextModel.registrationApplication);
-}
-});
+pug_mixins["editor-for-model"](model);
 },
-attributes: {"class": "application"}
-}, null, true);
-pug_mixins["tab-pane"].call({
-block: function(){
-pug_html = pug_html + "\u003Cform class=\"data-validate-form\"\u003E\u003Cdiv class=\"fieldset\"\u003E\u003Clegend\u003E基本信息22\u003C\u002Flegend\u003E";
-pug_mixins["form-layout-t"].call({
-block: function(){
-pug_mixins["row-t"].call({
-block: function(){
-pug_mixins["editor-t"].call({
-attributes: {"required": true}
-}, 'OutsourcerNumber','发包方：', 'dropdownlist');
-pug_mixins["editor-t"]('ContractBeginDate', '承包期限：', 'checkbox', { text: '永久' });
-}
+attributes: {"class": "data-validate-form"}
 });
-pug_mixins["row-t"].call({
-block: function(){
-pug_mixins["editor-t"]('Outsourcers', '起止时间：', 'datepicker');
-pug_mixins["editor-t"]('ContractPurpose', '承包用途：', 'dropdownlist');
-}
-});
-pug_mixins["row-t"].call({
-block: function(){
-pug_mixins["editor-for-t"]('ContractWay', model);
-pug_mixins["editor-for-t"]('RegisteDate', model);
-}
-});
-}
-});
-pug_html = pug_html + "\u003C\u002Fdiv\u003E\u003Cdiv class=\"fieldset\"\u003E\u003Clegend\u003E承包方信息\u003C\u002Flegend\u003E";
-pug_mixins["form-layout-t"].call({
-block: function(){
-pug_mixins["row-t"].call({
-block: function(){
-pug_mixins["editor-t"]('ContractorType', '承包方类型：', 'dropdownlist');
-pug_mixins["editor-t"]('Outsourcers', '承包方姓名：', 'textbox');
-}
-});
-pug_mixins["row-t"].call({
-block: function(){
-pug_mixins["editor-t"]('FamilyNumber', '承包方编号：', 'datepicker');
-pug_mixins["editor-t"]('Outsourcers', '合同编号：', 'dropdownlist');
-}
-});
-pug_mixins["row-t"].call({
-block: function(){
-pug_mixins["editor-t"]('ContractorCred', '证件类型：', 'dropdownlist');
-pug_mixins["editor-t"]('ContractorNumber', '证件号码：', 'textbox');
-}
-});
-pug_mixins["row-t"].call({
-block: function(){
-pug_mixins["editor-t"]('ContractorTel', '电话号码：', 'textbox');
-pug_mixins["editor-t"]('ContractorZip', '邮政编码：', 'textbox');
-}
-});
-pug_mixins["row-t"].call({
-block: function(){
-pug_mixins["editor-t"]('ContractorAddress', '承包方住址：', 'textarea', null, 2);
-}
-});
-}
-});
-pug_html = pug_html + "\u003C\u002Fdiv\u003E\u003C\u002Fform\u003E";
-},
-attributes: {"class": "registration"}
-});
-pug_mixins["tab-pane"].call({
-block: function(){
-pug_mixins["panel"].call({
-block: function(){
-pug_mixins["panel-toolbar"].call({
-block: function(){
-pug_mixins["btn-toolbar"].call({
-block: function(){
+pug_html = pug_html + "\u003C\u002Fdiv\u003E\u003Cdiv class=\"modal-footer\"\u003E";
 pug_mixins["btn-icon"].call({
-attributes: {"data-action": "addMember"}
-}, 'plus', '添加');
-pug_mixins["btn-icon"]('plus', '从调查数据添加');
-pug_mixins["btn-icon"]('edit', '编辑');
-pug_mixins["btn-icon"]('trash-o', '删除');
-}
-}, 'sm');
-}
-}, 'sm');
-pug_mixins["panel-body"].call({
 block: function(){
-pug_mixins["kendo-grid"].call({
-attributes: {"data-auto-bind": "false","data-selectable": "row","style": "height:300px"}
-}, [
-              { field: 'WarrantNumber', title: '姓名'},
-              { field: 'ContractorNumber', title: '证件号码' },
-              { field: 'ContractorName', title: '性别' },
-              { field: 'OutsourcerName', title: '出生日期' },
-              { field: 'RegisteDate', title: '与户主关系' }
-            ], 'source: source');
+pug_html = pug_html + "保&nbsp;存";
 },
-attributes: {"class": "no-padding"}
+attributes: {"class": "btn-primary"}
 });
-}
-});
-},
-attributes: {"class": "member"}
-});
-pug_mixins["tab-pane"].call({
-block: function(){
-pug_html = pug_html + "hehe4";
-},
-attributes: {"class": "contracted_land"}
-});
-pug_mixins["tab-pane"].call({
-block: function(){
-pug_html = pug_html + "hehe5";
-},
-attributes: {"class": "additional"}
-});
-pug_mixins["tab-pane"].call({
-block: function(){
-pug_html = pug_html + "hehe6";
-},
-attributes: {"class": "attachment"}
-});
-},
-attributes: {"class": "data-bind-block","data-dynamic": "main"}
-});
-}
-});
-}
-});
-}
-});
-pug_mixins["box-bottombar"].call({
-block: function(){
-pug_mixins["container"].call({
-block: function(){
-pug_html = pug_html + "\u003Cdiv class=\"navbar-form navbar-right\"\u003E\u003Cdiv class=\"btn-toolbar data-bind-block\"\u003E";
-pug_mixins["btn-group"].call({
-block: function(){
-pug_mixins["btn"].call({
-block: function(){
-pug_html = pug_html + "上一步";
-},
-attributes: {"data-action": "prev","data-bind": "css: { disabled : prevStatus }"}
-});
-}
-});
-pug_mixins["btn-group"].call({
-block: function(){
-pug_mixins["btn"].call({
-block: function(){
-pug_html = pug_html + "下一步";
-},
-attributes: {"data-action": "next","data-bind": "css: { disabled : nextStatus }"}
-});
-}
-});
-pug_mixins["btn-group"].call({
-block: function(){
-pug_mixins["btn-primary"].call({
-block: function(){
-pug_html = pug_html + "保 存";
-},
-attributes: {"data-action": "save"}
-});
-}
-});
-pug_html = pug_html + "\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E";
-}
-});
-}
-});}.call(this,"JSON" in locals_for_with?locals_for_with.JSON:typeof JSON!=="undefined"?JSON:undefined,"Object" in locals_for_with?locals_for_with.Object:typeof Object!=="undefined"?Object:undefined,"contextModel" in locals_for_with?locals_for_with.contextModel:typeof contextModel!=="undefined"?contextModel:undefined,"model" in locals_for_with?locals_for_with.model:typeof model!=="undefined"?model:undefined));;return pug_html;}
+pug_html = pug_html + "\u003C\u002Fdiv\u003E";}.call(this,"Object" in locals_for_with?locals_for_with.Object:typeof Object!=="undefined"?Object:undefined,"model" in locals_for_with?locals_for_with.model:typeof model!=="undefined"?model:undefined));;return pug_html;}
 return template;
 
 });

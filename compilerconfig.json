@@ -34,5 +34,9 @@
   {
     "outputFile": "www/styles/home.css",
     "inputFile": "www/styles/home.less"
+  },
+  {
+    "outputFile": "www/product/styles/home.css",
+    "inputFile": "www/product/styles/home.less"
   }
 ]

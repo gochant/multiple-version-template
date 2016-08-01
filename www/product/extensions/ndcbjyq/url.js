@@ -26,8 +26,8 @@ define([
                 },
                 // 公共部分
                 common: {
-                    dic: domain + 'CBD/Common/GetAgreementDic'
-
+                    dic: domain + 'CBD/Common/GetAgreementDic',
+                    personDic: domain + 'CBD/Common/GetPersonDic'
                 },
                 // 初始登记
                 initialRegistration: {

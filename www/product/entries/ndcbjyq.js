@@ -28,6 +28,7 @@ requirejs([
             modules: module,
             autoParseWidgetName: false,
             autoBuildPage: true,
+            autoParseSource: true,
             releaseWidgetPath: releaseWidgetPath,
             widgetNamePattern: /(\w*)-?(\w*)-?(\w*)-?(\w*)-?(\w*)/
         });

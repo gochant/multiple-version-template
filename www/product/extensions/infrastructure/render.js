@@ -27,7 +27,7 @@ define([
                     options: this.options,
                     globalModel: app.modelProvider,
                     contextModel: contextModel,
-                    model: contextModel[this.options.modelName]
+                    model: contextModel && contextModel[this.options.modelName]
                 }));
                 //app.pugOutput.html = '';
                 return result;

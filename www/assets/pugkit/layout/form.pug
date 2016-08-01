@@ -1,0 +1,30 @@
+//- ------------------- form layout
+
+mixin form-layout-t()
+  table.table.table-form-horizontal&attributes(attributes)
+    block
+     
+mixin row-t
+  tr&attributes(attributes)
+    block
+
+mixin col-t(colspan)
+  if colspan
+    td(colspan=colspan)&attributes(attributes)
+      block
+  else
+    td&attributes(attributes)
+      block
+
+mixin form-layout-h
+  .form-horizontal&attributes(attributes)
+    block
+
+mixin row-h
+  .form-group&attributes(attributes)
+    block
+
+mixin col-h(num)
+  +col(num, 'xs')&attributes(attributes)
+    block
+

@@ -1,0 +1,12 @@
+extends /ext/modal-layout.pug
+include /mixin.pug
+
+block title
+  | 家庭成员
+
+block body
+  +form-layout-h.data-validate-form
+    +editor-for-model(model)
+
+block footer
+  +btn-icon.btn-primary 保&nbsp;存

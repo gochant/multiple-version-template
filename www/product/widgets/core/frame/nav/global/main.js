@@ -42,7 +42,8 @@ define([
             var select = this.$(this.selectSelector).kendoZoneSelector({
                 url: this.url('read'),
                 headerUrl: this.url('parents'),
-                template: $('#region-selector-pane').html()
+                template: $('#region-selector-pane').html(),
+                requestKey: this.attr('zoneKey')
             }).data('kendoZoneSelector');
 
             select.bind('selected', function (data) {

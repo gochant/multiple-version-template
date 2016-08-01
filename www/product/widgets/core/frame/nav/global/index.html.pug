@@ -1,8 +1,12 @@
 
-<div class="dropdown mega breadcrumb no-margin"><span data-toggle="dropdown" style="cursor:pointer"><span class="fn-current" data-bind="text: text"></span>&nbsp;&nbsp;<span class="caret"></span></span>
-  <div class="dropdown-menu no-padding fn-selector"></div>
-</div>
-<script id="region-selector-pane" type="text/template">
+div.dropdown.mega.breadcrumb.no-margin
+  span(data-toggle='dropdown', style={ cursor:'pointer'})
+    span.fn-current(data-bind='text: text')
+    | &nbsp;&nbsp;
+    span.caret
+  div.dropdown-menu.no-padding.fn-selector
+
+script#region-selector-pane(type='text/template').
   <div class="panel panel-default panel-xs no-margin nested-selector">
       <div class="panel-heading">
           <ul class="nav nav-tabs tab-styled nav-sm">
@@ -17,7 +21,7 @@
               # } #
           </ul>      
       </div>
-  
+
       <div class="panel-body">
           <ul class="list-inline">
             # for(var i = 0, len = data.list.length; i < len; i++){ #
@@ -40,4 +44,3 @@
         </div>
       </div>
   </div>
-</script>
