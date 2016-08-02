@@ -2988,7 +2988,7 @@ legend {
 }
 .k-dropdown-wrap.k-state-default.k-state-active,
 .k-picker-wrap.k-state-default.k-state-active {
-  background-color: #EEE;
+  background-color: #385afc;
 }
 label {
   font-weight: normal;
@@ -3012,7 +3012,7 @@ label.required:before {
 }
 .k-dropdown .k-state-default.k-state-active .k-input,
 .k-state-selected .k-progress-status {
-  color: inherit;
+  /*color: inherit;*/
 }
 .form-control-container {
   padding-right: 40px;

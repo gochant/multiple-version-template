@@ -1,3 +1,7 @@
+---
+model: registrationBook
+---
+
 extends /ext/modal-box-layout.pug
 include /mixin.pug
 
@@ -22,7 +26,7 @@ block content
     +tab-pane.registration()
       form.data-validate-form
         .fieldset
-          legend 基本信息22
+          legend 基本信息
           +form-layout-t
             +row-t
               +editor-t('OutsourcerNumber','发包方：', 'dropdownlist')(required)
@@ -60,12 +64,12 @@ block content
             +btn-icon('trash-o', '删除')
         +panel-body.no-padding
             +kendo-grid([
-              { field: 'WarrantNumber', title: '姓名'},
-              { field: 'ContractorNumber', title: '证件号码' },
-              { field: 'ContractorName', title: '性别' },
-              { field: 'OutsourcerName', title: '出生日期' },
-              { field: 'RegisteDate', title: '与户主关系' }
-            ], 'source: source')(data-auto-bind='false', data-selectable='row', style={ height: '300px' })
+              { field: 'Name', title: '姓名'},
+              { field: 'Number', title: '证件号码' },
+              { field: 'GenderDisplay', title: '性别' },
+              { field: 'Birth', title: '出生日期' },
+              { field: 'RelDisplay', title: '与户主关系' }
+            ], 'source: data.Persons')(data-auto-bind='false', data-selectable='row', style={ height: '300px' })
 
     +tab-pane.contracted_land() hehe4
     +tab-pane.additional() hehe5

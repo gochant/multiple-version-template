@@ -39,7 +39,7 @@ mixin editor(name, text, ui, data)
 
 mixin editor-for(name, model, data, style)
   - 
-    var field = model[name] 
+    var field = model.fields[name]
     var uiHintMap = { 'string': 'textbox', 'date': 'datepicker', 'number': 'numeric' }
     if(field.uiHint == null) { field.uiHint = uiHintMap[field.type] }
     var text = field.name
@@ -65,7 +65,15 @@ mixin editor-for-h(name, model, data)
   +editor-for(name, model, data, 'h')&attributes(attributes)
 
 mixin editor-for-model(model, fields, data)
-  - fields || (fields = Object.keys(model))
+  - 
+    if(fields == null){
+      fields = Object.keys(model.fields).filter(function(value){
+        return !model.fields[value].calculate
+      })
+    }
+    if(typeof fields === 'string'){
+      fields = model.views[fields]
+    }
   each name in fields
     +editor-for-h(name, model, data)
 
@@ -123,7 +131,7 @@ mixin checkboxlist(name, data)
 mixin combobox(name)
   - var bind = 'source: '+ name +'List, value: data.' + name
   select(data-role='combobox', data-text-field='name',
-   data-value-field='value', data-bind=bind)&attributes(attributes)
+   data-value-field='value', data-value-primitive='true', data-bind=bind)&attributes(attributes)
 
 mixin k-invalid-msg(name)
   span.k-invalid-msg(data-for=name)
@@ -131,7 +139,7 @@ mixin k-invalid-msg(name)
 mixin dropdownlist(name)
   - var bind = 'source: '+ name +'List, value: data.' + name
   select(data-role='dropdownlist', data-text-field='name',
-   data-value-field='value', data-bind=bind, name=name)&attributes(attributes)
+   data-value-field='value', data-value-primitive='true', data-bind=bind, name=name)&attributes(attributes)
   +k-invalid-msg(name)
 
 mixin datepicker(name)
@@ -149,7 +157,7 @@ mixin numeric(name)
 mixin multiselect(name)
   - var bind = 'value: data.' + name
   select(data-role='multiselect', data-text-field='name', multiple='multiple'
-   data-value-field='value', data-bind=bind)&attributes(attributes)
+   data-value-field='value', data-value-primitive='true', data-bind=bind)&attributes(attributes)
 
 mixin autocomplete(name)
   - var bind = 'source: '+ name +'List, value: data.' + name

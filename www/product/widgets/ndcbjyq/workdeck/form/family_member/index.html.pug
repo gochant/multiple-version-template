@@ -1,12 +1,15 @@
+---
+model: familyMember
+---
 extends /ext/modal-layout.pug
 include /mixin.pug
 
 block title
-  | 家庭成员
+  | #{model.displayName}
 
 block body
   +form-layout-h.data-validate-form
     +editor-for-model(model)
 
 block footer
-  +btn-icon.btn-primary 保&nbsp;存
+  +btn-icon.btn-primary(data-action='save') 保&nbsp; 存

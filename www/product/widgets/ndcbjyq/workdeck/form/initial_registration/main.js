@@ -1,6 +1,5 @@
 define([
-    //'text!./index.html'
-    './index.tpl',
+    'text!./index.html',
     'ver!ndcbjyq-workdeck-form-family_member'
 ], function (tpl, FamilyMember) {
     return {
@@ -21,19 +20,19 @@ define([
                         map: [{
                             from: 'data.ContractWays',
                             to: 'ContractWayList',
-                            parse: app.parseProvider.kvParse
+                            parse: app.parseProvider.kvToSelectList
                         }, {
                             from: 'data.ContractPurposes',
                             to: 'ContractPurposeList',
-                            parse: app.parseProvider.kvParse
+                            parse: app.parseProvider.kvToSelectList
                         }, {
                             from: 'data.contractorTypeKv',
                             to: 'ContractorTypeList',
-                            parse: app.parseProvider.kvParse
+                            parse: app.parseProvider.kvToSelectList
                         }, {
                             from: 'data.contractorCredKv',
                             to: 'ContractorCredList',
-                            parse: app.parseProvider.kvParse
+                            parse: app.parseProvider.kvToSelectList
                         }]
                     }, {
                         url: 'contractIssuingParty',
@@ -44,12 +43,7 @@ define([
                         map: {
                             from: 'data',
                             to: 'OutsourcerNumberList',
-                            parse: function (item) {
-                                return {
-                                    name: item.Name,
-                                    value: item.Number
-                                };
-                            }
+                            parse: app.parseProvider.toSelectList('Number', 'Name')
                         }
                     }, {
                         url: 'defaults',
@@ -59,7 +53,11 @@ define([
                         },
                         map: {
                             from: 'data',
-                            to: 'data'
+                            to: 'data',
+                            parse: function (data) {
+                                data.Persons = [];
+                                return data;
+                            }
                         }
                     }
                 ];
@@ -89,6 +87,12 @@ define([
                 setup: 'init'
             });
             this.model({ data: {} }, false);
+        },
+        listen: function (app) {
+            this.listenTo('add-member', 'saved', function (data) {
+                var persons = this.model('data.Persons');
+                app.dataSourceHandler.add(persons, data);
+            });
         },
         rendered: function (app) {
             var me = this;

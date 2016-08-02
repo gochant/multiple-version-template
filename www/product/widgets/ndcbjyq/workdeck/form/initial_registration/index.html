@@ -24,31 +24,31 @@
       </ul>
     </div>
     <div class="box-content">
-      <div class="tab-content bind-block" data-dynamic="main">
+      <div class="tab-content data-bind-block" data-dynamic="main">
         <div class="tab-pane fade in active application" role="tabpanel">
           <div class="form-horizontal">
-            <div class="form-group form-group-sm">
-              <label class="control-label col-xs-3">申请类型：</label>
-              <div class="col-xs-9">
-                <select data-role="dropdownlist" data-text-field="name" data-value-field="value" data-bind="source: PetitionTypeList, value: data.PetitionType" name="PetitionType"></select><span class="k-invalid-msg" data-for="PetitionType"></span>
+            <div class="form-group">
+              <label class="control-label col-xs-3">申请类型</label>
+              <div class="col-xs-9 form-control-container">
+                <select data-role="dropdownlist" data-text-field="name" data-value-field="value" data-value-primitive="true" data-bind="source: PetitionTypeList, value: data.PetitionType" name="PetitionType"></select><span class="k-invalid-msg" data-for="PetitionType"></span>
               </div>
             </div>
-            <div class="form-group form-group-sm">
-              <label class="control-label col-xs-3">申请人：</label>
-              <div class="col-xs-9">
-                <input class="form-control" type="text" data-bind="value: data.PetitionName"/>
+            <div class="form-group">
+              <label class="control-label col-xs-3 required">申请人</label>
+              <div class="col-xs-9 form-control-container">
+                <input class="form-control" type="text" data-bind="value: data.PetitionName" name="PetitionName" required="required"/>
               </div>
             </div>
-            <div class="form-group form-group-sm">
-              <label class="control-label col-xs-3">申请日期：</label>
-              <div class="col-xs-9">
+            <div class="form-group">
+              <label class="control-label col-xs-3">申请日期</label>
+              <div class="col-xs-9 form-control-container">
                 <input data-role="datepicker" data-bind="value: data.PetitionDate"/>
               </div>
             </div>
-            <div class="form-group form-group-sm">
-              <label class="control-label col-xs-3">申请事由：</label>
-              <div class="col-xs-9">
-                <textarea class="form-control" data-bind="value: data.PetitionOptions"></textarea>
+            <div class="form-group">
+              <label class="control-label col-xs-3">申请事由</label>
+              <div class="col-xs-9 form-control-container">
+                <textarea class="form-control" data-bind="value: data.PetitionOptions" name="PetitionOptions"></textarea>
               </div>
             </div>
           </div>
@@ -61,7 +61,7 @@
                 <tr>
                   <td>
                     <label class="control-label required">发包方：</label>
-                    <select data-role="dropdownlist" data-text-field="name" data-value-field="value" data-bind="source: OutsourcerNumberList, value: data.OutsourcerNumber" name="OutsourcerNumber" required="required"></select><span class="k-invalid-msg" data-for="OutsourcerNumber"></span>
+                    <select data-role="dropdownlist" data-text-field="name" data-value-field="value" data-value-primitive="true" data-bind="source: OutsourcerNumberList, value: data.OutsourcerNumber" name="OutsourcerNumber" required="required"></select><span class="k-invalid-msg" data-for="OutsourcerNumber"></span>
                   </td>
                   <td>
                     <label class="control-label">承包期限：</label>
@@ -79,16 +79,16 @@
                   </td>
                   <td>
                     <label class="control-label">承包用途：</label>
-                    <select data-role="dropdownlist" data-text-field="name" data-value-field="value" data-bind="source: ContractPurposeList, value: data.ContractPurpose" name="ContractPurpose"></select><span class="k-invalid-msg" data-for="ContractPurpose"></span>
+                    <select data-role="dropdownlist" data-text-field="name" data-value-field="value" data-value-primitive="true" data-bind="source: ContractPurposeList, value: data.ContractPurpose" name="ContractPurpose"></select><span class="k-invalid-msg" data-for="ContractPurpose"></span>
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <label class="control-label">承包方式：</label>
-                    <select data-role="dropdownlist" data-text-field="name" data-value-field="value" data-bind="source: ContractWayList, value: data.ContractWay" name="ContractWay"></select><span class="k-invalid-msg" data-for="ContractWay"></span>
+                    <label class="control-label required">承包方式</label>
+                    <select data-role="dropdownlist" data-text-field="name" data-value-field="value" data-value-primitive="true" data-bind="source: ContractWayList, value: data.ContractWay" name="ContractWay" required="required"></select><span class="k-invalid-msg" data-for="ContractWay"></span>
                   </td>
                   <td>
-                    <label class="control-label">登记日期：</label>
+                    <label class="control-label">登记日期</label>
                     <input data-role="datepicker" data-bind="value: data.RegisteDate"/>
                   </td>
                 </tr>
@@ -100,11 +100,11 @@
                 <tr>
                   <td>
                     <label class="control-label">承包方类型：</label>
-                    <select data-role="dropdownlist" data-text-field="name" data-value-field="value" data-bind="source: ContractorTypeList, value: data.ContractorType" name="ContractorType"></select><span class="k-invalid-msg" data-for="ContractorType"></span>
+                    <select data-role="dropdownlist" data-text-field="name" data-value-field="value" data-value-primitive="true" data-bind="source: ContractorTypeList, value: data.ContractorType" name="ContractorType"></select><span class="k-invalid-msg" data-for="ContractorType"></span>
                   </td>
                   <td>
                     <label class="control-label">承包方姓名：</label>
-                    <input class="form-control" type="text" data-bind="value: data.Outsourcers"/>
+                    <input class="form-control" type="text" data-bind="value: data.Outsourcers" name="Outsourcers"/>
                   </td>
                 </tr>
                 <tr>
@@ -114,33 +114,33 @@
                   </td>
                   <td>
                     <label class="control-label">合同编号：</label>
-                    <select data-role="dropdownlist" data-text-field="name" data-value-field="value" data-bind="source: OutsourcersList, value: data.Outsourcers" name="Outsourcers"></select><span class="k-invalid-msg" data-for="Outsourcers"></span>
+                    <select data-role="dropdownlist" data-text-field="name" data-value-field="value" data-value-primitive="true" data-bind="source: OutsourcersList, value: data.Outsourcers" name="Outsourcers"></select><span class="k-invalid-msg" data-for="Outsourcers"></span>
                   </td>
                 </tr>
                 <tr>
                   <td>
                     <label class="control-label">证件类型：</label>
-                    <select data-role="dropdownlist" data-text-field="name" data-value-field="value" data-bind="source: ContractorCredList, value: data.ContractorCred" name="ContractorCred"></select><span class="k-invalid-msg" data-for="ContractorCred"></span>
+                    <select data-role="dropdownlist" data-text-field="name" data-value-field="value" data-value-primitive="true" data-bind="source: ContractorCredList, value: data.ContractorCred" name="ContractorCred"></select><span class="k-invalid-msg" data-for="ContractorCred"></span>
                   </td>
                   <td>
                     <label class="control-label">证件号码：</label>
-                    <input class="form-control" type="text" data-bind="value: data.ContractorNumber"/>
+                    <input class="form-control" type="text" data-bind="value: data.ContractorNumber" name="ContractorNumber"/>
                   </td>
                 </tr>
                 <tr>
                   <td>
                     <label class="control-label">电话号码：</label>
-                    <input class="form-control" type="text" data-bind="value: data.ContractorTel"/>
+                    <input class="form-control" type="text" data-bind="value: data.ContractorTel" name="ContractorTel"/>
                   </td>
                   <td>
                     <label class="control-label">邮政编码：</label>
-                    <input class="form-control" type="text" data-bind="value: data.ContractorZip"/>
+                    <input class="form-control" type="text" data-bind="value: data.ContractorZip" name="ContractorZip"/>
                   </td>
                 </tr>
                 <tr>
                   <td colspan="2">
                     <label class="control-label">承包方住址：</label>
-                    <textarea class="form-control" data-bind="value: data.ContractorAddress"></textarea>
+                    <textarea class="form-control" data-bind="value: data.ContractorAddress" name="ContractorAddress"></textarea>
                   </td>
                 </tr>
               </table>
@@ -150,11 +150,11 @@
         <div class="tab-pane fade member" role="tabpanel">
           <div class="panel panel-default">
             <div class="panel-toolbar clearfix panel-toolbar-sm">
-              <div class="btn-toolbar btn-toolbar-sm"><a class="btn btn-default"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加</a><a class="btn btn-default"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;从调查数据添加</a><a class="btn btn-default"><i class="fa fa-edit" aria-hidden="true"></i>&nbsp;编辑</a><a class="btn btn-default"><i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;删除</a>
+              <div class="btn-toolbar btn-toolbar-sm"><a class="btn btn-default" data-action="addMember"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加</a><a class="btn btn-default"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;从调查数据添加</a><a class="btn btn-default"><i class="fa fa-edit" aria-hidden="true"></i>&nbsp;编辑</a><a class="btn btn-default"><i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;删除</a>
               </div>
             </div>
             <div class="panel-body no-padding">
-              <div data-role="grid" data-columns='[{"field":"WarrantNumber","title":"姓名"},{"field":"ContractorNumber","title":"证件号码"},{"field":"ContractorName","title":"性别"},{"field":"OutsourcerName","title":"出生日期"},{"field":"RegisteDate","title":"与户主关系"}]' data-bind="source: source" data-auto-bind="false" data-selectable="row" style="height:300px"></div>
+              <div data-role="grid" data-columns='[{"field":"Name","title":"姓名"},{"field":"Number","title":"证件号码"},{"field":"GenderDisplay","title":"性别"},{"field":"Birth","title":"出生日期"},{"field":"RelDisplay","title":"与户主关系"}]' data-bind="source: data.Persons" data-auto-bind="false" data-selectable="row" style="height:300px"></div>
             </div>
           </div>
         </div>
@@ -171,8 +171,12 @@
 <div class="box-bottom navbar navbar-inverse navbar-static-bottom no-margin">
   <div class="container">
     <div class="navbar-form navbar-right">
-      <div class="btn-toolbar">
-        <div class="btn-group"><a class="btn btn-primary">保 存</a>
+      <div class="btn-toolbar data-bind-block">
+        <div class="btn-group"><a class="btn btn-default" data-action="prev" data-bind="css: { disabled : prevStatus }">上一步</a>
+        </div>
+        <div class="btn-group"><a class="btn btn-default" data-action="next" data-bind="css: { disabled : nextStatus }">下一步</a>
+        </div>
+        <div class="btn-group"><a class="btn btn-primary" data-action="save">保 存</a>
         </div>
       </div>
     </div>
