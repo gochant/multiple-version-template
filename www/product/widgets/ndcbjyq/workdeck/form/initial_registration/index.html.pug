@@ -10,7 +10,9 @@ block heading
 
 block aside
   +nav-content(data-dynamic='main')
-    +nav-toggle-item(null, true) 1 申请书信息
+    +nav-toggle-item(null, true) 
+      | 1 申请书信息
+      span.badge.invalid-tag(data-for='tes') 
     +nav-toggle-item() 2 登记信息
     +nav-toggle-item() 3 家庭成员
     +nav-toggle-item() 4 承包地

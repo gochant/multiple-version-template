@@ -761,3 +761,66 @@ label.required:before {
         margin-right: 0;
     }
 }
+
+
+// animate
+
+.animated {
+    animation-duration: .5s;
+    animation-fill-mode: both;
+}
+
+.animated.infinite {
+    animation-iteration-count: infinite;
+}
+
+.animated.hinge {
+    animation-duration: 2s;
+}
+
+.animated.flipOutX,
+.animated.flipOutY,
+.animated.bounceIn,
+.animated.bounceOut {
+    animation-duration: .75s;
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translate3d(50%, 0, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.fadeInRight {
+    animation-name: fadeInRight;
+}
+
+@keyframes fadeOutRight {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+        transform: translate3d(50%, 0, 0);
+    }
+}
+
+.fadeOutRight {
+    animation-name: fadeOutRight;
+}
+
+.invalid-tag {
+    position: absolute;
+    right: 10px;
+    background: #cf4c35;
+    font-weight: bold;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    opacity: 0;
+}
