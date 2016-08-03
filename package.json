@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "devDependencies": {
     "amd-loader": "0.0.5",
+    "eslint": "^3.2.2",
+    "eslint-plugin-requirejs": "^2.0.1",
     "front-matter": "^2.1.0",
     "grunt-veronica": "^0.2.0",
     "gulp": "^3.9.1",

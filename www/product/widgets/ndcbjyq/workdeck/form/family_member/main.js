@@ -33,11 +33,11 @@ define([
                 };
             }
         },
-        initAttr: function () {
-            this.model({ data: {} }, false);
+        initAttr: function (app) {
+            this.model({ data: app.modelHandler.getDefault(this.getModelDefine()) }, false);
         },
         rendered: function () {
-            var me = this;
+            // var me = this;
         },
         saveHandler: function (e, app) {
             var validator = this.instance(this.$('.data-validate-form'));

@@ -10,7 +10,7 @@ define(function () {
 
 
         app.dataHandler.pickEnumName = function (selectedValue, enumList) {
-            var selected = _.find(enumList, function(item) {
+            var selected = _.find(enumList, function (item) {
                 return item.value === selectedValue;
             });
             return selected ? selected.name : null;
@@ -35,7 +35,7 @@ define(function () {
         }
 
         // 删除
-        app.dataSourceHandler.remove = function (data, url) {
+        app.dataSourceHandler.remove = function (dataSource, data, url) {
             if (dataSource.page) {
                 if (dataSource.options.transport) {
 
@@ -55,11 +55,19 @@ define(function () {
                 return field.calculate;
             });
 
-            _.each(fields, function(field, name) {
+            _.each(fields, function (field, name) {
                 data[name] = field.calculate.call(data, context, app);
             });
 
             return data;
         }
+
+        app.modelHandler.getDefault = function (modelDefine) {
+            var result = {};
+            _.each(modelDefine.fields, function (def, name) {
+                result[name] = def.defaultValue || null;
+            });
+            return result;
+        };
     };
 });

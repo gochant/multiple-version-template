@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var pug = require('gulp-pug');
-var rename = require("gulp-rename");
+var rename = require('gulp-rename');
 var wrap = require('gulp-wrap-amd');
 var watch = require('gulp-watch');
 var cache = require('gulp-cached');
@@ -27,7 +27,7 @@ gulp.task('pug:tpl', function () {
     gulp.src(tplFiles)
         .pipe(cache('pug'))
         .pipe(rename(function (path) {
-            path.extname = ".js";
+            path.extname = '.js';
         }))
         .pipe(data(function (file) {
             var content = fm(String(file.contents));
@@ -45,7 +45,7 @@ gulp.task('pug:tpl', function () {
         })).pipe(wrap({
             exports: 'template'
         }))
-        .pipe(gulp.dest("www/"));
+        .pipe(gulp.dest('www/'));
 
 });
 
@@ -54,7 +54,7 @@ gulp.task('pug:html', function () {
     gulp.src(htmlFiles)
     .pipe(cache('pug'))
     .pipe(rename(function (path) {
-        path.extname = "";
+        path.extname = '';
     }))
     .pipe(data(function (file) {
         var content = fm(String(file.contents));
@@ -76,7 +76,7 @@ gulp.task('pug:html', function () {
         debug: false,
         cache: true
     }))
-    .pipe(gulp.dest("www/"));
+    .pipe(gulp.dest('www/'));
 
 });
 
@@ -85,4 +85,4 @@ gulp.task('watch', function () {
     gulp.watch(htmlFiles, ['pug:html']);
 });
 
-gulp.task('default', [ 'pug:tpl', 'pug:html']);
+gulp.task('default', [ 'watch', 'pug:tpl', 'pug:html']);

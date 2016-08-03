@@ -73,7 +73,15 @@ define([
             if ($.fn.kendoValidator) {
                 this.$('.data-validate-form').kendoValidator({
                     errorTemplate: '<span title="#=message#"><i class="fa fa-exclamation-circle"></i></span>',
-                    validate: function (e, ee, eee) {
+                    validate: function (e) {
+                        var formName = e.sender.element.attr('data-form-name');
+                        var invalidLen = e.sender.element.find('.k-invalid').length;
+                        var $target = $('.invalid-tag[data-for=' + formName + ']');
+                        if (invalidLen === 0) {
+                            $target.text(invalidLen).removeClass('fadeInRight').addClass('animated fadeOutRight');
+                        }else{
+                            $target.text(invalidLen).removeClass('fadeOutRight').addClass('animated fadeInRight');
+                        }
                     }
                 });
             }

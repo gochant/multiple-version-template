@@ -3,7 +3,7 @@ define([
     return function (app) {
 
         var $ = app.core.$;
-        var domain = 'http://192.168.1.18:7100/';  // ¿çÓòÅäÖÃ£º27344
+        var domain = 'http://192.168.1.18:7100/';  // è·¨åŸŸé…ç½® 27344
 
         app.urlProvider || (app.urlProvider = {});
 
@@ -15,21 +15,21 @@ define([
                 }
             },
             ndcbjyq: {
-                // µÇ¼Ç²¾
+                // ç™»è®°ç°¿
                 registrationBook: {
                     query: domain + 'CBD/Search/SearchRegister',
                     detail: domain + 'CBD/Common/GetRegisterWithLandAndPerson'
                 },
-                // ·¢°ü·½
+                // å‘åŒ…æ–¹
                 contractIssuingParty: {
                     query: domain + 'CBD/Contractee/Get'
                 },
-                // ¹«¹²²¿·Ö
+                // å…¬å…±
                 common: {
                     dic: domain + 'CBD/Common/GetAgreementDic',
                     personDic: domain + 'CBD/Common/GetPersonDic'
                 },
-                // ³õÊ¼µÇ¼Ç
+                // åˆå§‹ç™»è®°
                 initialRegistration: {
                     defaults: domain + 'CBD/Init/GetDefaults'
                 }

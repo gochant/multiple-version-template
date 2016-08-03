@@ -8,7 +8,8 @@ block title
   | #{model.displayName}
 
 block body
-  +form-layout-h.data-validate-form
+  .invalid-tag(data-for='tessss') 
+  +form-layout-h.data-validate-form(data-form-name='tessss')
     +editor-for-model(model)
 
 block footer

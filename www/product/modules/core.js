@@ -6,4 +6,4 @@ define(function () {
         multilevel: true,
         hasEntry: false
     };
-})
+});

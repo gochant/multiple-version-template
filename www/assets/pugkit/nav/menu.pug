@@ -20,6 +20,10 @@ mixin nav-toggle-item(href, active)
   +nav-item(href, active, true)&attributes(attributes)
     block
 
+mixin nav-items-for(items)
+  each item, idx in items
+    +nav-item(item.url, item.active, item.toggle) #{item.text}
+
 //- dropdown menu
 
 mixin dropdown-menu
