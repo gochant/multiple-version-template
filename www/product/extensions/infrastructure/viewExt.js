@@ -1,5 +1,7 @@
 define([
-    'assets/runtime'
+    'assets/runtime',
+    'bootstrap-datetimepicker',
+    'bootstrap-datetimepicker-cn'
 ], function (pug) {
 
     window.pug = pug;
@@ -74,7 +76,7 @@ define([
                 this.$('.data-validate-form').kendoValidator({
                     errorTemplate: '<span title="#=message#"><i class="fa fa-exclamation-circle"></i></span>',
                     validate: function (e) {
-                        var formName = e.sender.element.attr('data-form-name');
+                        var formName = e.sender.element.attr('name');
                         var invalidLen = e.sender.element.find('.k-invalid').length;
                         var $target = $('.invalid-tag[data-for=' + formName + ']');
                         if (invalidLen === 0) {
@@ -85,6 +87,19 @@ define([
                     }
                 });
             }
+
+            if ($.fn.datetimepicker) {
+                // 日期
+                this.$('input.date').datetimepicker({
+                    format: 'yyyy/mm/dd',
+                    todayBtn: 'linked',
+                    startView: 'month',
+                    language: 'zh-CN',
+                    minView: 2,
+                    autoclose: true
+                });
+            }
+
         }
 
 
@@ -249,6 +264,36 @@ define([
 
             return oldExecuteTemplate.apply(this, Array.prototype.slice.call(arguments));
         }
+
+
+        // viewHelper
+
+        app.viewHelper || (app.viewHelper = {});
+
+        app.viewHelper.form = {
+            validate: function () {
+                var me = this;
+                var result = true;
+                var $ = this.options.sandbox.app.core.$;
+                var deferred = $.Deferred();
+                this.$('.data-validate-form').each(function (i, el) {
+                    var validator = me.instance($(el));
+                    result = validator.validate();
+                });
+                if (result) {
+                    deferred.resolve();
+                } else {
+                    deferred.reject();
+                }
+                return deferred.promise();
+            },
+            save: function (data) {
+                if (data == null) {
+                    data = this.model('data');
+                }
+                this.trigger('saved', data);
+            }
+        };
 
     };
 });

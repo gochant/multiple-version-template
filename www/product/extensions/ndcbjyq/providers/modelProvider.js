@@ -10,7 +10,7 @@ define([
                         PetitionType: {
                             name: '申请类型',
                             type: 'string',
-                            uiHint: 'dropdownlist'
+                            uiHint: 'select'
                         },
                         PetitionName: {
                             name: '申请人',
@@ -36,19 +36,20 @@ define([
                         OutsourcerNumber: {
                             name: '发包方',
                             type: 'string',
-                            uiHint: 'dropdownlist'
+                            uiHint: 'select'
                         },
                         ContractWay: {
                             name: '承包方式',
                             type: 'string',
-                            uiHint: 'dropdownlist',
+                            uiHint: 'select',
                             validation: {
                                 required: true
                             }
                         },
                         RegisteDate: {
                             name: '登记日期',
-                            type: 'date'
+                            type: 'date',
+                            uiHint: 'date'
                         }
                     }
 

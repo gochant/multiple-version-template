@@ -10,7 +10,6 @@ var fm = require('front-matter');
 var pugBaseUrl = 'www/assets/pugkit';
 var tplFiles = 'www/**/*.tpl.pug';
 var htmlFiles = 'www/**/*.html.pug';
-var modelProvider = require('./www/product/tools/modelProvider.js');
 
 // helper
 
@@ -50,6 +49,7 @@ gulp.task('pug:tpl', function () {
 });
 
 gulp.task('pug:html', function () {
+    var modelProvider = require('./www/product/tools/model.js');
 
     gulp.src(htmlFiles)
     .pipe(cache('pug'))

@@ -10,46 +10,55 @@ block heading
 
 block aside
   +nav-content(data-dynamic='main')
-    +nav-toggle-item(null, true) 
+    +nav-toggle-item(null) 
       | 1 申请书信息
-      span.badge.invalid-tag(data-for='tes') 
-    +nav-toggle-item() 2 登记信息
-    +nav-toggle-item() 3 家庭成员
-    +nav-toggle-item() 4 承包地
-    +nav-toggle-item() 5 附加信息
-    +nav-toggle-item() 6 附件
+      +invalid-tag('registrationApplication')
+    +nav-toggle-item(null, true)
+      | 2 登记信息
+      +invalid-tag('registrationBook')
+    +nav-toggle-item()
+      | 3 家庭成员
+      +invalid-tag('familyMember')
+    +nav-toggle-item()
+      | 4 承包地
+      +invalid-tag('contractedLand')
+    +nav-toggle-item()
+      | 5 附加信息
+      +invalid-tag('AdditionalInfo')
+    +nav-toggle-item()
+      | 6 附件
 
 block content
   +tab-content.data-bind-block(data-dynamic='main')
-    +tab-pane(null, true).application
-      +form-layout-h
+    +tab-pane(null).application
+      +form-validate-layout-h('registrationApplication')
         +editor-for-model(contextModel.registrationApplication)
         
-    +tab-pane.registration()
-      form.data-validate-form
-        .fieldset
+    +tab-pane(null, true).registration
+      +form-validate('registrationBook')
+        fieldset
           legend 基本信息
           +form-layout-t
             +row-t
-              +editor-t('OutsourcerNumber','发包方：', 'dropdownlist')(required)
+              +editor-t('OutsourcerNumber','发包方：', 'select')(required)
               +editor-t('ContractBeginDate', '承包期限：', 'checkbox', { text: '永久' })
             +row-t
-              +editor-t('Outsourcers', '起止时间：', 'datepicker')
-              +editor-t('ContractPurpose', '承包用途：', 'dropdownlist')
+              +editor-t('Outsourcers', '起止时间：', 'date')
+              +editor-t('ContractPurpose', '承包用途：', 'select')
             +row-t
               +editor-for-t('ContractWay', model)
               +editor-for-t('RegisteDate', model)
-        .fieldset
+        fieldset
           legend 承包方信息
           +form-layout-t
             +row-t
-              +editor-t('ContractorType', '承包方类型：', 'dropdownlist')
+              +editor-t('ContractorType', '承包方类型：', 'select')
               +editor-t('Outsourcers', '承包方姓名：', 'textbox')
             +row-t
-              +editor-t('FamilyNumber', '承包方编号：', 'datepicker')
-              +editor-t('Outsourcers', '合同编号：', 'dropdownlist')
+              +editor-t('FamilyNumber', '承包方编号：', 'textbox')
+              +editor-t('Outsourcers', '合同编号：', 'select')
             +row-t
-              +editor-t('ContractorCred', '证件类型：', 'dropdownlist')
+              +editor-t('ContractorCred', '证件类型：', 'select')
               +editor-t('ContractorNumber', '证件号码：', 'textbox')
             +row-t
               +editor-t('ContractorTel', '电话号码：', 'textbox')
@@ -65,7 +74,7 @@ block content
             +btn-icon('edit', '编辑')
             +btn-icon('trash-o', '删除')
         +panel-body.no-padding
-            +kendo-grid([
+          +kendo-grid([
               { field: 'Name', title: '姓名'},
               { field: 'Number', title: '证件号码' },
               { field: 'GenderDisplay', title: '性别' },
@@ -81,4 +90,4 @@ block bottom
   .btn-toolbar.data-bind-block
     +btn-group: +btn(data-action='prev', data-bind='css: { disabled : prevStatus }') 上一步
     +btn-group: +btn(data-action='next', data-bind='css: { disabled : nextStatus }') 下一步
-    +btn-group: +btn-primary(data-action='save') 保 存
+    +btn-group: +btn-primary()(data-action='save') 保&nbsp;存

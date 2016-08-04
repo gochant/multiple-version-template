@@ -18,5 +18,13 @@ define([
             pageLoading('hide');
         });
 
+        // 全局 ajax 加载控制
+
+        $(document).ajaxStart(function () {
+            $('#ajax_loading').show();
+        }).ajaxComplete(function () {
+            $('#ajax_loading').hide();
+        });
+
     }
 });

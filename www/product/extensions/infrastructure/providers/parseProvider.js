@@ -14,7 +14,7 @@ define(function () {
                         value: item[valueKey]
                     }
                 });
-                result.unshift({ name: '---请选择---', value: '' });
+                // result.unshift({ name: '---请选择---', value: '' });
                 return result;
             }
         }

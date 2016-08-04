@@ -64,6 +64,9 @@ define([
             }
 
         },
+        mixins: function (app) {
+            return [app.viewHelper.form];
+        },
         staticModel: function (app) {
             return {
                 tabIndex: 0,
@@ -86,7 +89,15 @@ define([
                 source: 'global',
                 setup: 'init'
             });
-            this.model({ data: {} }, false);
+            this.model({
+                data: {},
+                OutsourcerNumberList: [],
+                OutsourcersList: [],
+                ContractWayList: [],
+                ContractPurposeList: [],
+                ContractorTypeList: [],
+                ContractorCredList: []
+            }, false);
         },
         listen: function (app) {
             this.listenTo('add-member', 'saved', function (data) {
@@ -110,6 +121,11 @@ define([
         },
         addMemberHandler: function (e, app) {
             this.viewWindow('add-member', FamilyMember, null, app.configProvider.normalModal());
+        },
+        saveHandler: function (e, app, _, $) {
+            this.validate().done(function () {
+                this.save();
+            });
         }
     };
 });

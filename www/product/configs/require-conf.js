@@ -66,6 +66,9 @@
             'summernote-lang': framePath + '/summernote/0.8.1/lang/summernote-zh-CN',
             'echarts': framePath + '/echarts/3.2.1/echarts',
             'store': framePath + '/store/1.3.20/store',
+            'bootstrap-datetimepicker': framePath + '/smalot-bootstrap-datetimepicker/2.3.11/js/bootstrap-datetimepicker',
+            'bootstrap-datetimepicker-cn': framePath + '/smalot-bootstrap-datetimepicker/2.3.11/js/locales/bootstrap-datetimepicker.zh-CN',
+
             'pug': 'assets/runtime',
             'esri': 'assets/arcgis/4.0/esri',
             'dojo': 'assets/arcgis/4.0/dojo',

@@ -17,6 +17,8 @@ mixin editor(name, text, ui, data)
       +combobox(name, data)&attributes(attributes)
     when 'dropdownlist'
       +dropdownlist(name, data)&attributes(attributes)
+    when 'date'
+      +date(name, data)&attributes(attributes)
     when 'datepicker'
       +datepicker(name, data)&attributes(attributes)
     when 'timepicker'
@@ -33,6 +35,8 @@ mixin editor(name, text, ui, data)
       +checkbox(name, data)&attributes(attributes)
     when 'checkboxlist'
       +checkboxlist(name, data)&attributes(attributes)
+    when 'select'
+      +select(name, data)&attributes(attributes)
     when 'textbox'
     default
       +textbox(name, data)&attributes(attributes)
@@ -40,7 +44,7 @@ mixin editor(name, text, ui, data)
 mixin editor-for(name, model, data, style)
   - 
     var field = model.fields[name]
-    var uiHintMap = { 'string': 'textbox', 'date': 'datepicker', 'number': 'numeric' }
+    var uiHintMap = { 'string': 'textbox', 'date': 'date', 'number': 'numeric' }
     if(field.uiHint == null) { field.uiHint = uiHintMap[field.type] }
     var text = field.name
     var ui = field.uiHint
@@ -139,12 +143,19 @@ mixin k-invalid-msg(name)
 mixin dropdownlist(name)
   - var bind = 'source: '+ name +'List, value: data.' + name
   select(data-role='dropdownlist', data-text-field='name',
-   data-value-field='value', data-value-primitive='true', data-bind=bind, name=name)&attributes(attributes)
+   data-value-field='value', data-value-primitive='true',
+   data-option-label='请选择...'
+    data-bind=bind, name=name)&attributes(attributes)
   +k-invalid-msg(name)
 
 mixin datepicker(name)
   - var bind = 'value: data.' + name
   input(data-role='datepicker', data-bind=bind)&attributes(attributes)
+
+mixin select(name)
+  - var bind = 'source: '+ name +'List, value: data.' + name
+  select.form-control(data-text-field='name',
+   data-value-field='value', data-value-primitive='true', data-auto-bind='false', data-bind=bind, name=name)&attributes(attributes)
 
 mixin timepicker(name)
   - var bind = 'value: data.' + name
@@ -163,3 +174,7 @@ mixin autocomplete(name)
   - var bind = 'source: '+ name +'List, value: data.' + name
   input(data-role='autocomplete', data-text-field='name',
    data-value-field='value', data-bind=bind)&attributes(attributes)
+
+mixin date(name)
+  - var bind = 'date: data.' + name
+  input.form-control.date(readonly, data-bind=bind)&attributes(attributes)

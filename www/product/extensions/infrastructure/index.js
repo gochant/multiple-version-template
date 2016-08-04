@@ -4,9 +4,11 @@ define([
     './kendo',
     './notify',
     './source',
-    './dataHandler',
-    './configProvider',
-    './parseProvider'
+    './handlers/dataHandler',
+    './handlers/dataSourceHandler',
+    './handlers/modelHandler',
+    './providers/configProvider',
+    './providers/parseProvider'
 ], function () {
     var args = Array.prototype.slice.call(arguments);
     return function (app) {

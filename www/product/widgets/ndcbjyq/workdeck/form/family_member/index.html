@@ -5,7 +5,7 @@
   </h4>
 </div>
 <div class="modal-body">
-  <div class="form-horizontal data-validate-form" data-form-name="tes">
+  <div class="form-horizontal data-validate-form">
     <div class="form-group">
       <label class="control-label col-xs-3 required">姓名</label>
       <div class="col-xs-9 form-control-container">
@@ -15,7 +15,7 @@
     <div class="form-group">
       <label class="control-label col-xs-3 required">证件类型</label>
       <div class="col-xs-9 form-control-container">
-        <select data-role="dropdownlist" data-text-field="name" data-value-field="value" data-value-primitive="true" data-bind="source: CredTypeList, value: data.CredType" name="CredType" required="required"></select><span class="k-invalid-msg" data-for="CredType"></span>
+        <select data-role="dropdownlist" data-text-field="name" data-value-field="value" data-value-primitive="true" data-option-label="请选择..." data-bind="source: CredTypeList, value: data.CredType" name="CredType" required="required"></select><span class="k-invalid-msg" data-for="CredType"></span>
       </div>
     </div>
     <div class="form-group">
@@ -27,7 +27,7 @@
     <div class="form-group">
       <label class="control-label col-xs-3 required">性别</label>
       <div class="col-xs-9 form-control-container">
-        <select data-role="dropdownlist" data-text-field="name" data-value-field="value" data-value-primitive="true" data-bind="source: GenderList, value: data.Gender" name="Gender" required="required"></select><span class="k-invalid-msg" data-for="Gender"></span>
+        <select data-role="dropdownlist" data-text-field="name" data-value-field="value" data-value-primitive="true" data-option-label="请选择..." data-bind="source: GenderList, value: data.Gender" name="Gender" required="required"></select><span class="k-invalid-msg" data-for="Gender"></span>
       </div>
     </div>
     <div class="form-group">
@@ -39,7 +39,7 @@
     <div class="form-group">
       <label class="control-label col-xs-3">与户主关系</label>
       <div class="col-xs-9 form-control-container">
-        <select data-role="dropdownlist" data-text-field="name" data-value-field="value" data-value-primitive="true" data-bind="source: RelList, value: data.Rel" name="Rel"></select><span class="k-invalid-msg" data-for="Rel"></span>
+        <select data-role="dropdownlist" data-text-field="name" data-value-field="value" data-value-primitive="true" data-option-label="请选择..." data-bind="source: RelList, value: data.Rel" name="Rel"></select><span class="k-invalid-msg" data-for="Rel"></span>
       </div>
     </div>
     <div class="form-group">

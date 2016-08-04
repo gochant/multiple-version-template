@@ -2955,11 +2955,15 @@ textarea {
 .nested-selector.panel .panel-heading {
   padding-bottom: 0;
 }
+.table-form-horizontal {
+  table-layout: fixed;
+}
 .table-form-horizontal td .control-label {
   width: 100px;
   margin-left: -110px;
 }
 .table-form-horizontal > tbody > tr > td {
+  position: relative;
   padding-left: 110px;
   padding-right: 30px;
 }
@@ -3004,11 +3008,11 @@ label.required:before {
   margin-top: 5px;
 }
 .k-invalid-msg {
+  position: absolute;
   font-size: 18px;
   color: #cf4c35;
-  float: right;
   line-height: 34px;
-  margin-right: -30px;
+  right: 15px;
 }
 .k-dropdown .k-state-default.k-state-active .k-input,
 .k-state-selected .k-progress-status {
@@ -3019,9 +3023,14 @@ label.required:before {
 }
 .form-control-container .k-invalid-msg {
   position: absolute;
-  right: 15px;
   top: 0;
-  margin-right: 0;
+}
+.table-form-horizontal .k-invalid-msg {
+  top: 8px;
+  right: 10px;
+}
+.k-invalid {
+  border-color: #cf4c35;
 }
 .animated {
   animation-duration: .5s;
@@ -3071,4 +3080,11 @@ label.required:before {
   font-weight: bold;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   opacity: 0;
+}
+#ajax_loading {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 2000;
+  background: red;
 }
