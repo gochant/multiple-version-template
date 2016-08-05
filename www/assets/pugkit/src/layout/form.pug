@@ -9,12 +9,9 @@ mixin row-t
     block
 
 mixin col-t(colspan)
-  if colspan
-    td(colspan=colspan)&attributes(attributes)
-      block
-  else
-    td&attributes(attributes)
-      block
+  td.table-form-col(colspan=colspan)&attributes(attributes)
+    block
+    
 
 mixin form-layout-h
   .form-horizontal&attributes(attributes)

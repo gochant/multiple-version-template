@@ -1,10 +1,26 @@
 
-//- ----------- nav menu
+//- nav menu
+//-----------
 
+//- @pugdoc
+  name: nav
+  decription: normal navigation
+  arguments:
+  examples:
+    - +nav
 mixin nav
   ul.nav(role='tablist')&attributes(attributes)
     block
 
+//- @pugdoc
+  name: nav-item
+  description: nav item
+  arguments:
+    - {string} href - link address
+    - {boolean} active - is active
+    - {boolean} toggle - add `(data-toggle='tab')`
+  example:
+    - +nav-item('#', true, true)
 mixin nav-item(href, active, toggle)
   - if(href == null){ href = 'javascript:;'; }
   - var cls = active === true ? 'active' : undefined
@@ -16,6 +32,14 @@ mixin nav-item(href, active, toggle)
         a.nav-link(href=href)
           block
 
+//- @pugdoc
+  name: nav-toggle-item
+  description: nav toggle item
+  arguments:
+    - {string} href - link address
+    - {boolean} active - is active
+  example:
+    - +nav-toggle-item('#', true)
 mixin nav-toggle-item(href, active)
   +nav-item(href, active, true)&attributes(attributes)
     block

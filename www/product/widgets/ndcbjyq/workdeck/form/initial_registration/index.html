@@ -31,7 +31,7 @@
             <div class="form-group">
               <label class="control-label col-xs-3">申请类型</label>
               <div class="col-xs-9 form-control-container">
-                <select data-role="dropdownlist" data-text-field="name" data-value-field="value" data-value-primitive="true" data-option-label="请选择..." data-bind="source: PetitionTypeList, value: data.PetitionType" name="PetitionType"></select><span class="k-invalid-msg" data-for="PetitionType"></span>
+                <select class="form-control" data-text-field="name" data-value-field="value" data-value-primitive="true" data-auto-bind="false" data-bind="source: PetitionTypeList, value: data.PetitionType" name="PetitionType"></select>
               </div>
             </div>
             <div class="form-group">
@@ -60,11 +60,11 @@
               <legend>基本信息</legend>
               <table class="table table-form-horizontal">
                 <tr>
-                  <td>
+                  <td class="table-form-col">
                     <label class="control-label required">发包方：</label>
                     <select class="form-control" data-text-field="name" data-value-field="value" data-value-primitive="true" data-auto-bind="false" data-bind="source: OutsourcerNumberList, value: data.OutsourcerNumber" name="OutsourcerNumber" required="required"></select>
                   </td>
-                  <td>
+                  <td class="table-form-col">
                     <label class="control-label">承包期限：</label>
                     <div class="checkbox">
                       <label>
@@ -74,21 +74,21 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>
+                  <td class="table-form-col">
                     <label class="control-label">起止时间：</label>
                     <input class="form-control date" readonly="readonly" data-bind="date: data.Outsourcers"/>
                   </td>
-                  <td>
+                  <td class="table-form-col">
                     <label class="control-label">承包用途：</label>
                     <select class="form-control" data-text-field="name" data-value-field="value" data-value-primitive="true" data-auto-bind="false" data-bind="source: ContractPurposeList, value: data.ContractPurpose" name="ContractPurpose"></select>
                   </td>
                 </tr>
                 <tr>
-                  <td>
+                  <td class="table-form-col">
                     <label class="control-label required">承包方式</label>
                     <select class="form-control" data-text-field="name" data-value-field="value" data-value-primitive="true" data-auto-bind="false" data-bind="source: ContractWayList, value: data.ContractWay" name="ContractWay" required="required"></select>
                   </td>
-                  <td>
+                  <td class="table-form-col">
                     <label class="control-label">登记日期</label>
                     <input class="form-control date" readonly="readonly" data-bind="date: data.RegisteDate"/>
                   </td>
@@ -99,47 +99,47 @@
               <legend>承包方信息</legend>
               <table class="table table-form-horizontal">
                 <tr>
-                  <td>
+                  <td class="table-form-col">
                     <label class="control-label">承包方类型：</label>
                     <select class="form-control" data-text-field="name" data-value-field="value" data-value-primitive="true" data-auto-bind="false" data-bind="source: ContractorTypeList, value: data.ContractorType" name="ContractorType"></select>
                   </td>
-                  <td>
+                  <td class="table-form-col">
                     <label class="control-label">承包方姓名：</label>
                     <input class="form-control" type="text" data-bind="value: data.Outsourcers" name="Outsourcers"/>
                   </td>
                 </tr>
                 <tr>
-                  <td>
+                  <td class="table-form-col">
                     <label class="control-label">承包方编号：</label>
                     <input class="form-control" type="text" data-bind="value: data.FamilyNumber" name="FamilyNumber"/>
                   </td>
-                  <td>
+                  <td class="table-form-col">
                     <label class="control-label">合同编号：</label>
                     <select class="form-control" data-text-field="name" data-value-field="value" data-value-primitive="true" data-auto-bind="false" data-bind="source: OutsourcersList, value: data.Outsourcers" name="Outsourcers"></select>
                   </td>
                 </tr>
                 <tr>
-                  <td>
+                  <td class="table-form-col">
                     <label class="control-label">证件类型：</label>
                     <select class="form-control" data-text-field="name" data-value-field="value" data-value-primitive="true" data-auto-bind="false" data-bind="source: ContractorCredList, value: data.ContractorCred" name="ContractorCred"></select>
                   </td>
-                  <td>
+                  <td class="table-form-col">
                     <label class="control-label">证件号码：</label>
                     <input class="form-control" type="text" data-bind="value: data.ContractorNumber" name="ContractorNumber"/>
                   </td>
                 </tr>
                 <tr>
-                  <td>
+                  <td class="table-form-col">
                     <label class="control-label">电话号码：</label>
                     <input class="form-control" type="text" data-bind="value: data.ContractorTel" name="ContractorTel"/>
                   </td>
-                  <td>
+                  <td class="table-form-col">
                     <label class="control-label">邮政编码：</label>
                     <input class="form-control" type="text" data-bind="value: data.ContractorZip" name="ContractorZip"/>
                   </td>
                 </tr>
                 <tr>
-                  <td colspan="2">
+                  <td class="table-form-col" colspan="2">
                     <label class="control-label">承包方住址：</label>
                     <textarea class="form-control" data-bind="value: data.ContractorAddress" name="ContractorAddress"></textarea>
                   </td>

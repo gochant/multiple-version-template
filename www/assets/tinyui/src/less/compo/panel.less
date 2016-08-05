@@ -98,6 +98,7 @@
         padding: @panel-lg-heading-padding;
     }
 }
+
 .panel.panel-sm {
     .panel-heading {
         padding: 5px 12px;
@@ -107,6 +108,22 @@
         .panel-heading {
             border-bottom-width: 2px;
         }
+    }
+}
+
+.panel-toolbar-sm {
+    padding: @padding-small-vertical @padding-small-horizontal;
+}
+
+.panel-toolbar-xs {
+    padding: @padding-xs-vertical @padding-xs-horizontal;
+}
+
+.panel-xs {
+    .panel-heading,
+    .panel-body,
+    .panel-footer {
+        padding: @panel-xs-element-padding;
     }
 }
 
@@ -122,4 +139,3 @@
 .panel-body.no-padding {
     padding: 1px\9 !important;
 }
-

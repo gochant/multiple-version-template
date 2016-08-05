@@ -27,7 +27,8 @@
                 'bootstrap': { 'deps': ['jquery'] },
                 'tiny': { 'deps': ['jquery'] },
                 'jquery-scrollbar': { 'deps': ['jquery'] },
-                'echarts': { 'exports': 'echarts' }
+                'echarts': { 'exports': 'echarts' },
+                'bootstrap-datetimepicker': { deps: ['jquery'] }
             }
         };
 
