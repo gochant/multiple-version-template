@@ -7,7 +7,7 @@ var cache = require('gulp-cached');
 var data = require('gulp-data');
 var fm = require('front-matter');
 
-var pugBaseUrl = 'www/assets/pugkit';
+var pugBaseUrl = 'www/assets/pukit/src';
 var tplFiles = 'www/**/*.tpl.pug';
 var htmlFiles = 'www/**/*.html.pug';
 

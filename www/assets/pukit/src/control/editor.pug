@@ -1,12 +1,4 @@
-mixin label(text)
-  label.control-label&attributes(attributes)
-    | #{text}
 
-mixin label-for(name, model)
-  -
-    var field = model[name]
-    var text = field.text
-  +label(text)&attributes(attributes)
 
 
 mixin editor(name, text, ui, data)
@@ -46,7 +38,7 @@ mixin editor-for(name, model, data, style)
     var field = model.fields[name]
     var uiHintMap = { 'string': 'textbox', 'date': 'date', 'number': 'numeric' }
     if(field.uiHint == null) { field.uiHint = uiHintMap[field.type] }
-    var text = field.name
+    var text = field.displayName
     var ui = field.uiHint
 
     //- 将验证参数附加到HTML属性

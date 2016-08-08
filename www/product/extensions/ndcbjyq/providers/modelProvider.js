@@ -8,23 +8,23 @@ define([
                 registrationApplication: {
                     fields: {
                         PetitionType: {
-                            name: '申请类型',
+                            displayName: '申请类型',
                             type: 'string',
                             uiHint: 'select'
                         },
                         PetitionName: {
-                            name: '申请人',
+                            displayName: '申请人',
                             type: 'string',
                             validation: {
                                 required: true
                             }
                         },
                         PetitionDate: {
-                            name: '申请日期',
+                            displayName: '申请日期',
                             type: 'date'
                         },
                         PetitionOptions: {
-                            name: '申请事由',
+                            displayName: '申请事由',
                             type: 'string',
                             uiHint: 'textarea'
                         }
@@ -34,12 +34,12 @@ define([
                 registrationBook: {
                     fields: {
                         OutsourcerNumber: {
-                            name: '发包方',
+                            displayName: '发包方',
                             type: 'string',
                             uiHint: 'select'
                         },
                         ContractWay: {
-                            name: '承包方式',
+                            displayName: '承包方式',
                             type: 'string',
                             uiHint: 'select',
                             validation: {
@@ -47,7 +47,7 @@ define([
                             }
                         },
                         RegisteDate: {
-                            name: '登记日期',
+                            displayName: '登记日期',
                             type: 'date',
                             uiHint: 'date'
                         }
@@ -59,44 +59,44 @@ define([
                     displayName: '家庭成员',
                     fields: {
                         Name: {
-                            name: '姓名',
+                            displayName: '姓名',
                             type: 'string',
                             validation: {
                                 required: true
                             }
                         },
                         CredType: {
-                            name: '证件类型',
+                            displayName: '证件类型',
                             type: 'string',
-                            uiHint: 'dropdownlist',
+                            uiHint: 'select',
                             validation: {
                                 required: true
                             }
                         },
                         Number: {
-                            name: '证件号码',
+                            displayName: '证件号码',
                             type: 'string'
                         },
                         Gender: {
-                            name: '性别',
+                            displayName: '性别',
                             type: 'string',
-                            uiHint: 'dropdownlist',
+                            uiHint: 'select',
                             validation: {
                                 required: true
                             }
                         },
                         Birth: {
-                            name: '出生日期',
+                            displayName: '出生日期',
                             type: 'date',
-                            uiHint: 'datepicker'
+                            displayFormat: 'yyyy-MM-dd'
                         },
                         Rel: {
-                            name: '与户主关系',
+                            displayName: '与户主关系',
                             type: 'string',
-                            uiHint: 'dropdownlist'
+                            uiHint: 'select'
                         },
                         IsShare: {
-                            name: '是否共有人',
+                            displayName: '是否共有人',
                             type: 'boolean',
                             uiHint: 'radiogroup',
                             validation: {
@@ -104,18 +104,18 @@ define([
                             }
                         },
                         Comment: {
-                            name: '备注',
+                            displayName: '备注',
                             type: 'string',
                             uiHint: 'combobox'
                         },
                         GenderDisplay: {
-                            name: '性别',
+                            displayName: '性别',
                             calculate: function(context, app) {
                                 return app.dataHandler.pickEnumName(this.Gender, context.GenderList);
                             }
                         },
                         RelDisplay: {
-                            name: '与户主关系',
+                            displayName: '与户主关系',
                             calculate: function(context, app) {
                                 return app.dataHandler.pickEnumName(this.Rel, context.RelList);
                             }
@@ -124,6 +124,13 @@ define([
                     },
                     views: {
                         list: ['Name', 'Number', 'GenderDisplay', 'Birth', 'RelDisplay']
+                    }
+                },
+                // 承包方
+                contractor: {
+                    displayName: '承包方',
+                    fields: {
+
                     }
                 }
             }

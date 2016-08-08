@@ -2,25 +2,24 @@
 <div class="box-top navbar navbar-inverse navbar-static-top no-margin">
   <div class="container">
     <button class="close" data-dismiss="modal"><span>×</span></button>
-    <div class="navbar-brand">初始登记 &nbsp;<small>申请</small></div>
+    <div class="navbar-brand">初始登记 &nbsp;<small>申请2</small></div>
   </div>
 </div>
 <div class="box-body">
   <div class="box-wrapper container">
     <div class="box-aside">
-      <ul class="nav nav-content nav-stacked" role="tablist" data-dynamic="main">
-        <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="javascript:;">
-             1 申请书信息<span class="badge invalid-tag" data-for="registrationApplication"></span></a>
+      <ul class="nav nav-form nav-stacked" role="tablist" data-dynamic="main">
+        <li class="nav-item active" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="javascript:;"> 0 申请书信息<span class="badge invalid-tag" data-for="registrationApplication"></span></a>
         </li>
-        <li class="nav-item active" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="javascript:;">2 登记信息<span class="badge invalid-tag" data-for="registrationBook"></span></a>
+        <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="javascript:;"> 1 登记信息<span class="badge invalid-tag" data-for="registrationBook"></span></a>
         </li>
-        <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="javascript:;">3 家庭成员<span class="badge invalid-tag" data-for="familyMember"></span></a>
+        <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="javascript:;"> 2 家庭成员<span class="badge invalid-tag" data-for="familyMember"></span></a>
         </li>
-        <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="javascript:;">4 承包地<span class="badge invalid-tag" data-for="contractedLand"></span></a>
+        <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="javascript:;"> 3 承包地<span class="badge invalid-tag" data-for="contractedLand"></span></a>
         </li>
-        <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="javascript:;">5 附加信息<span class="badge invalid-tag" data-for="AdditionalInfo"></span></a>
+        <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="javascript:;"> 4 附加信息<span class="badge invalid-tag" data-for="AdditionalInfo"></span></a>
         </li>
-        <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="javascript:;">6 附件</a>
+        <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="javascript:;"> 5 附件<span class="badge invalid-tag" data-for="heheda"></span></a>
         </li>
       </ul>
     </div>
@@ -155,7 +154,7 @@
               </div>
             </div>
             <div class="panel-body no-padding">
-              <div data-role="grid" data-columns='[{"field":"Name","title":"姓名"},{"field":"Number","title":"证件号码"},{"field":"GenderDisplay","title":"性别"},{"field":"Birth","title":"出生日期"},{"field":"RelDisplay","title":"与户主关系"}]' data-bind="source: data.Persons" data-auto-bind="false" data-selectable="row" style="height:300px"></div>
+              <div data-role="grid" data-columns='[{"field":"Name","title":"姓名","format":"{0:undefined}"},{"field":"Number","title":"证件号码","format":"{0:undefined}"},{"field":"GenderDisplay","title":"性别","format":"{0:undefined}"},{"field":"Birth","title":"出生日期","format":"{0:yyyy-MM-dd}"},{"field":"RelDisplay","title":"与户主关系","format":"{0:undefined}"}]' data-bind="source: data.Persons" data-auto-bind="false" data-selectable="row" style="height:300px"></div>
             </div>
           </div>
         </div>

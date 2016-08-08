@@ -14,6 +14,10 @@ mixin btn-toolbar(size)
   .btn-toolbar(class=[cls])&attributes(attributes)
     block
 
+mixin panel-body
+  .panel-body&attributes(attributes)
+    block
+
 //- panel with title
 mixin panel-t(title, type)
   +panel(type)&attributes(attributes)
@@ -21,6 +25,3 @@ mixin panel-t(title, type)
       h3.panel-title= title
     block
 
-mixin panel-body
-  .panel-body&attributes(attributes)
-    block

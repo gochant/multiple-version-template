@@ -96,7 +96,8 @@ define([
                 ContractWayList: [],
                 ContractPurposeList: [],
                 ContractorTypeList: [],
-                ContractorCredList: []
+                ContractorCredList: [],
+                PetitionTypeList: []
             }, false);
         },
         listen: function (app) {
