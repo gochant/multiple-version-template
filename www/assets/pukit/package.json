@@ -1,0 +1,20 @@
+{
+  "name": "pukit",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "gochant",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "pug-doc": "^2.10.0",
+    "pug-doc-html": "^1.1.0",
+    "pug-doc-markdown": "^1.0.1"
+  }
+}

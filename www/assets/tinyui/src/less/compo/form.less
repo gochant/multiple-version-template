@@ -4,10 +4,6 @@
 //
 // Styleguide form
 
-@label-width: 80px;
-@label-padding-width: @label-width + 10;
-
-
 // Normal Layout
 //
 // 普通表单布局
@@ -110,12 +106,12 @@ input.datetimepicker {
 // Styleguide form.table-horizontal
 
 .table-form-horizontal {
-    table-layout: fixed;  // 避免后面的内容撑开布局
-    td .control-label {
+    table-layout: fixed; // 阻止后续表单控件撑开布局
+    .table-form-col .control-label {
         float: left;
-        width: @label-width;
+        width: @table-form-label-width;
         line-height: @input-height-base;
-        margin-left: -@label-padding-width;
+        margin-left: @table-form-label-margin-left;
         margin-bottom: 0;
         text-align: right;
         overflow: hidden;
@@ -123,10 +119,14 @@ input.datetimepicker {
         white-space: nowrap;
     }
 
-    > tbody > tr > td {
-        padding-left: @label-padding-width;
+    .table-form-col {
+        position: relative; // 确定内部元素绝对定位的相对位置
+        padding-left: @table-form-col-padding-left;
+        padding-right: @table-form-col-padding-right;
     }
+    //
     // 静态文本
+    //
     &.static {
         .tr-header {
             font-size: 1.2em;
@@ -158,5 +158,18 @@ input.datetimepicker {
         .form-control {
             border: 1px solid transparent;
         }
+    }
+    //
+    // patches
+    //
+    &:not(.table-bordered) {
+        > tbody > tr > td {
+            border-top: none;
+        }
+    }
+    .checkbox {
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-top: 5px;
     }
 }

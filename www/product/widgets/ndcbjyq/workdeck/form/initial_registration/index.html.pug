@@ -6,27 +6,29 @@ extends /ext/modal-box-layout.pug
 include /mixin.pug
 
 block heading
-  +modal-heading('初始登记', '申请')
+  +modal-heading('初始登记', '申请2')
 
 block aside
-  +nav-content(data-dynamic='main')
-    +nav-toggle-item(null) 
-      | 1 申请书信息
-      +invalid-tag('registrationApplication')
-    +nav-toggle-item(null, true)
-      | 2 登记信息
-      +invalid-tag('registrationBook')
-    +nav-toggle-item()
-      | 3 家庭成员
-      +invalid-tag('familyMember')
-    +nav-toggle-item()
-      | 4 承包地
-      +invalid-tag('contractedLand')
-    +nav-toggle-item()
-      | 5 附加信息
-      +invalid-tag('AdditionalInfo')
-    +nav-toggle-item()
-      | 6 附件
+  +nav-form-for([{
+    text: '申请书信息',
+    name: 'registrationApplication',
+    active: true
+  },{
+    text: '登记信息',
+    name: 'registrationBook',
+  },{
+    text: '家庭成员',
+    name: 'familyMember',
+  },{
+    text: '承包地',
+    name: 'contractedLand',
+  },{
+    text: '附加信息',
+    name: 'AdditionalInfo',
+  },{
+    text: '附件',
+    name: 'heheda',
+  }], 'main')
 
 block content
   +tab-content.data-bind-block(data-dynamic='main')
@@ -74,13 +76,7 @@ block content
             +btn-icon('edit', '编辑')
             +btn-icon('trash-o', '删除')
         +panel-body.no-padding
-          +kendo-grid([
-              { field: 'Name', title: '姓名'},
-              { field: 'Number', title: '证件号码' },
-              { field: 'GenderDisplay', title: '性别' },
-              { field: 'Birth', title: '出生日期' },
-              { field: 'RelDisplay', title: '与户主关系' }
-            ], 'source: data.Persons')(data-auto-bind='false', data-selectable='row', style={ height: '300px' })
+          +kendo-grid-for(contextModel.familyMember, 'list', 'source: data.Persons')(data-auto-bind='false', data-selectable='row', style={ height: '300px' })
 
     +tab-pane.contracted_land() hehe4
     +tab-pane.additional() hehe5

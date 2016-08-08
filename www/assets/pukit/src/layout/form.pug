@@ -9,12 +9,9 @@ mixin row-t
     block
 
 mixin col-t(colspan)
-  if colspan
-    td(colspan=colspan)&attributes(attributes)
-      block
-  else
-    td&attributes(attributes)
-      block
+  td.table-form-col(colspan=colspan)&attributes(attributes)
+    block
+    
 
 mixin form-layout-h
   .form-horizontal&attributes(attributes)
@@ -31,7 +28,7 @@ mixin form-validate-layout-h(name)
 
 
 mixin row-h
-  .form-group&attributes(attributes)
+  .form-group.row&attributes(attributes)
     block
 
 mixin col-h(num)

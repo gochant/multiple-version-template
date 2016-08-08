@@ -1,0 +1,67 @@
+// reboot
+//
+// 布局模式
+
+
+// 桌面布局
+//
+.desktop {
+    > .navbar {
+    }
+
+    > .aside,
+    .desktop-sidebar {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        top: @navbar-height;
+        width: @sidebar-width;
+        background: @sidebar-bg-color;
+        padding-top: 40px;
+    }
+
+    > .main,
+    .desktop-main {
+        position: absolute;
+        top: @navbar-height;
+        right: 0;
+        bottom: 0;
+        left: @sidebar-width;
+    }
+}
+
+// block-abs
+//
+// 实现绝对定位中的块
+
+.block-abs(@padding) {
+    position: absolute;
+    left: @padding;
+    right: @padding;
+    bottom: @padding;
+    margin: 0;
+}
+
+.block-abs-1 {
+    top: 40px;
+    .block-abs(0);
+}
+
+.block-abs-2 {
+    top: 76px;
+    .block-abs(0);
+}
+
+.block-abs-3 {
+    top: 108px;
+    .block-abs(0);
+}
+
+.block-abs-body {
+    position: absolute;
+    .block-abs(0);
+    top: @panel-body-top;
+    overflow: auto;
+}
+
+

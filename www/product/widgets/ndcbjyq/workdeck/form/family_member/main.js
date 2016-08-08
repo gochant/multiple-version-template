@@ -47,6 +47,8 @@ define([
                 data = app.modelHandler.calculate(this.getModelDefine(), data, this.model());
 
                 this.trigger('saved', data);
+
+                this.options.parentWnd && this.options.parentWnd.close();
             }
         }
     };

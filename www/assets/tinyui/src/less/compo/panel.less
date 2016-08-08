@@ -78,13 +78,9 @@
         border-width: 0;
         background-color: transparent;
     }
-
-    > .panel-toolbar {
-        padding: @panel-footer-padding;
-        background: @panel-footer-bg;
-        border-bottom: 1px solid @panel-inner-border;
-    }
 }
+
+
 
 .panel-shadow {
     border: 1px solid #cfcfcf;
@@ -98,6 +94,7 @@
         padding: @panel-lg-heading-padding;
     }
 }
+
 .panel.panel-sm {
     .panel-heading {
         padding: 5px 12px;
@@ -107,6 +104,28 @@
         .panel-heading {
             border-bottom-width: 2px;
         }
+    }
+}
+
+.panel-toolbar {
+    padding: @panel-footer-padding;
+    background: @panel-footer-bg;
+    border-bottom: 1px solid @panel-inner-border;
+}
+
+.panel-toolbar-sm {
+    padding: @padding-small-vertical @padding-small-horizontal;
+}
+
+.panel-toolbar-xs {
+    padding: @padding-xs-vertical @padding-xs-horizontal;
+}
+
+.panel-xs {
+    .panel-heading,
+    .panel-body,
+    .panel-footer {
+        padding: @panel-xs-element-padding;
     }
 }
 
@@ -122,4 +141,3 @@
 .panel-body.no-padding {
     padding: 1px\9 !important;
 }
-
