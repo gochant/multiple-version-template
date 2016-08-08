@@ -13,7 +13,7 @@ var htmlFiles = 'www/**/*.html.pug';
 
 // helper
 
-function getSource(path) {
+function getContextName(path) {
     var r = /.*[\/|\\]widgets[\/|\\](\w+)[\/|\\].*/g.exec(path);
     if (r && r.length >= 2) {
         return r[1];
@@ -48,8 +48,9 @@ gulp.task('pug:tpl', function () {
 
 });
 
+var modelFilePath = './www/product/tools/model.js';
 gulp.task('pug:html', function () {
-    var modelProvider = require('./www/product/tools/model.js');
+    var modelProvider = require(modelFilePath);
 
     gulp.src(htmlFiles)
     .pipe(cache('pug'))
@@ -59,7 +60,7 @@ gulp.task('pug:html', function () {
     .pipe(data(function (file) {
         var content = fm(String(file.contents));
         file.contents = new Buffer(content.body);
-        var source = getSource(file.path);
+        var source = getContextName(file.path);
         var contextModel = modelProvider[content.attributes.context || source];
         var result = {
             globalModel: modelProvider,

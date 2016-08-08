@@ -9,11 +9,6 @@ mixin panel-toolbar(size)
   .panel-toolbar.clearfix(class=[size ? 'panel-toolbar-' + size : undefined])&attributes(attributes)
     block
 
-mixin btn-toolbar(size)
-  - var cls = size ? 'btn-toolbar-' + size : undefined;
-  .btn-toolbar(class=[cls])&attributes(attributes)
-    block
-
 mixin panel-body
   .panel-body&attributes(attributes)
     block
