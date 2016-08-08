@@ -2,28 +2,57 @@
 @import "../../assets/bootstrap/3.3.6/css/variables.less";
 @import "../../assets/bootstrap/3.3.6/less/mixins";
 
-// variables
-@sidebar-width: 130px;
-@sidebar-bg-color: #252830;
-@panel-body-top: 43px;
+.navbar-primary {
+    background-color: darken(@brand-primary, 10%);
+    border: 0;
+    /*box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);*/
+    margin-bottom: 0;
 
-@navbar-sm-height: 40px;
-@navbar-sm-padding-vertical: 10px;
+    .navbar-brand {
+        color: #fff;
 
+        &:hover,
+        &:focus {
+            color: #fff;
+            background-color: transparent;
+        }
+    }
 
+    .navbar-nav,
+    .navbar-text,
+    .nav {
+        color: #fff;
 
-// reboot
-//
-//
+        > li > a {
+            color: #fff;
+
+            &:hover, &:focus {
+                background-color: transparent;
+            }
+        }
+    }
+
+    .nav .open > a {
+        background-color: transparent;
+    }
+}
 
 body {
     font-family: Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
 }
 
+.table-form-horizontal {
+    .checkbox {
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-top: 5px;
+    }
+}
 
-// layout
-//
-//
+
+@sidebar-width: 130px;
+@sidebar-bg-color: #252830;
+@panel-body-top: 43px;
 
 .desktop {
     > .navbar {
@@ -84,60 +113,8 @@ body {
     }
 }
 
-
-
-
-// fixed
-//
-// 修正
-
-.navbar-primary {
-    background-color: darken(@brand-primary, 10%);
-    border: 0;
-    /*box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);*/
-    margin-bottom: 0;
-
-    .navbar-brand {
-        color: #fff;
-
-        &:hover,
-        &:focus {
-            color: #fff;
-            background-color: transparent;
-        }
-    }
-
-    .navbar-nav,
-    .navbar-text,
-    .nav {
-        color: #fff;
-
-        > li > a {
-            color: #fff;
-
-            &:hover, &:focus {
-                background-color: transparent;
-            }
-        }
-    }
-
-    .nav .open > a {
-        background-color: transparent;
-    }
-}
-
-
-.table-form-horizontal {
-    .checkbox {
-        margin-top: 0;
-        margin-bottom: 0;
-        padding-top: 5px;
-    }
-}
-
-
-
-
+@navbar-sm-height: 40px;
+@navbar-sm-padding-vertical: 10px;
 
 .navbar-sm {
     min-height: @navbar-sm-height;
@@ -641,7 +618,6 @@ textarea {
     }
 }
 
-// 更宽的 table form 布局
 .table-form-horizontal.wider {
     > tbody > tr > td {
         padding-left: 150px;
@@ -653,7 +629,6 @@ textarea {
     }
 }
 
-// 纯文本表单布局
 .table-form-horizontal.static {
     &.table-hover > tbody > tr:hover {
         background-color: inherit;
@@ -710,6 +685,9 @@ textarea {
     }
 }
 
+.table-form-horizontal {
+    table-layout: fixed;
+}
 
 .table-form-horizontal td .control-label {
     width: 100px;

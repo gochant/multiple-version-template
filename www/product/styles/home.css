@@ -940,6 +940,9 @@ input.datetimepicker {
 .table-form .form-control:focus {
   border: 2px solid #66afe9;
 }
+.table-form-horizontal {
+  table-layout: fixed;
+}
 .table-form-horizontal td .control-label {
   float: left;
   width: 80px;
@@ -2392,48 +2395,8 @@ textarea {
   border-color: #a94442;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
-.navbar-primary {
-  background-color: #286090;
-  border: 0;
-  /*box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);*/
-  margin-bottom: 0;
-}
-.navbar-primary .navbar-brand {
-  color: #fff;
-}
-.navbar-primary .navbar-brand:hover,
-.navbar-primary .navbar-brand:focus {
-  color: #fff;
-  background-color: transparent;
-}
-.navbar-primary .navbar-nav,
-.navbar-primary .navbar-text,
-.navbar-primary .nav {
-  color: #fff;
-}
-.navbar-primary .navbar-nav > li > a,
-.navbar-primary .navbar-text > li > a,
-.navbar-primary .nav > li > a {
-  color: #fff;
-}
-.navbar-primary .navbar-nav > li > a:hover,
-.navbar-primary .navbar-text > li > a:hover,
-.navbar-primary .nav > li > a:hover,
-.navbar-primary .navbar-nav > li > a:focus,
-.navbar-primary .navbar-text > li > a:focus,
-.navbar-primary .nav > li > a:focus {
-  background-color: transparent;
-}
-.navbar-primary .nav .open > a {
-  background-color: transparent;
-}
 body {
   font-family: Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
-}
-.table-form-horizontal .checkbox {
-  margin-top: 0;
-  margin-bottom: 0;
-  padding-top: 5px;
 }
 .desktop > .aside,
 .desktop .desktop-sidebar {
@@ -2479,6 +2442,46 @@ body {
 .sidebar-inverse .nav > li.active > a:hover {
   color: #fff;
   background-color: #434857;
+}
+.navbar-primary {
+  background-color: #286090;
+  border: 0;
+  /*box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);*/
+  margin-bottom: 0;
+}
+.navbar-primary .navbar-brand {
+  color: #fff;
+}
+.navbar-primary .navbar-brand:hover,
+.navbar-primary .navbar-brand:focus {
+  color: #fff;
+  background-color: transparent;
+}
+.navbar-primary .navbar-nav,
+.navbar-primary .navbar-text,
+.navbar-primary .nav {
+  color: #fff;
+}
+.navbar-primary .navbar-nav > li > a,
+.navbar-primary .navbar-text > li > a,
+.navbar-primary .nav > li > a {
+  color: #fff;
+}
+.navbar-primary .navbar-nav > li > a:hover,
+.navbar-primary .navbar-text > li > a:hover,
+.navbar-primary .nav > li > a:hover,
+.navbar-primary .navbar-nav > li > a:focus,
+.navbar-primary .navbar-text > li > a:focus,
+.navbar-primary .nav > li > a:focus {
+  background-color: transparent;
+}
+.navbar-primary .nav .open > a {
+  background-color: transparent;
+}
+.table-form-horizontal .checkbox {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 5px;
 }
 .navbar-sm {
   min-height: 40px;
@@ -2954,9 +2957,6 @@ textarea {
 }
 .nested-selector.panel .panel-heading {
   padding-bottom: 0;
-}
-.table-form-horizontal {
-  table-layout: fixed;
 }
 .table-form-horizontal td .control-label {
   width: 100px;
