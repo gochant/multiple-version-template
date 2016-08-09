@@ -4,6 +4,7 @@ var pug = require('gulp-pug');
 var rename = require('gulp-rename');
 var data = require('gulp-data');
 var fm = require('front-matter');
+var cache = require('gulp-cached');
 
 var PugDocMarkdown = require('pug-doc-markdown');
 var PugDocHTML = require('pug-doc-html');
@@ -26,7 +27,7 @@ gulp.task('demo', function () {
     var modelProvider = require(modelFilePath);
 
     gulp.src(srcFiles)
-    //.pipe(cache('pug'))
+    .pipe(cache('pug'))
     .pipe(rename(function (path) {
         path.extname = '';
     }))
@@ -48,7 +49,7 @@ gulp.task('demo', function () {
         pretty: true,
         compileDebug: false,
         debug: false,
-        cache: true
+        cache: false
     }))
     .pipe(gulp.dest('demo/'));
 
@@ -57,11 +58,11 @@ gulp.task('demo', function () {
 gulp.task('doc', function (cb) {
     pugDoc({
         input: './src/**/*.pug',
-        output: destJson,
+        output: docDestJson,
         complete: function () {
             var stream = new PugDocHTML({
-                output: destHtml,
-                input: '../../' + destJson
+                output: docDestHtml,
+                input: '../../' + docDestJson
             });
 
             stream.on('complete', function () {
