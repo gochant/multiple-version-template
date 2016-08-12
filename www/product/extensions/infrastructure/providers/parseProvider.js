@@ -4,6 +4,9 @@ define(function () {
         // 数据转换 provider
         var _ = app.core._;
 
+        /**
+         * parse 提供者，如何 
+         */
         app.parseProvider || (app.parseProvider = {});
 
         app.parseProvider.toSelectList = function (valueKey, nameKey) {

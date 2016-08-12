@@ -1,3 +1,4 @@
+// 基路径设置到前端根目录
 requirejs.config({
     baseUrl: '../../'
 });
@@ -30,11 +31,13 @@ requirejs([
             autoBuildPage: true,
             autoParseSource: true,
             releaseWidgetPath: releaseWidgetPath,
+            // 默认的 widget 查找模式支持三级目录，这里更改以支持最大5级目录
             widgetNamePattern: /(\w*)-?(\w*)-?(\w*)-?(\w*)-?(\w*)/
         });
 
         var _ = app.core._;
 
+        // 修复 lodash 或 underscore 没有的方法
         if (!_.any) {
             _.any = _.some;
         }

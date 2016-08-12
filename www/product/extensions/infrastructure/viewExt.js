@@ -192,7 +192,9 @@ define([
             var me = this;
 
             if (this.options.bindBlock) {
-                this.$el.find('.data-bind-block').each(function (i, el) {
+                this.$el.find('.data-bind-block')
+                    .not(this.$el.find('.ver-view .data-bind-block'))
+                    .each(function (i, el) {
                     kendo.unbind($(el));
                     kendo.bind($(el), me.viewModel);
                 });
