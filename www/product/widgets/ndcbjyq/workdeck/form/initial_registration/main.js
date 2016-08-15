@@ -91,6 +91,14 @@ define([
             });
             this.model({
                 data: {},
+                People: [{
+                    Id: '1',
+                    Name: 'hehe',
+                    GenderDisplay: '',
+                    Birth: '',
+                    RelDisplay: '',
+                    Number: '2323sdf'
+                }],
                 OutsourcerNumberList: [],
                 OutsourcersList: [],
                 ContractWayList: [],
@@ -108,7 +116,7 @@ define([
         },
         rendered: function (app) {
             var me = this;
-            app.ext.dynamicTab(this.$el);
+            app.uiUtil.dynamicTab(this.$el);
             this.$('[data-dynamic=main] [data-toggle="tab"]').on('shown.bs.tab', function (e) {
                 var idx = $(e.target).closest('.nav-item').index();
                 me.model().set('tabIndex', idx);
@@ -121,7 +129,9 @@ define([
             this.$('[data-dynamic=main]').find('.active').next().find('[data-toggle=tab]').tab('show');
         },
         addMemberHandler: function (e, app) {
-            this.viewWindow('add-member', FamilyMember, null, app.configProvider.normalModal());
+            var t = this.instance('[data-role=datatable]');
+            t.destroy();
+            // this.viewWindow('add-member', FamilyMember, null, app.configProvider.normalModal());
         },
         saveHandler: function (e, app, _, $) {
             this.validate().done(function () {

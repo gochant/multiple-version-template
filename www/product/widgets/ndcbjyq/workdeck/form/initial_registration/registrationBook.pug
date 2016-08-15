@@ -1,0 +1,28 @@
++form-validate('registrationBook')
+  +fieldset('基本信息')
+    +form-layout-t
+      +row-t
+        +editor-t('OutsourcerNumber','发包方：', 'select')(required)
+        +editor-t('ContractBeginDate', '承包期限：', 'checkbox', { text: '永久' })
+      +row-t
+        +editor-t('Outsourcers', '起止时间：', 'date')
+        +editor-t('ContractPurpose', '承包用途：', 'select')
+      +row-t
+        +editor-for-t('ContractWay', model)
+        +editor-for-t('RegisteDate', model)
+  +fieldset('承包方信息')
+    +form-layout-t
+      +row-t
+        +editor-t('ContractorType', '承包方类型：', 'select')
+        +editor-t('Outsourcers', '承包方姓名：', 'textbox')
+      +row-t
+        +editor-t('FamilyNumber', '承包方编号：', 'textbox')
+        +editor-t('Outsourcers', '合同编号：', 'select')
+      +row-t
+        +editor-t('ContractorCred', '证件类型：', 'select')
+        +editor-t('ContractorNumber', '证件号码：', 'textbox')
+      +row-t
+        +editor-t('ContractorTel', '电话号码：', 'textbox')
+        +editor-t('ContractorZip', '邮政编码：', 'textbox')
+      +row-t
+        +editor-t('ContractorAddress', '承包方住址：', 'textarea', null, 2)

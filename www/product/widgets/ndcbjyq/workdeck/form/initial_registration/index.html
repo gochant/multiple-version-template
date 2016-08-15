@@ -8,44 +8,44 @@
 <div class="box-body">
   <div class="box-wrapper container">
     <div class="box-aside">
-      <ul class="nav nav-form nav-stacked" role="tablist" data-dynamic="main">
-        <li class="nav-item active" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="javascript:;"> 0 申请书信息<span class="badge invalid-tag" data-for="registrationApplication"></span></a>
+      <ul class="nav nav-form nav-stacked" role="tablist" data-dynamic-tab="main">
+        <li class="nav-item active" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="javascript:;"> 1 申请书信息<span class="badge form-invalid-tag" data-for="registrationApplication"></span></a>
         </li>
-        <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="javascript:;"> 1 登记信息<span class="badge invalid-tag" data-for="registrationBook"></span></a>
+        <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="javascript:;"> 2 登记信息<span class="badge form-invalid-tag" data-for="registrationBook"></span></a>
         </li>
-        <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="javascript:;"> 2 家庭成员<span class="badge invalid-tag" data-for="familyMember"></span></a>
+        <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="javascript:;"> 3 家庭成员<span class="badge form-invalid-tag" data-for="familyMember"></span></a>
         </li>
-        <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="javascript:;"> 3 承包地<span class="badge invalid-tag" data-for="contractedLand"></span></a>
+        <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="javascript:;"> 4 承包地<span class="badge form-invalid-tag" data-for="contractedLand"></span></a>
         </li>
-        <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="javascript:;"> 4 附加信息<span class="badge invalid-tag" data-for="AdditionalInfo"></span></a>
+        <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="javascript:;"> 5 附加信息<span class="badge form-invalid-tag" data-for="AdditionalInfo"></span></a>
         </li>
-        <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="javascript:;"> 5 附件<span class="badge invalid-tag" data-for="heheda"></span></a>
+        <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-toggle="tab" href="javascript:;"> 6 附件<span class="badge form-invalid-tag" data-for="heheda"></span></a>
         </li>
       </ul>
     </div>
     <div class="box-content">
-      <div class="tab-content data-bind-block" data-dynamic="main">
+      <div class="tab-content data-bind-block" data-dynamic-tab="main">
         <div class="tab-pane fade application" role="tabpanel">
-          <div class="form-horizontal data-validate-form" name="registrationApplication">
-            <div class="form-group">
+          <div class="form-horizontal" data-validate-form="registrationApplication">
+            <div class="form-group row">
               <label class="control-label col-xs-3">申请类型</label>
               <div class="col-xs-9 form-control-container">
                 <select class="form-control" data-text-field="name" data-value-field="value" data-value-primitive="true" data-auto-bind="false" data-bind="source: PetitionTypeList, value: data.PetitionType" name="PetitionType"></select>
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
               <label class="control-label col-xs-3 required">申请人</label>
               <div class="col-xs-9 form-control-container">
                 <input class="form-control" type="text" data-bind="value: data.PetitionName" name="PetitionName" required="required"/>
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
               <label class="control-label col-xs-3">申请日期</label>
               <div class="col-xs-9 form-control-container">
-                <input class="form-control date" readonly="readonly" data-bind="date: data.PetitionDate"/>
+                <input class="form-control date" readonly="readonly" data-bind="date: data.PetitionDate" name="PetitionDate"/>
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
               <label class="control-label col-xs-3">申请事由</label>
               <div class="col-xs-9 form-control-container">
                 <textarea class="form-control" data-bind="value: data.PetitionOptions" name="PetitionOptions"></textarea>
@@ -54,7 +54,7 @@
           </div>
         </div>
         <div class="tab-pane fade in active registration" role="tabpanel">
-          <form class="data-validate-form" name="registrationBook">
+          <form data-validate-form="registrationBook">
             <fieldset>
               <legend>基本信息</legend>
               <table class="table table-form-horizontal">
@@ -75,7 +75,7 @@
                 <tr>
                   <td class="table-form-col">
                     <label class="control-label">起止时间：</label>
-                    <input class="form-control date" readonly="readonly" data-bind="date: data.Outsourcers"/>
+                    <input class="form-control date" readonly="readonly" data-bind="date: data.Outsourcers" name="Outsourcers"/>
                   </td>
                   <td class="table-form-col">
                     <label class="control-label">承包用途：</label>
@@ -89,7 +89,7 @@
                   </td>
                   <td class="table-form-col">
                     <label class="control-label">登记日期</label>
-                    <input class="form-control date" readonly="readonly" data-bind="date: data.RegisteDate"/>
+                    <input class="form-control date" readonly="readonly" data-bind="date: data.RegisteDate" name="RegisteDate"/>
                   </td>
                 </tr>
               </table>
@@ -154,7 +154,26 @@
               </div>
             </div>
             <div class="panel-body no-padding">
-              <div data-role="grid" data-columns='[{"field":"Name","title":"姓名","format":"{0:undefined}"},{"field":"Number","title":"证件号码","format":"{0:undefined}"},{"field":"GenderDisplay","title":"性别","format":"{0:undefined}"},{"field":"Birth","title":"出生日期","format":"{0:yyyy-MM-dd}"},{"field":"RelDisplay","title":"与户主关系","format":"{0:undefined}"}]' data-bind="source: data.Persons" data-auto-bind="false" data-selectable="row" style="height:300px"></div>
+              <div data-role="datatable" data-auto-bind="false" data-bind="source: data.Persons">
+                <script class="tpl-header" type="text/x-template">
+                  <tr>
+                    <th class="string" data-type="string" data-prop="Name">姓名</th>
+                    <th class="string" data-type="string" data-prop="Number">证件号码</th>
+                    <th data-prop="GenderDisplay">性别</th>
+                    <th class="date" data-type="date" data-prop="Birth">出生日期</th>
+                    <th data-prop="RelDisplay">与户主关系</th> 
+                  </tr>
+                </script>
+                <script class="tpl-template" type="text/x-template">
+                  <tr data-id="#= Id #">
+                    <td title="#: Name != null ? Name : '-' #">#: Name != null ? Name : '-' #</td>
+                    <td title="#: Number != null ? Number : '-' #">#: Number != null ? Number : '-' #</td>
+                    <td title="#: GenderDisplay != null ? GenderDisplay : '-' #">#: GenderDisplay != null ? GenderDisplay : '-' #</td>
+                    <td title="#: Birth != null ?  kendo.toString(kendo.parseDate(Birth), 'yyyy/MM/dd'): '-' #">#: Birth != null ?  kendo.toString(kendo.parseDate(Birth), 'yyyy/MM/dd'): '-' #</td>
+                    <td title="#: RelDisplay != null ? RelDisplay : '-' #">#: RelDisplay != null ? RelDisplay : '-' #</td>
+                  </tr>
+                </script>
+              </div>
             </div>
           </div>
         </div>

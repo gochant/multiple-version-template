@@ -1,13 +1,15 @@
 define([
+    'veronica-ui',
     './loading',
     './viewExt',
-    './kendo',
-    './notify',
-    './source',
+    //'./kendo',
+    //'./notify',
+    //'./source',
     './utils/coreUtil',
     './utils/dataUtil',
     './utils/storeUtil',
     './utils/modelUtil',
+    './utils/uiUtil',
     './providers/configProvider',
     './providers/parseProvider'
 ], function () {

@@ -295,7 +295,7 @@ define([
                 var result = true;
                 var $ = this.options.sandbox.app.core.$;
                 var deferred = $.Deferred();
-                this.$('.data-validate-form').each(function (i, el) {
+                this.$('[data-validate-form]').each(function (i, el) {
                     var validator = me.instance($(el));
                     result = validator.validate();
                 });

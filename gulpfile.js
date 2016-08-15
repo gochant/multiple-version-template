@@ -51,6 +51,7 @@ gulp.task('pug:tpl', function () {
 });
 
 var modelFilePath = './www/product/build/model.js';
+var templateHelper = require('./www/product/build/templateHelper.js');
 gulp.task('pug:html', function () {
     var modelProvider = require(modelFilePath);
 
@@ -67,7 +68,8 @@ gulp.task('pug:html', function () {
         var result = {
             globalModel: modelProvider,
             contextModel: contextModel,
-            model: contextModel && contextModel[content.attributes.model]
+            model: contextModel && contextModel[content.attributes.model],
+            helper: templateHelper
         };
         return result;
     }))
