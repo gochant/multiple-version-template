@@ -84,7 +84,7 @@ define([
         app.view.base._activeUI = function () {
             originalActiveUi.apply(this, Array.prototype.slice.call(arguments));
 
-            if ($.fn.kendoValidator) {
+            if ($.fn.kendoValidator && this.options.validateEngine === 'kendo') {
                 this.$('.data-validate-form').kendoValidator({
                     errorTemplate: '<span title="#=message#"><i class="fa fa-exclamation-circle"></i></span>',
                     validate: function (e) {
@@ -240,6 +240,18 @@ define([
 
         };
 
+        // model define
+
+        app.view.base.getContextModelDefine = function () {
+            return app.modelProvider[this.options._source];
+        }
+
+        app.view.base.getModelDefine = function () {
+            var contextModel = this.getContextModelDefine();
+            return contextModel && contextModel[this.options.modelName];
+        }
+
+
         // render
 
 
@@ -251,14 +263,7 @@ define([
             return oldRenderTemplate.apply(this, Array.prototype.slice.call(arguments));
         }
 
-        app.view.base.getContextModelDefine = function () {
-            return app.modelProvider[this.options._source];
-        }
 
-        app.view.base.getModelDefine = function () {
-            var contextModel = this.getContextModelDefine();
-            return contextModel && contextModel[this.options.modelName];
-        }
 
         var oldExecuteTemplate = app.view.base._executeTemplate;
         app.view.base._executeTemplate = function (compiled) {

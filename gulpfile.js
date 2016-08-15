@@ -7,7 +7,9 @@ var cache = require('gulp-cached');
 var data = require('gulp-data');
 var fm = require('front-matter');
 
-var pugBaseUrl = 'www/assets/pukit/src';
+// config variables
+
+var pugBaseUrl = 'www/product/build';
 var tplFiles = 'www/**/*.tpl.pug';
 var htmlFiles = 'www/**/*.html.pug';
 
@@ -24,7 +26,7 @@ function getContextName(path) {
 gulp.task('pug:tpl', function () {
 
     gulp.src(tplFiles)
-        .pipe(cache('pug'))
+        .pipe(cache('pug'))  // run only changed files
         .pipe(rename(function (path) {
             path.extname = '.js';
         }))
@@ -48,7 +50,7 @@ gulp.task('pug:tpl', function () {
 
 });
 
-var modelFilePath = './www/product/tools/model.js';
+var modelFilePath = './www/product/build/model.js';
 gulp.task('pug:html', function () {
     var modelProvider = require(modelFilePath);
 

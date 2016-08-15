@@ -22,7 +22,7 @@ product 和 custom-version-x 的目录结构是一样的，里面的目录结构
 - modules：模块定义文件
 - pages：逻辑页面定义
 - styles：样式表
-- tools：构建时配置
+- build：构建时配置
 - widgets：所有部件
 
 #### configs
@@ -65,9 +65,9 @@ product 和 custom-version-x 的目录结构是一样的，里面的目录结构
 - 用于继承的公共页面定义以 `_` 开头，公共文件以 `common` 命名，不同的逻辑页面可能有很多 common 定义
 - 命名语义化，以 `_` 分隔多个单词
 
-#### tools
+#### build
 
-- build.js：构建文件，一个版本一个
+- config.js：构建配置文件，一个版本一个
 - model.js：模型元数据文件，用于模板编译
 
 ### widgets

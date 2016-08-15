@@ -111,13 +111,13 @@ define([
                         GenderDisplay: {
                             displayName: '性别',
                             calculate: function(context, app) {
-                                return app.dataHandler.pickEnumName(this.Gender, context.GenderList);
+                                return app.dataUtil.getSelectListDisplay(context.GenderList, this.Gender);
                             }
                         },
                         RelDisplay: {
                             displayName: '与户主关系',
                             calculate: function(context, app) {
-                                return app.dataHandler.pickEnumName(this.Rel, context.RelList);
+                                return app.dataUtil.getSelectListDisplay(context.RelList, this.Rel);
                             }
                         }
 

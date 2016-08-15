@@ -34,7 +34,7 @@ define([
             }
         },
         initAttr: function (app) {
-            this.model({ data: app.modelHandler.getDefault(this.getModelDefine()) }, false);
+            this.model({ data: app.modelUtil.getDefault(this.getModelDefine()) }, false);
         },
         rendered: function () {
             // var me = this;
@@ -44,7 +44,7 @@ define([
             if (validator.validate()) {
                 var data = this.model('data').toJSON();
 
-                data = app.modelHandler.calculate(this.getModelDefine(), data, this.model());
+                data = app.modelUtil.calculate(this.getModelDefine(), data, this.model());
 
                 this.trigger('saved', data);
 

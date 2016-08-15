@@ -5,7 +5,8 @@ define(function () {
         var _ = app.core._;
 
         /**
-         * parse 提供者，如何 
+         * parse 提供者
+         * @class parseProvider
          */
         app.parseProvider || (app.parseProvider = {});
 

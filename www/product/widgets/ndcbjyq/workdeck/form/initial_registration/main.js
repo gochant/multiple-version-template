@@ -103,7 +103,7 @@ define([
         listen: function (app) {
             this.listenTo('add-member', 'saved', function (data) {
                 var persons = this.model('data.Persons');
-                app.dataSourceHandler.add(persons, data);
+                app.storeUtil.add(persons, data);
             });
         },
         rendered: function (app) {

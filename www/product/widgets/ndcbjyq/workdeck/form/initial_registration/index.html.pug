@@ -2,7 +2,7 @@
 model: registrationBook
 ---
 
-extends /ext/modal-box-layout.pug
+extends /layouts/modal-box-layout.pug
 include /mixin.pug
 
 block heading
@@ -28,10 +28,11 @@ block aside
   },{
     text: '附件',
     name: 'heheda',
-  }], 'main')
+  }])(data-dynamic-tab='main')
 
 block content
-  +tab-content.data-bind-block(data-dynamic='main')
+  +tab-content.data-bind-block(data-dynamic-tab='main')
+
     +tab-pane(null).application
       +form-validate-layout-h('registrationApplication')
         +editor-for-model(contextModel.registrationApplication)
@@ -67,16 +68,9 @@ block content
               +editor-t('ContractorZip', '邮政编码：', 'textbox')
             +row-t
               +editor-t('ContractorAddress', '承包方住址：', 'textarea', null, 2)
+
     +tab-pane.member()
-      +panel
-        +panel-toolbar('sm')
-          +btn-toolbar('sm')
-            +btn-icon('plus', '添加')(data-action='addMember')
-            +btn-icon('plus', '从调查数据添加')
-            +btn-icon('edit', '编辑')
-            +btn-icon('trash-o', '删除')
-        +panel-body.no-padding
-          +kendo-grid-for(contextModel.familyMember, 'list', 'source: data.Persons')(data-auto-bind='false', data-selectable='row', style={ height: '300px' })
+      include ./member.pug
 
     +tab-pane.contracted_land() hehe4
     +tab-pane.additional() hehe5
