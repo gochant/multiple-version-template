@@ -10,6 +10,8 @@ define([
         app.viewExt || (app.viewExt = {});
 
         app.viewExt.form = function (base, app) {
+
+            var validationEngine = app.formValidationProvider.get('jqv');
             // hook view _activeUI
             var originalActiveUI = base._activeUI;
 
@@ -49,7 +51,7 @@ define([
                             });
                         }
                     }
-                }, app.formValidationProvider.get('jqv'))
+                }, validationEngine)
             }
 
             base._extend(ext);

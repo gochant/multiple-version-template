@@ -67,7 +67,21 @@ define([
                 });
             }
 
-
+            // 启用布局控件，示例
+            if ($.layout) {
+                var me = this;
+                setTimeout(function () {
+                    _.each(this.$('[data-part=layout]'), function (el) {
+                        $(el).layout({
+                            applyDemoStyles: false,
+                            closable: false,
+                            resizable: false,
+                            slidable: false,
+                            spacing_open: 0
+                        });
+                    });
+                }, 0);
+            }
         }
 
 
