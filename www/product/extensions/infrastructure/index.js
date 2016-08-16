@@ -1,7 +1,12 @@
 define([
     'veronica-ui',
     './loading',
-    './viewExt',
+    './viewBase/core',
+    './viewBase/ajax',
+    './viewBase/modelDefine',
+    './viewBase/render',
+    './viewBase/window',
+    './viewExt/form',
     //'./kendo',
     //'./notify',
     //'./source',

@@ -12,16 +12,6 @@ define([
         var $ = app.core.$;
         var kendo = app.core.kendo || window.kendo;
 
-        $.fn.datetimepicker.dates['zh-CN'] = {
-            days: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"],
-            daysShort: ["周日", "周一", "周二", "周三", "周四", "周五", "周六", "周日"],
-            daysMin: ["日", "一", "二", "三", "四", "五", "六", "日"],
-            months: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
-            monthsShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
-            today: "今天",
-            suffix: [],
-            meridiem: ["上午", "下午"]
-        };
 
         // url provider
         function getProp(obj, desc) {
@@ -90,7 +80,7 @@ define([
                     validate: function (e) {
                         var formName = e.sender.element.attr('name');
                         var invalidLen = e.sender.element.find('.k-invalid').length;
-                        var $target = $('.invalid-tag[data-for=' + formName + ']');
+                        var $target = $('.form-invalid-tag[data-for=' + formName + ']');
                         if (invalidLen === 0) {
                             $target.text(invalidLen).removeClass('fadeInRight').addClass('animated fadeOutRight');
                         }else{
@@ -284,35 +274,6 @@ define([
             return oldExecuteTemplate.apply(this, Array.prototype.slice.call(arguments));
         }
 
-
-        // viewHelper
-
-        app.viewHelper || (app.viewHelper = {});
-
-        app.viewHelper.form = {
-            validate: function () {
-                var me = this;
-                var result = true;
-                var $ = this.options.sandbox.app.core.$;
-                var deferred = $.Deferred();
-                this.$('[data-validate-form]').each(function (i, el) {
-                    var validator = me.instance($(el));
-                    result = validator.validate();
-                });
-                if (result) {
-                    deferred.resolve();
-                } else {
-                    deferred.reject();
-                }
-                return deferred.promise();
-            },
-            save: function (data) {
-                if (data == null) {
-                    data = this.model('data');
-                }
-                this.trigger('saved', data);
-            }
-        };
 
     };
 });
