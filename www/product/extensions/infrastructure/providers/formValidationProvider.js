@@ -1,6 +1,37 @@
 define(function () {
 
     return function (app) {
+        app.formValidation || (app.formValidation = app.provider.create());
+        
+        // default: html5 native data form validation
+        app.formValidation.add('default', {
+            init: function () { },
+            getValidator: function () { },
+            onValidate: function ($form, errors, e) {
+                var formName = $form.attr('data-validate-form');
+                var $tag = $('.form-invalid-tag[data-for=' + formName + ']');
+                if (errors === 0) {
+                    $tag.text(errors).removeClass('fadeInRight').addClass('animated fadeOutRight');
+                } else {
+                    $tag.text(errors).removeClass('fadeOutRight').addClass('animated fadeInRight');
+                }
+            },
+            validate: function ($form) {
+                var result = $form.get(0).checkValidity();
+                var errors = $form.find(':invalid').length;
+                this.onValidate($form, errors);
+                return result;
+            }
+        });
+
+        app.formValidation.add('jqv', {
+
+        });
+
+        app.formValidation.add('kendo', {
+
+        });
+
         app.formValidationProvider || (app.formValidationProvider = {});
 
         app.formValidationProvider.basic = {
