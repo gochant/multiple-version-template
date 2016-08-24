@@ -1,0 +1,8 @@
+- frame 框架
+- interface 接口
+- manage 数据管理
+- map 地图
+- query 数据查询
+- stat 统计
+- survey 调查
+- workdeck 工作台
