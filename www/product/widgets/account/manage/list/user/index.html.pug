@@ -1,0 +1,22 @@
+---
+model: user
+---
+
+extend /layouts/list-layout
+include /mixin.pug
+
+block actions
+  +btn-refresh
+  +btn-add
+  +btn-edit
+  +btn-icon-action('check-circle-o', '启用', 'enable')
+  +btn-icon-action('ban', '禁用', 'disable')
+  +btn-remove
+  +btn-icon-action('undo', '重置密码', 'resetPassword')
+  +btn-icon-action('cog', '设置角色', 'setRole')
+
+block body
+  +kendo-datatable-for(model, 'list', 'source: users')
+            
+block footer
+  +kendo-pager('source:users')

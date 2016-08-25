@@ -30,5 +30,6 @@ block script
     .modal.fade
       .modal-dialog
         .modal-content.fn-wnd
-
-  script(src='../../assets/require.js', data-main='./ndcbjyq/main')
+  script
+    window.__appName = 'ndcbjyq'
+  script(src='../../assets/require.js', data-main='appLauncher')

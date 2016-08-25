@@ -4,7 +4,18 @@ define([
 
         var models = {
             account: {
+                user: {
+                    fields: {
+                        Name: {
+                            displayName: '姓名',
+                            type: 'string'
+                        }
+                    },
+                    views: {
+                        list: ['Name']
+                    }
 
+                }
             },
             ndcbjyq: {
                 mainMenu: [{

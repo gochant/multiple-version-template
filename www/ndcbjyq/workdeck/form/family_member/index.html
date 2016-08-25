@@ -1,0 +1,60 @@
+
+<div class="modal-header">
+  <button class="close" data-dismiss="modal"><span>×</span></button>
+  <h4 class="modal-title">家庭成员
+  </h4>
+</div>
+<div class="modal-body">
+  <div class="form-horizontal" data-validate-form="">
+    <div class="form-group row">
+      <label class="control-label col-xs-3 required">姓名</label>
+      <div class="col-xs-9 form-control-container">
+        <input class="form-control" type="text" data-bind="value: data.Name" name="Name" required="required"/>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="control-label col-xs-3 required">证件类型</label>
+      <div class="col-xs-9 form-control-container">
+        <select class="form-control" data-text-field="name" data-value-field="value" data-value-primitive="true" data-auto-bind="false" data-bind="source: CredTypeList, value: data.CredType" name="CredType" required="required"></select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="control-label col-xs-3">证件号码</label>
+      <div class="col-xs-9 form-control-container">
+        <input class="form-control" type="text" data-bind="value: data.Number" name="Number"/>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="control-label col-xs-3 required">性别</label>
+      <div class="col-xs-9 form-control-container">
+        <select class="form-control" data-text-field="name" data-value-field="value" data-value-primitive="true" data-auto-bind="false" data-bind="source: GenderList, value: data.Gender" name="Gender" required="required"></select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="control-label col-xs-3">出生日期</label>
+      <div class="col-xs-9 form-control-container">
+        <input class="form-control date" readonly="readonly" data-bind="date: data.Birth" name="Birth"/>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="control-label col-xs-3">与户主关系</label>
+      <div class="col-xs-9 form-control-container">
+        <select class="form-control" data-text-field="name" data-value-field="value" data-value-primitive="true" data-auto-bind="false" data-bind="source: RelList, value: data.Rel" name="Rel"></select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="control-label col-xs-3 required">是否共有人</label>
+      <div class="col-xs-9 form-control-container">
+        <input class="form-control" type="text" data-bind="value: data.IsShare" name="IsShare" required="required"/>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="control-label col-xs-3">备注</label>
+      <div class="col-xs-9 form-control-container">
+        <select data-role="combobox" data-text-field="name" data-value-field="value" data-value-primitive="true" data-bind="source: CommentList, value: data.Comment"></select>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer"><a class="btn btn-default btn-primary" data-action="save"><i class="fa fa-undefined" aria-hidden="true"></i>保&nbsp; 存</a>
+</div>

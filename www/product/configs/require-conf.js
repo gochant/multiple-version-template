@@ -16,6 +16,8 @@
 
     return function (devPath, releasePath) {
         var version = '0.1.1';
+        devPath = devPath || 'http://192.168.1.18:8097/cdn/vendor';  // 开发时路径
+        releasePath = releasePath || 'vendor';  // 发布时路径
 
         var config = {
             debug: true,

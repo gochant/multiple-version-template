@@ -11,7 +11,7 @@ var fm = require('front-matter');
 
 var pugBaseUrl = 'www/product/_toolkit/templateKit';
 var tplFiles = 'www/**/*.tpl.pug';
-var htmlFiles = 'www/**/*.html.pug';
+var htmlFiles = 'www/**/user/*.html.pug';
 
 // helper
 
@@ -46,6 +46,7 @@ gulp.task('pug:html', function () {
             model: contextModel && contextModel[content.attributes.model],
             helper: templateHelper
         };
+            console.log(result);
         return result;
     }))
     .pipe(pug({

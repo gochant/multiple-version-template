@@ -3,5 +3,9 @@ define([
     '../../configs/modules/ndcbjyq'
 ], function () {
     var args = Array.prototype.slice.call(arguments);
-    return args;
+    return function (app) {
+        args.forEach(function (arg) {
+            app.module.add(arg)
+        });
+    };
 });
