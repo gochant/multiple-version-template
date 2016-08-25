@@ -1,9 +1,7 @@
 define(function () {
     return {
         name: 'ndcbjyq',
-        parentPath: './product/widgets',
-        widgetPath: '',
-        multilevel: true,
-        hasEntry: false
+        path: './product/widgets/${name}',
+        multilevel: true
     };
 });

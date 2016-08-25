@@ -38,5 +38,9 @@
   {
     "outputFile": "www/product/styles/home.css",
     "inputFile": "www/product/styles/home.less"
+  },
+  {
+    "outputFile": "www/product/content/styles/ndcbjyq.css",
+    "inputFile": "www/product/content/styles/ndcbjyq.less"
   }
 ]

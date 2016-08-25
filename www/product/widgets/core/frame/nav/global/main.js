@@ -11,12 +11,12 @@ define([
         },
         initAttr: function (app) {
             this.selectSelector = '.fn-selector';
-            this.defineAttr({
+            this.attr({
                 name: 'zoneKey',
                 source: 'global',
-            //    setup: 'init'
+                setup: 'rendered'
             });
-            this.defineAttr({
+            this.attr({
                 name: 'zoneLongText',
                 source: 'global'
             });

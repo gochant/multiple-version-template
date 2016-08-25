@@ -9,7 +9,7 @@ var fm = require('front-matter');
 
 // config variables
 
-var pugBaseUrl = 'www/product/build';
+var pugBaseUrl = 'www/product/_toolkit/templateKit';
 var tplFiles = 'www/**/*.tpl.pug';
 var htmlFiles = 'www/**/*.html.pug';
 
@@ -23,35 +23,10 @@ function getContextName(path) {
     return null;
 }
 
-gulp.task('pug:tpl', function () {
 
-    gulp.src(tplFiles)
-        .pipe(cache('pug'))  // run only changed files
-        .pipe(rename(function (path) {
-            path.extname = '.js';
-        }))
-        .pipe(data(function (file) {
-            var content = fm(String(file.contents));
-            file.contents = new Buffer(content.body);
-            return content.attributes;
-        }))
-        .pipe(pug({
-            basedir: pugBaseUrl,
-            client: true,
-            pretty: false,
-            compileDebug: false,
-            debug: false,
-            cache: true,
-            inlineRuntimeFunctions: false
-        })).pipe(wrap({
-            exports: 'template'
-        }))
-        .pipe(gulp.dest('www/'));
+var modelFilePath = './www/product/_toolkit/templateKit/model.js';
+var templateHelper = require('./www/product/_toolkit/templateKit/helper.js');
 
-});
-
-var modelFilePath = './www/product/build/model.js';
-var templateHelper = require('./www/product/build/templateHelper.js');
 gulp.task('pug:html', function () {
     var modelProvider = require(modelFilePath);
 
@@ -84,6 +59,34 @@ gulp.task('pug:html', function () {
     .pipe(gulp.dest('www/'));
 
 });
+
+gulp.task('pug:tpl', function () {
+
+    gulp.src(tplFiles)
+        .pipe(cache('pug'))  // run only changed files
+        .pipe(rename(function (path) {
+            path.extname = '.js';
+        }))
+        .pipe(data(function (file) {
+            var content = fm(String(file.contents));
+            file.contents = new Buffer(content.body);
+            return content.attributes;
+        }))
+        .pipe(pug({
+            basedir: pugBaseUrl,
+            client: true,
+            pretty: false,
+            compileDebug: false,
+            debug: false,
+            cache: true,
+            inlineRuntimeFunctions: false
+        })).pipe(wrap({
+            exports: 'template'
+        }))
+        .pipe(gulp.dest('www/'));
+
+});
+
 
 gulp.task('watch', function () {
     gulp.watch(tplFiles, ['pug:tpl']);

@@ -1,0 +1,22 @@
+include /mixin.pug
+
+block actions
+  +btn-refresh
+  +btn-search('高级查询', 'searchAdvanced')
+  +btn-detail
+  +btn-icon('dashboard', '汇总登记簿')
+  +btn-export-dropdown
+    +dropdown-menu(data-action='export')
+      +menu-item('#') 登记簿
+      +menu-item('#') 有效登记簿清册
+      +menu-item('#') 确权颁证信息表
+  +btn-more-dropdown
+    +dropdown-menu(data-action='more')
+      +menu-item('#') 历史回溯
+      +menu-item('#') 权证信息
+      +menu-item('#') 权源流转合同
+      +menu-item('#') 附加信息
+
+block body
+  +kendo-datatable-for(model, 'list', 'source: users')
+            

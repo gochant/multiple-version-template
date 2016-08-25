@@ -1,4 +1,4 @@
-include ../../../../../../../jade-tpl/src/mixin.jade
+include /mixin.pug
 
 +sidebar.desktop-sidebar
   +nav-vertical
@@ -10,3 +10,5 @@ include ../../../../../../../jade-tpl/src/mixin.jade
       +i-text('dashboard', '统计汇总')
     +nav-item('#ndcbjyq_map_home')(data-group='ndcbjyq_map')
       +i-text('map-marker', '以图管地')
+    +nav-item('#ndcbjyq_account_home')(data-group='ndcbjyq_account')
+      +i-text('user', '账户中心')

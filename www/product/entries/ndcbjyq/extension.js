@@ -1,4 +1,5 @@
 define([
+    'veronica-ui',
     '../../extensions/infrastructure/index',
     '../../extensions/components/zoneSelector',
     '../../extensions/ndcbjyq/index'

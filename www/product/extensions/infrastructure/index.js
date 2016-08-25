@@ -1,17 +1,9 @@
 define([
     'veronica-ui',
     './loading',
-    './viewBase/core',
-    './viewBase/ajax',
-    './viewBase/modelDefine',
-    './viewBase/render',
-    './viewBase/window',
-    './viewExt/form',
-    './utils/coreUtil',
     './utils/dataUtil',
     './utils/storeUtil',
     './utils/modelUtil',
-    './utils/uiUtil',
     './providers/configProvider',
     './providers/parseProvider'
 ], function () {
@@ -27,7 +19,7 @@ define([
 
         // 通知系统
 
-        app.notify.autoReport = function () {
+        var autoReport = function () {
             $(document).ajaxSuccess(function (e, xhr, f, resp) {
                 var respType = ["", "info", "success", "warn", "error"];
                 if (resp && resp.type != null) {
@@ -38,13 +30,13 @@ define([
                     if (!resp.success) {
                         // 用户信息丢失，强制刷新
                         if (resp.data === 'UserNotFound') {
-                            app.notify.warn('会话过期，请重新登录');
+                            $.notify.warn('会话过期，请重新登录');
                             setTimeout(function () {
                                 window.location.reload(true);
                             }, 1000);
                         }
                         if (resp.data === 'Unauthorized') {
-                            app.notify.warn('对不起，您没有访问该功能的权限！');
+                            $.notify.warn('对不起，您没有访问该功能的权限！');
                         }
 
                         // 将错误组织成信息
@@ -58,7 +50,7 @@ define([
                     }
 
                     if (resp.type !== 0) {
-                        app.notify[respType[resp.type]](msg);
+                        $.notify[respType[resp.type]](msg);
                     }
                 }
             }).ajaxError(function (e, xhr, f, resp) {
@@ -66,7 +58,7 @@ define([
             });
         }
 
-        app.notify.autoReport();
+        autoReport();
 
 
         // 框架增强

@@ -3,7 +3,13 @@ define([
     return function (app) {
 
         var models = {
+            account: {
+
+            },
             ndcbjyq: {
+                mainMenu: [{
+
+                }],
                 // 申请书
                 registrationApplication: {
                     fields: {

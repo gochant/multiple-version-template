@@ -1,8 +1,8 @@
 define({
     '_common': {
         widgets: [
-            'core-frame-header@#header@framework',
-            'framework-site_sidebar@#sidebar@framework'
+            'core-frame-header@framework=>#header',
+            'framework-site_sidebar@framework=>#sidebar'
         ]
     }
 });

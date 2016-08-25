@@ -16,10 +16,9 @@ requirejs([
 
     require([
         'veronica',
-        'product/configs/home/extension',
-        'product/configs/home/page',
-        'product/configs/home/module',
-        'bootstrap'
+        'product/entries/ndcbjyq/extension',
+        'product/entries/ndcbjyq/page',
+        'product/entries/ndcbjyq/module'
     ], function (veronica, extension, page, module) {
 
         // 创建应用程序
@@ -34,6 +33,8 @@ requirejs([
             // 默认的 widget 查找模式支持三级目录，这里更改以支持最大5级目录
             widgetNamePattern: /(\w*)-?(\w*)-?(\w*)-?(\w*)-?(\w*)/
         });
+        app.uiKit.setDefault('keboacy');
+        app.viewEngine.setDefault('kendo');
 
         var _ = app.core._;
 
