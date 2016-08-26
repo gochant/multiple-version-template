@@ -1,0 +1,29 @@
+
+<div class="panel panel-default full flexbox abs">
+  <div class="panel-heading">
+    <div class="panel-title">用户管理</div>
+  </div>
+  <div class="panel-toolbar clearfix panel-toolbar-sm">
+    <div class="btn-toolbar btn-toolbar-sm pull-left"><a class="btn btn-default" data-action="refresh"><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp;刷新</a><a class="btn btn-default" data-action="add"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加</a><a class="btn btn-default" data-action="edit"><i class="fa fa-edit" aria-hidden="true"></i>&nbsp;编辑</a><a class="btn btn-default" data-action="enable"><i class="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;启用</a><a class="btn btn-default" data-action="disable"><i class="fa fa-ban" aria-hidden="true"></i>&nbsp;禁用</a><a class="btn btn-default" data-action="remove"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;删除</a><a class="btn btn-default" data-action="resetPassword"><i class="fa fa-undo" aria-hidden="true"></i>&nbsp;重置密码</a><a class="btn btn-default" data-action="setRole"><i class="fa fa-cog" aria-hidden="true"></i>&nbsp;设置角色</a>
+    </div>
+    <div class="pull-right">
+    </div>
+  </div>
+  <div class="panel-body no-padding grow">
+    <div data-role="datatable" data-auto-bind="false" data-bind="source: users">
+      <script class="tpl-header" type="text/x-template">
+        <tr>
+          <th class="string" data-type="string" data-prop="Name">姓名</th> 
+        </tr>
+      </script>
+      <script class="tpl-template" type="text/x-template">
+        <tr data-id="#= Id #">
+          <td title="#: Name != null ? Name : '-' #">#: Name != null ? Name : '-' #</td>
+        </tr>
+      </script>
+    </div>
+  </div>
+  <div class="panel-footer panel-footer-sm">
+    <div data-role="pager" data-bind="source:users"></div>
+  </div>
+</div>

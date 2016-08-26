@@ -1,0 +1,38 @@
+
+doctype html
+html
+  head
+    title 
+      block title
+    meta(http-equiv='content-type', content='text/html;charset=UTF-8')
+    link(href='../../../assets/veronica-ui/1.0.0/css/veronica-ui.css', rel='stylesheet')
+    link(href='../../content/styles/module.css', rel='stylesheet')
+    //- link(href='../../../assets/arcgis/4.0/esri/css/main.css', rel='stylesheet')
+    block style
+
+  body.desktop
+    block body
+
+    //- ----------------
+    //- utility elements
+    #page_mask
+    #glb_loading(style={display: 'none'}) 页面加载中
+    #ajax_loading(style={display: 'none'}) 数据加载中...
+
+    //- ----------------
+    //- global templates
+
+    //- 全屏对话框
+    script#tpl-modal-full(type='type/template')
+      .modal.modal-classy.fullscreen.fade
+        .modal-dialog
+          .modal-content.fn-wnd
+    //- 普通对话框
+    script#tpl-modal(type='type/template')
+      .modal.fade
+        .modal-dialog
+          .modal-content.fn-wnd
+
+    block script
+
+    script(src='../../../assets/require.js', data-main='../_common/launcher')

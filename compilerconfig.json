@@ -42,5 +42,9 @@
   {
     "outputFile": "www/product/content/styles/ndcbjyq.css",
     "inputFile": "www/product/content/styles/ndcbjyq.less"
+  },
+  {
+    "outputFile": "www/product/app/account_center/index.css",
+    "inputFile": "www/product/app/account_center/index.less"
   }
 ]
