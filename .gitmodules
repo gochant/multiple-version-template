@@ -1,7 +1,10 @@
 [submodule "www/assets/pukit"]
 	path = www/assets/pukit
-	url = https://github.com/gochant/pukit.git
+	url = https://git.oschina.net/gochant/pukit.git
 [submodule "www/assets/veronica"]
 	path = www/assets/veronica
 	url = https://git.oschina.net/gochant/veronica.git
 	branch = develop
+[submodule "www/assets/veronica-ui"]
+	path = www/assets/veronica
+	url = https://git.oschina.net/gochant/veronica-ui.git
