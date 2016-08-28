@@ -28,13 +28,10 @@ requirejs([
             widgetNamePattern: /(\w*)-?(\w*)-?(\w*)-?(\w*)-?(\w*)/
         }, entry.config));
 
-        // 修复 lodash 或 underscore 没有的方法
-        if (!_.any) {
-            _.any = _.some;
-        }
         app.use(veronicaui);
         app.uiKit.setDefault('keboacy');
         app.viewEngine.setDefault('kendo');
+        app.windowProvider.setDefault('bs-modal');
 
         entry.init && entry.init(app);
 

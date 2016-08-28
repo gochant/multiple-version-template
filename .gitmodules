@@ -6,5 +6,5 @@
 	url = https://git.oschina.net/gochant/veronica.git
 	branch = develop
 [submodule "www/assets/veronica-ui"]
-	path = www/assets/veronica
+	path = www/assets/veronica-ui
 	url = https://git.oschina.net/gochant/veronica-ui.git
