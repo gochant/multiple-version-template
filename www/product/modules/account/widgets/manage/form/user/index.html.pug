@@ -19,7 +19,7 @@ block actions
   +btn-icon-action('cog', '设置角色', 'setRole')
 
 block body
-  +kendo-datatable-for(model, 'list', 'source: mainList')(data-selectable='row')
+  +kendo-datatable-for(model, 'list', 'source: mainList')
             
 block footer
   +kendo-pager('source:mainList')

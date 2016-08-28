@@ -154,7 +154,7 @@
               </div>
             </div>
             <div class="panel-body no-padding">
-              <div data-role="datatable" data-auto-bind="false" data-bind="source: data.Persons">
+              <div data-role="datatable" data-auto-bind="false" data-bind="source: data.Persons" data-selectable="row">
                 <script class="tpl-header" type="text/x-template">
                   <tr>
                     <th class="string" data-type="string" data-prop="Name">����</th>
@@ -164,7 +164,7 @@
                     <th data-prop="RelDisplay">�뻧����ϵ</th> 
                   </tr>
                 </script>
-                <script class="tpl-template" type="text/x-template">
+                <script class="tpl-row" type="text/x-template">
                   <tr data-id="#= Id #">
                     <td title="#: Name != null ? Name : '-' #">#: Name != null ? Name : '-' #</td>
                     <td title="#: Number != null ? Number : '-' #">#: Number != null ? Number : '-' #</td>

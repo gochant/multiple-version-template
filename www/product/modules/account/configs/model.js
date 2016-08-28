@@ -12,6 +12,19 @@ define([
                         Name: {
                             displayName: '姓名',
                             type: 'string'
+                        },
+                        Password: {
+                            displayName: '密码',
+                            type: 'string',
+                            uihint: 'password'
+                        },
+                        NewPassword: {
+                            displayName: '新密码',
+                            type: 'string',
+                            uihint: 'password'
+                        },
+                        PasswordConfirm: {
+                            displayName: '密码确认',
                         }
                     },
                     views: {
