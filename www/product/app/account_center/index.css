@@ -52,6 +52,9 @@ body {
 .btn-wider {
   width: 10em;
 }
+.form-control.error {
+  border-color: #a94442;
+}
 .desktop > .aside,
 .desktop .desktop-sidebar {
   position: absolute;

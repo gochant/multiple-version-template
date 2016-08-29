@@ -54,9 +54,5 @@
   {
     "outputFile": "www/assets/veronica-ui/node_modules/bootstrap/less/bootstrap.css",
     "inputFile": "www/assets/veronica-ui/node_modules/bootstrap/less/bootstrap.less"
-  },
-  {
-    "outputFile": "www/assets/veronica-ui/src/less/_combine.css",
-    "inputFile": "www/assets/veronica-ui/src/less/_combine.less"
   }
 ]
