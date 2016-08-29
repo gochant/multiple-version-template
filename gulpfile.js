@@ -29,40 +29,52 @@ var templateHelper = require('./www/product/_toolkit/templateKit/helper.js');
 var modelFinder = require(modelFilePath);
 var path = require('path');
 
-gulp.task('pug:html', function () {
+var globalModelProvider = null;
+gulp.task('modelfinder', function (cb) {
+    if (globalModelProvider != null) {
+        cb();
+        return;
+    }
     modelFinder([
-        './www/**/modules/**/model.js',
-        '!./www/assets/**/*'
+      './www/**/modules/**/model.js',
+      '!./www/assets/**/*'
     ], function (modelProvider) {
 
-        gulp.src(htmlFiles)
-            .pipe(cache('pug'))
-            .pipe(rename(function (path) {
-                 path.extname = '';
-             }))
-            .pipe(data(function (file) {
-                var content = fm(String(file.contents));
-                file.contents = new Buffer(content.body);
-                var source = getContextName(file.path);
-                var contextModel = modelProvider[content.attributes.context || source];
-                var result = {
-                    globalModel: modelProvider,
-                    contextModel: contextModel,
-                    model: contextModel && contextModel[content.attributes.model],
-                    helper: templateHelper
-                };
-                return result;
-            }))
-            .pipe(pug({
-                basedir: pugBaseUrl,
-                client: false,
-                pretty: true,
-                compileDebug: false,
-                debug: false,
-                cache: true
-            }))
-            .pipe(gulp.dest('www/'));
+        globalModelProvider = modelProvider;
+        cb();
     });
+});
+
+gulp.task('pug:html', ['modelfinder'], function () {
+
+    gulp.src(htmlFiles)
+        .pipe(cache('pug'))
+        .pipe(rename(function (path) {
+            path.extname = '';
+        }))
+        .pipe(data(function (file) {
+            var modelProvider = globalModelProvider;
+            var content = fm(String(file.contents));
+            file.contents = new Buffer(content.body);
+            var source = getContextName(file.path);
+            var contextModel = modelProvider[content.attributes.context || source];
+            var result = {
+                globalModel: modelProvider,
+                contextModel: contextModel,
+                model: contextModel && contextModel[content.attributes.model],
+                helper: templateHelper
+            };
+            return result;
+        }))
+        .pipe(pug({
+            basedir: pugBaseUrl,
+            client: false,
+            pretty: true,
+            compileDebug: false,
+            debug: false,
+            cache: true
+        }))
+        .pipe(gulp.dest('www/'));
 });
 
 gulp.task('pug:tpl', function () {
@@ -93,9 +105,9 @@ gulp.task('pug:tpl', function () {
 });
 
 
-gulp.task('watch', function () {
+gulp.task('watch', [], function () {
     gulp.watch(tplFiles, ['pug:tpl']);
     gulp.watch(htmlFiles, ['pug:html']);
 });
 
-gulp.task('default', ['watch', 'pug:tpl', 'pug:html']);
+gulp.task('default', ['watch', 'pug:html']);

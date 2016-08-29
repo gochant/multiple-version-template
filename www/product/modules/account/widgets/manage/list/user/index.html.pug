@@ -9,8 +9,8 @@ block heading
   .panel-title 用户管理
 
 block actions
+  +btn-add(null, '添加新用户').btn-primary.btn-wider
   +btn-refresh
-  +btn-add
   +btn-edit
   +btn-icon-action('check-circle-o', '启用', 'enable')
   +btn-icon-action('ban', '禁用', 'disable')
@@ -18,8 +18,11 @@ block actions
   +btn-icon-action('undo', '重置密码', 'resetPassword')
   +btn-icon-action('cog', '设置角色', 'setRole')
 
+block inputs
+  +searchbox-sm('输入用户名查询', 'query')
+
 block body
   +kendo-datatable-for(model, 'list', 'source: mainList')(data-selectable='row')
             
 block footer
-  +kendo-pager('source:mainList')
+  +kendo-pager('source: mainList')

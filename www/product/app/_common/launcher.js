@@ -31,6 +31,7 @@ requirejs([
         app.use(veronicaui);
         app.uiKit.setDefault('keboacy');
         app.viewEngine.setDefault('kendo');
+        app.formValidation.setDefault('jqv');
         app.windowProvider.setDefault('bs-modal');
 
         entry.init && entry.init(app);

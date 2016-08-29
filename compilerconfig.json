@@ -46,5 +46,17 @@
   {
     "outputFile": "www/product/app/account_center/index.css",
     "inputFile": "www/product/app/account_center/index.less"
+  },
+  {
+    "outputFile": "www/assets/veronica-ui/src/less/themes/default/default.css",
+    "inputFile": "www/assets/veronica-ui/src/less/themes/default/default.less"
+  },
+  {
+    "outputFile": "www/assets/veronica-ui/node_modules/bootstrap/less/bootstrap.css",
+    "inputFile": "www/assets/veronica-ui/node_modules/bootstrap/less/bootstrap.less"
+  },
+  {
+    "outputFile": "www/assets/veronica-ui/src/less/_combine.css",
+    "inputFile": "www/assets/veronica-ui/src/less/_combine.less"
   }
 ]

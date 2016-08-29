@@ -1,29 +1,38 @@
 
-<div class="panel panel-default full flexbox abs">
+<div class="panel panel-default panel-transparent full flexbox abs">
   <div class="panel-heading">
     <div class="panel-title">用户管理</div>
   </div>
   <div class="panel-toolbar clearfix panel-toolbar-sm">
-    <div class="btn-toolbar btn-toolbar-sm pull-left"><a class="btn btn-default" data-action="refresh"><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp;刷新</a><a class="btn btn-default" data-action="add"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加</a><a class="btn btn-default" data-action="edit"><i class="fa fa-edit" aria-hidden="true"></i>&nbsp;编辑</a><a class="btn btn-default" data-action="enable"><i class="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;启用</a><a class="btn btn-default" data-action="disable"><i class="fa fa-ban" aria-hidden="true"></i>&nbsp;禁用</a><a class="btn btn-default" data-action="remove"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;删除</a><a class="btn btn-default" data-action="resetPassword"><i class="fa fa-undo" aria-hidden="true"></i>&nbsp;重置密码</a><a class="btn btn-default" data-action="setRole"><i class="fa fa-cog" aria-hidden="true"></i>&nbsp;设置角色</a>
+    <div class="btn-toolbar btn-toolbar-sm pull-left"><a class="btn btn-primary btn-wider" data-action="add"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加新用户</a><a class="btn btn-default"><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp;刷新</a><a class="btn btn-default"><i class="fa fa-edit" aria-hidden="true"></i>&nbsp;编辑</a><a class="btn btn-default"><i class="fa fa-check-circle-o" aria-hidden="true"></i>&nbsp;启用</a><a class="btn btn-default"><i class="fa fa-ban" aria-hidden="true"></i>&nbsp;禁用</a><a class="btn btn-default"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;删除</a><a class="btn btn-default"><i class="fa fa-undo" aria-hidden="true"></i>&nbsp;重置密码</a><a class="btn btn-default"><i class="fa fa-cog" aria-hidden="true"></i>&nbsp;设置角色</a>
     </div>
     <div class="pull-right">
+      <div class="input-group input-group-sm input-md-width">
+        <input class="form-control" type="text" placeholder="输入用户名查询"/><span class="input-group-btn"><a class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></a></span>
+      </div>
     </div>
   </div>
   <div class="panel-body no-padding grow">
-    <div data-role="datatable" data-auto-bind="false" data-bind="source: mainList" data-selectable="row">
+    <div data-role="datatable" data-auto-bind="false" data-bind="source: mainList">
       <script class="tpl-header" type="text/x-template">
         <tr>
-          <th class="string" data-type="string" data-prop="Name">姓名</th> 
+          <th class="string" data-type="string" data-prop="username">账户名</th>
+          <th class="string" data-type="string" data-prop="realName">姓名</th>
+          <th class="string" data-type="string" data-prop="email">邮箱</th>
+          <th class="boolean" data-type="boolean" data-prop="disabled">是否被禁用</th> 
         </tr>
       </script>
-      <script class="tpl-row" type="text/x-template">
-        <tr data-id="#= Id #">
-          <td title="#: Name != null ? Name : '-' #">#: Name != null ? Name : '-' #</td>
+      <script class="tpl-template" type="text/x-template">
+        <tr data-id="#= id #">
+          <td title="#: username != null ? username : '-' #">#: username != null ? username : '-' #</td>
+          <td title="#: realName != null ? realName : '-' #">#: realName != null ? realName : '-' #</td>
+          <td title="#: email != null ? email : '-' #">#: email != null ? email : '-' #</td>
+          <td title="#: disabled ? '是': '否' #">#: disabled ? '是': '否' #</td>
         </tr>
       </script>
     </div>
   </div>
   <div class="panel-footer panel-footer-sm">
-    <div data-role="pager" data-auto-bind="false" data-bind="source:mainList"></div>
+    <div data-role="pager" data-auto-bind="false" data-bind="source: mainList"></div>
   </div>
 </div>

@@ -1,11 +1,15 @@
 define([
-    'text!./index.html'
-], function (tpl) {
+    'text!./index.html',
+    'ver!account-manage-form-user'
+], function (tpl, userForm) {
     return {
         template: tpl,
         defaults: {
             autoResize: true,
             autoAction: true,
+            backendInterface: {
+                query: ':user.query'
+            },
             url: {
                 query: 'g:[this].registrationBook.query'
             }
@@ -14,25 +18,37 @@ define([
             return {
                 mainList: app.store.source({
                     data: [{
-                        Id: 1,
-                        Name: '张三'
+                        id: 1,
+                        name: '张三'
                     }, {
-                        Id: 2,
-                        Name: '李四'
+                        id: 2,
+                        name: '李四'
                     }],
                     page: 1
                 })
             }
         },
         listen: function () {
-            this.listenTo(this, 'modelBound', function () {
-                this.model('mainList').read();
-            })
+            this.listenTo([['addView', 'saved'], [this, 'modelBound']], function (data) {
+                this._query();
+            });
         },
-        refreshHandler: function () { },
-        addHandler: function () {
-            debugger;
-            this.htmlWindow('test');
+        _query: function(filter) {
+            this.model('mainList').filter(filter || []);
+        },
+        refreshHandler: function () {
+            this._query();
+        },
+        queryHandler: function (e, app) {
+            var keyword = app.domUtil.getSearchBoxValue($(e.target));
+            this._query({
+                field: 'username',
+                operator: 'contains',
+                value: keyword
+            });
+        },
+        addHandler: function (e, app) {
+            this.viewWindow('addView', userForm, null, app.configProvider.modal('sm'));
         },
         modifyHandler: function () { },
         removeHandler: function () { },

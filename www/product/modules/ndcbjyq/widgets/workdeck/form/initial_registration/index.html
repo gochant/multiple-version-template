@@ -150,11 +150,11 @@
         <div class="tab-pane fade member" role="tabpanel">
           <div class="panel panel-default">
             <div class="panel-toolbar clearfix panel-toolbar-sm">
-              <div class="btn-toolbar btn-toolbar-sm"><a class="btn btn-default" data-action="addMember"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加</a><a class="btn btn-default"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;从调查数据添加</a><a class="btn btn-default"><i class="fa fa-edit" aria-hidden="true"></i>&nbsp;编辑</a><a class="btn btn-default"><i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;删除</a>
+              <div class="btn-toolbar btn-toolbar-sm"><a class="btn btn-default"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;添加</a><a class="btn btn-default"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;从调查数据添加</a><a class="btn btn-default"><i class="fa fa-edit" aria-hidden="true"></i>&nbsp;编辑</a><a class="btn btn-default"><i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;删除</a>
               </div>
             </div>
             <div class="panel-body no-padding">
-              <div data-role="datatable" data-auto-bind="false" data-bind="source: data.Persons" data-selectable="row">
+              <div data-role="datatable" data-auto-bind="false" data-bind="source: data.Persons">
                 <script class="tpl-header" type="text/x-template">
                   <tr>
                     <th class="string" data-type="string" data-prop="Name">����</th>
@@ -164,8 +164,8 @@
                     <th data-prop="RelDisplay">�뻧����ϵ</th> 
                   </tr>
                 </script>
-                <script class="tpl-row" type="text/x-template">
-                  <tr data-id="#= Id #">
+                <script class="tpl-template" type="text/x-template">
+                  <tr data-id="#= id #">
                     <td title="#: Name != null ? Name : '-' #">#: Name != null ? Name : '-' #</td>
                     <td title="#: Number != null ? Number : '-' #">#: Number != null ? Number : '-' #</td>
                     <td title="#: GenderDisplay != null ? GenderDisplay : '-' #">#: GenderDisplay != null ? GenderDisplay : '-' #</td>
@@ -191,9 +191,9 @@
   <div class="container">
     <div class="navbar-form navbar-right">
       <div class="btn-toolbar data-bind-block">
-        <div class="btn-group"><a class="btn btn-default" data-action="prev" data-bind="css: { disabled : prevStatus }">上一步</a>
+        <div class="btn-group"><a class="btn btn-default">上一步</a>
         </div>
-        <div class="btn-group"><a class="btn btn-default" data-action="next" data-bind="css: { disabled : nextStatus }">下一步</a>
+        <div class="btn-group"><a class="btn btn-default">下一步</a>
         </div>
         <div class="btn-group"><a class="btn btn-primary" data-action="save">保&nbsp;存</a>
         </div>

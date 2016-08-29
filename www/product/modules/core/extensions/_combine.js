@@ -1,7 +1,8 @@
 define([
     './autoReport',
     './loading',
-    './zoneSelector'
+    './zoneSelector',
+    './configProvider'
 ], function () {
     var args = Array.prototype.slice.call(arguments);
     return function (app) {

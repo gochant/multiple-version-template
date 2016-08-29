@@ -18,5 +18,12 @@ define(function () {
                 template: $('#tpl-modal').html()
             };
         };
+
+        app.configProvider.modal = function (size) {
+            return {
+                type: 'modal',
+                template: $('#tpl-modal-' + size).html()
+            };
+        };
     };
 });
