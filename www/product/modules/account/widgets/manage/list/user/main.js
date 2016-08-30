@@ -15,6 +15,11 @@ define([
                 query: '@[this].registrationBook.query'
             }
         },
+        stores: {
+            '@@user=>list': {
+                
+            }
+        },
         staticModel: function (app) {
             return this.store {
                 mainList: app.store.source({

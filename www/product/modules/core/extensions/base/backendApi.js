@@ -2,8 +2,6 @@
 define([], function () {
     return function (app) {
         var _ = app.core._;
-        var $ = app.core.$;
-        var util = app.core.util;
 
         app.backendApi = app.provider.create({
             _preprocess: function (data) {
@@ -27,18 +25,9 @@ define([], function () {
 
         app.backendApi.add('default', {
             domain: '',
-            resuable: false
+            resuable: false,
+            api: {}
         });
-
-        // backendApi expression
-        'get user/pageUser json'
-
-        app.backendApi.add('account.user', {
-            domain: domain,
-            api: {
-                'create': 'user/pageUser get json',
-            }
-        })
 
     };
 });

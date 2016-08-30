@@ -3,6 +3,12 @@ define(function () {
     return function (app) {
         var _ = app.core._;
         var kendo = app.core.kendo || window.kendo;
+        var DataSource = kendo.data.DataSource;
+        var extend = app.core.$.extend;
+        var each = app.core.$.each;
+
+
+        var 
 
         var ApiDataSource = DataSource.extend({
             init: function (options) {
@@ -45,10 +51,7 @@ define(function () {
                 });
 
                 return deferred.promise();
-            },
-            remove: function () {
-
-            },
+            }
         });
 
         kendo.data.ApiDataSource = ApiDataSource;
