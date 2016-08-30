@@ -7,15 +7,16 @@ define([
         defaults: {
             autoResize: true,
             autoAction: true,
-            backendInterface: {
-                query: ':user.query'
+            store: [':user'],
+            backendApi: {
+                query: '//user.query'
             },
             url: {
-                query: 'g:[this].registrationBook.query'
+                query: '@[this].registrationBook.query'
             }
         },
         staticModel: function (app) {
-            return {
+            return this.store {
                 mainList: app.store.source({
                     data: [{
                         id: 1,
@@ -51,7 +52,9 @@ define([
             this.viewWindow('addView', userForm, null, app.configProvider.modal('sm'));
         },
         modifyHandler: function () { },
-        removeHandler: function () { },
+        removeHandler: function () {
+            this.store().remove()
+        },
         enableHandler: function () { },
         disableHandler: function () { },
         resetPasswordHandler: function () { },
