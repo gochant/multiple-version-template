@@ -4,7 +4,8 @@ define([
     './configs/page',
     './configs/meta'
 ], function theFunc(backendApi, model, page, meta) {
+    var args = Array.prototype.slice.call(arguments);
     return function (app) {
-        app.model.apply(theFunc, arguments);
+        app.module.setup(theFunc, args);
     };
 });

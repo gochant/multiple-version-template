@@ -7,9 +7,6 @@ define(function () {
         var extend = app.core.$.extend;
         var each = app.core.$.each;
 
-
-        var 
-
         var ApiDataSource = DataSource.extend({
             init: function (options) {
 
@@ -26,7 +23,7 @@ define(function () {
             },
             _customMethods: function () {
                 var me = this;
-                each(this.api, function (key, api) {
+                each(this.options.api, function (key, api) {
                     me[key + 'Api'] = function (options) {
                         this._accessApi(key, options);
                     }

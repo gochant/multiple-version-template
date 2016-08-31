@@ -11,7 +11,7 @@ define([], function () {
                             url: config
                         }
                     }
-                    var r = /(\w*)\s?(\w*)\s?(\w*)/.exec(config.url);
+                    var r = /([\w|-|\\|\/]*)\s?([\w|-|\\|\/]*)\s?([\w|-|\\|\/]*)/.exec(config.url);
                     config.url = data.domain + r[1];
                     config.type = config.type || r[2] || 'get';
                     config.dataType = config.dataType || r[3] || 'json';

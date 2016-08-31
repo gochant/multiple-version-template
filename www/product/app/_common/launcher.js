@@ -28,6 +28,42 @@ requirejs([
             widgetNamePattern: /(\w*)-?(\w*)-?(\w*)-?(\w*)-?(\w*)/
         }, entry.config));
 
+        // utility
+        var _ = app.core._;
+        var getParameterNames = app.core.util.getParameterNames;
+        app.module.setup = function (func, args) {
+            var names = getParameterNames(func);
+            var config = {};
+
+            _.each(names, function (name, i) {
+                config[name] = args[i];
+            });
+
+            _.each(config, function (conf, name) {
+                if (name === 'extension') {
+                    app.use(conf);
+                }
+                if (name === 'backendApi') {
+                    app.backendApi.add(conf);
+                }
+                if (name === 'meta') {
+                    app.module.add(conf.name, conf);
+                }
+                if (name === 'model') {
+                    app.modelProvider || (app.modelProvider = {});
+                    _.extend(app.modelProvider, conf);
+                }
+                if (name === 'page') {
+                    app.page.add(conf);
+                }
+                if (name === 'url') {
+                    app.urlProvider || (app.urlProvider = {});
+                    _.extend(app.urlProvider, conf);
+                }
+            })
+        }
+
+
         app.use(veronicaui);
         app.uiKit.setDefault('keboacy');
         app.viewEngine.setDefault('kendo');

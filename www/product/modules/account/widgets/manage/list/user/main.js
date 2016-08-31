@@ -7,31 +7,10 @@ define([
         defaults: {
             autoResize: true,
             autoAction: true,
-            store: [':user'],
-            backendApi: {
-                query: '//user.query'
-            },
-            url: {
-                query: '@[this].registrationBook.query'
-            }
         },
         stores: {
-            '@@user=>list': {
-                
-            }
-        },
-        staticModel: function (app) {
-            return this.store {
-                mainList: app.store.source({
-                    data: [{
-                        id: 1,
-                        name: '张三'
-                    }, {
-                        id: 2,
-                        name: '李四'
-                    }],
-                    page: 1
-                })
+            'list': {
+                from: '@@user'
             }
         },
         listen: function () {
@@ -40,13 +19,14 @@ define([
             });
         },
         _query: function(filter) {
-            this.model('mainList').filter(filter || []);
+            this.store().get().filter(filter || []);
         },
         refreshHandler: function () {
             this._query();
         },
         queryHandler: function (e, app) {
             var keyword = app.domUtil.getSearchBoxValue($(e.target));
+            
             this._query({
                 field: 'username',
                 operator: 'contains',
@@ -54,7 +34,7 @@ define([
             });
         },
         addHandler: function (e, app) {
-            this.viewWindow('addView', userForm, null, app.configProvider.modal('sm'));
+            this.viewWindow('addView', userForm, null, app.optionsProvider.get('window.modal')('sm'));
         },
         modifyHandler: function () { },
         removeHandler: function () {
