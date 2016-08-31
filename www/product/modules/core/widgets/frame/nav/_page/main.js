@@ -13,7 +13,7 @@ define([
                         }
                     });
                 } else {
-                    this.$('a[href=#' + currPage + ']').closest('li').addClass('active');
+                    this.$('a[href="#' + currPage + '"]').closest('li').addClass('active');
                 }
             });
         }

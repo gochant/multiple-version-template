@@ -9,7 +9,10 @@ module.exports = function (modelSrc, callback) {
         callback(modelProvider);
     }).pipe(map(function (file, cb) {
         var filePath = path.relative(__dirname, file.path);
-        var obj = require(filePath)();
+        var obj = require(filePath);
+        if (typeof obj === 'function') {
+            obj = obj();
+        }
         Object.assign(modelProvider, obj);
     }));
 };

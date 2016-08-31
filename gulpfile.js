@@ -6,12 +6,17 @@ var watch = require('gulp-watch');
 var cache = require('gulp-cached');
 var data = require('gulp-data');
 var fm = require('front-matter');
+var path = require('path');
 
 // config variables
 
-var pugBaseUrl = 'www/product/_toolkit/templateKit';
+var pugBaseUrl = 'www/product/build/templateKit';
 var tplFiles = 'www/**/*.tpl.pug';
 var htmlFiles = ['www/**/*.html.pug', '!www/assets/**/*.html.pug'];
+var modelFilePath = './www/product/build/templateKit/modelFinder.js';
+var templateHelper = require('./www/product/build/templateKit/helper.js');
+
+var modelFinder = require(modelFilePath);
 
 // helper
 
@@ -23,11 +28,6 @@ function getContextName(path) {
     return null;
 }
 
-
-var modelFilePath = './www/product/_toolkit/templateKit/modelFinder.js';
-var templateHelper = require('./www/product/_toolkit/templateKit/helper.js');
-var modelFinder = require(modelFilePath);
-var path = require('path');
 
 var globalModelProvider = null;
 gulp.task('modelfinder', function (cb) {
@@ -70,7 +70,7 @@ gulp.task('pug:html', ['modelfinder'], function () {
             basedir: pugBaseUrl,
             client: false,
             pretty: true,
-            compileDebug: false,
+            compileDebug: true,
             debug: false,
             cache: true
         }))

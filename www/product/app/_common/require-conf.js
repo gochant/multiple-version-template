@@ -16,11 +16,14 @@
 
     return function (devPath, releasePath, version) {
         version = version || '0.1.0';
-        devPath = devPath || 'http://192.168.1.18:8097/cdn/vendor';  // 开发时路径
+        var framePath = '../bower_components';  // 开发时路径
+        var path2 = '../vendor';
+        var path3 = './vendor';
         releasePath = releasePath || 'vendor';  // 发布时路径
 
         var config = {
             debug: true,
+            urlArgs: 'v=' + version,
             shim: {
                 'underscore': { 'exports': '_' },
                 'kendo-ui-pro': { 'deps': ['jquery'], 'exports': 'kendo' },
@@ -34,26 +37,27 @@
             }
         };
 
-        var framePath = releasePath;
-        config.urlArgs = 'v=' + version;
+        //var framePath = releasePath;
+        //config.urlArgs = 'v=' + version;
 
-        if (config.debug === true) {
-            framePath = devPath;
-           // config.urlArgs = "v=" + (new Date()).getTime();
-        }
+        //if (config.debug === true) {
+        //    framePath = devPath;
+        //   // config.urlArgs = "v=" + (new Date()).getTime();
+        //}
 
         // 第三方库路径
         config.paths = {
-            'underscore': framePath + '/lodash/4.13.1/lodash',
-            'jquery': framePath + '/jquery/1.11.3/jquery',
-            'text': framePath + '/requirejs-text/2.0.14/text',
-            //'ver': framePath + '/requirejs-ver/0.2.0/ver',
-            'ver': 'assets/ver',
-            'css': framePath + '/require-css/0.1.8/css',
-            'normalize': framePath + '/require-css/0.1.8/normalize',
-            'css-builder': framePath + '/require-css/0.1.8/css-builder',
-            'veronica': 'assets/veronica/dist/veronica',
-            'veronica-ui': 'assets/veronica-ui/dist/js/veronica-ui',
+            'ver': framePath + '/requirejs-ver/ver',
+            'veronica': framePath + '/veronica/dist/veronica',
+            'veronica-ui': framePath + '/veronica-ui/dist/js/veronica-ui',
+
+            'underscore': framePath + '/lodash/dist/lodash',
+            'jquery': framePath + '/jquery/dist/jquery',
+            'text': framePath + '/requirejs-text/text',
+            'css': framePath + '/require-css/css',
+            'normalize': framePath + '/require-css/normalize',
+            'css-builder': framePath + '/require-css/css-builder',
+
 
             'jquery-scrollbar': framePath + '/jquery.scrollbar/0.2.9/jquery.scrollbar',
             'select2': framePath + '/select2/3.5.4/js/select2',
