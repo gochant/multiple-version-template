@@ -14,8 +14,8 @@
     }
 }(this, function () {
 
-    return function (devPath, releasePath) {
-        var version = '0.1.1';
+    return function (devPath, releasePath, version) {
+        version = version || '0.1.0';
         devPath = devPath || 'http://192.168.1.18:8097/cdn/vendor';  // 开发时路径
         releasePath = releasePath || 'vendor';  // 发布时路径
 
@@ -54,6 +54,7 @@
             'css-builder': framePath + '/require-css/0.1.8/css-builder',
             'veronica': 'assets/veronica/dist/veronica',
             'veronica-ui': 'assets/veronica-ui/dist/js/veronica-ui',
+
             'jquery-scrollbar': framePath + '/jquery.scrollbar/0.2.9/jquery.scrollbar',
             'select2': framePath + '/select2/3.5.4/js/select2',
             'summernote': framePath + '/summernote/0.8.1/summernote',

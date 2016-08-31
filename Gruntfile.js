@@ -3,7 +3,7 @@
 
 module.exports = function (grunt) {
 
-    var options = require('./www/product/build/config.js');
+    var options = require('./www/product/build/pack-conf.js');
 
     grunt.initConfig({
         veronica: options
