@@ -59,25 +59,25 @@
             'css-builder': framePath + '/require-css/css-builder',
 
 
-            'jquery-scrollbar': framePath + '/jquery.scrollbar/0.2.9/jquery.scrollbar',
-            'select2': framePath + '/select2/3.5.4/js/select2',
-            'summernote': framePath + '/summernote/0.8.1/summernote',
-            'summernote-lang': framePath + '/summernote/0.8.1/lang/summernote-zh-CN',
-            'echarts': framePath + '/echarts/3.2.1/echarts',
-            'store': framePath + '/store/1.3.20/store',
+            //'jquery-scrollbar': framePath + '/jquery.scrollbar/0.2.9/jquery.scrollbar',
+            //'select2': framePath + '/select2/3.5.4/js/select2',
+            //'summernote': framePath + '/summernote/0.8.1/summernote',
+            //'summernote-lang': framePath + '/summernote/0.8.1/lang/summernote-zh-CN',
+            //'echarts': framePath + '/echarts/3.2.1/echarts',
+            //'store': framePath + '/store/1.3.20/store',
 
-            'pug': 'assets/runtime',
-            'esri': 'assets/arcgis/4.0/esri',
-            'dojo': 'assets/arcgis/4.0/dojo',
-            'dgrid': 'assets/arcgis/4.0/dgrid',
-            'dijit': 'assets/arcgis/4.0/dijit',
-            'dojox': 'assets/arcgis/4.0/dojox',
-            'domReady': 'assets/arcgis/4.0/domReady',
-            'dstore': 'assets/arcgis/4.0/dstore',
-            'has': 'assets/arcgis/4.0/has',
-            'i18n': 'assets/arcgis/4.0/i18n',
-            'moment': 'assets/arcgis/4.0/moment',
-            'util': 'assets/arcgis/4.0/util'
+            //'pug': 'assets/runtime',
+            'esri': framePath + '/esri',
+            'dojo': framePath + '/dojo',
+            'dgrid': framePath + '/dgrid',
+            'dijit': framePath + '/dijit',
+            'dojox': framePath + '/dojox',
+            //'domReady': framePath + 'assets/arcgis/4.0/domReady',
+            'dstore': framePath + '/dstore',
+            //'has': framePath + 'assets/arcgis/4.0/has',
+            //'i18n': framePath + 'assets/arcgis/4.0/i18n',
+            'moment': framePath + '/moment',
+            'util': framePath + '/util'
         }
 
         return config;

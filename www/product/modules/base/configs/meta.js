@@ -1,5 +1,5 @@
 define({
-    name: 'core',
+    name: 'base',
     path: './product/modules/${name}/widgets',
     multilevel: true
 });

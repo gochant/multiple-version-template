@@ -1,5 +1,5 @@
 define([
-    '../../modules/core/index',
+    '../../modules/base/index',
     '../../modules/account/index'
 ], function () {
     var modules = Array.prototype.slice.call(arguments);

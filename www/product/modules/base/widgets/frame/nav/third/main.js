@@ -1,5 +1,5 @@
 define([
-    'ver!core-frame-nav-_page@core',
+    'ver!base-frame-nav-_page',
     'text!./index.html'
 ], function (ctor, tpl) {
     var base = ctor.export();

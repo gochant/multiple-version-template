@@ -3,9 +3,9 @@ define([
     './configs/model',
     './configs/page',
     './configs/url'
-], function () {
+], function theFunc(meta, model, page, url) {
     var args = Array.prototype.slice.call(arguments);
     return function (app) {
-        app.use(args);
+        app.module.setup(theFunc, args);
     };
 });
