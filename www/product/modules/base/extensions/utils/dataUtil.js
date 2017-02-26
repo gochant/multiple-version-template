@@ -7,10 +7,10 @@ define(function () {
         app.dataUtil || (app.dataUtil = {});
 
         /**
-         * ´ÓÑ¡ÔñÁĞ±íÖĞ»ñÈ¡Ö¸¶¨ÖµµÄÏÔÊ¾ÎÄ±¾
-         * @param {Array} selectList - Ñ¡ÔñÁĞ±í 
-         * @param {number|string} value - Öµ 
-         * @returns {string} ÏÔÊ¾ÎÄ±¾ 
+         * ä»é€‰æ‹©åˆ—è¡¨ä¸­è·å–æŒ‡å®šå€¼çš„æ˜¾ç¤ºæ–‡æœ¬
+         * @param {Array} selectList - é€‰æ‹©åˆ—è¡¨ 
+         * @param {number|string} value - å€¼ 
+         * @returns {string} æ˜¾ç¤ºæ–‡æœ¬ 
          */
         app.dataUtil.getSelectListDisplay = function (selectList, value) {
             var selected = _.find(selectList, function (item) {

@@ -16,9 +16,8 @@
     "jquery": "1.12.3",
     "require-css": "^0.1.8",
     "requirejs-text": "^2.0.15",
-    "esri": "arcgis-js-api#^4.0.0",
     "veronica": "develop",
-    "veronica-ui": "master",
+    "veronica-ui": "develop",
     "requirejs-ver": "master"
   },
   "resolutions": {

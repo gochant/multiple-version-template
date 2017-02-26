@@ -1,72 +1,61 @@
-var reqPath = '../configs/require-conf.js';
-var reqConfig = require(reqPath)('../__local__/vendor');
+var reqPath = '../app/_common/require-conf.js';
+var reqConfig = require(reqPath)('../bower_components');
 var dir = './www-built';
+
+reqConfig.fileExclusionRegExp = /^\.|/;
 
 module.exports = {
     product: {
         options: {
-            appDir: './www',
+            appDir: {
+                origin: [{
+                    cwd: './www/',
+                    src: ['product/**']
+                }]
+            },
             baseUrl: '.',
             dir: dir,
             reqConfig: reqConfig,
             clean: {
                 custom: [
-                    dir + '/*',
-                    '!' + dir + '/assets',
-                    '!' + dir + '/product',
-                    '!' + dir + '/styles',
-                    '!' + dir + '/vendor',
-                    '!' + dir + '/widgets',
-                    dir + '/*/**/configs',
-                    dir + '/*/**/widgets',
-                    dir + '/*/**/extensions',
-                    dir + '/*/**/modules',
-                    dir + '/*/**/pages'
+                    dir + '/**/build',
+                    dir + '/**/modules',
+                    dir + '/**/*.less',
+                    dir + '/**/*.pug',
+                    dir + '/widgets/**/*.html',
                 ]
             },
+            copy: {
+                cwd: './bower_components',
+                src: ['**', '!**/src/*'],
+                dest: dir + '/assets',
+                expand: true
+            },
             notMerge: [],
-            optimize: false,
-            removeCombined: false,
+            optimize: {
+                paths: []
+            },
             entryPack: [{
-                name: './product/entries/home',
-                include: [
-                    'veronica', 'jquery', 'underscore',
-                    'text', 'css', 'ver'
-                ]
+                name: './product/app/sample/entry',
+                // include: [
+                //     'veronica', 'veronica-ui', 'jquery', 'underscore',
+                //     'text', 'css', 'ver'
+                // ]
             }],
             jsPack: {
                 defaults: {
                     target: './widgets',
                     unique: true
                 },
-                paths: [
-                    {
-                        name: 'module1',
-                        origin: './product/widgets/module1'
-                    }
-                ]
+                paths: [{
+                    name: 'base',
+                    origin: './product/modules/base/widgets'
+                }, {
+                    name: 'sample',
+                    origin: './product/modules/sample/widgets'
+                }]
             },
-            cssPack: {},
-            remote: {
-                vendor: [{
-                    name: 'vendor.zip',
-                    //   path: 'http://localhost:8001/vendor/'
-                    path: 'http://192.168.1.18:8097/cdn/vendor/'
-                }],
-                copy: {
-                    files: [{
-                        expand: true,
-                        cwd: '__local__/vendor/',
-                        src: [
-                            'jquery/**',
-                            'tinyui/**',
-                            'veronica-ui/**',
-                            'echarts/**'
-                        ],
-                        dest: 'www-built/vendor'
-                    }]
-                }
-            }
+            cssPack: {}
         }
     }
 }

@@ -1,3 +1,7 @@
+/**
+ * 应用启动文件
+ */
+
 // 基路径设置到前端根目录, 这里以页面路径为准
 requirejs.config({
     baseUrl: '../../../'
@@ -29,15 +33,7 @@ requirejs([
         }, entry.config));
 
         // utility
-        var _ = app.core._;
-        var getParameterNames = app.core.util.getParameterNames;
-        app.module.setup = function (func, args) {
-            var names = getParameterNames(func);
-            var config = {};
-
-            _.each(names, function (name, i) {
-                config[name] = args[i];
-            });
+        app.module.setup = function (config) {
 
             _.each(config, function (conf, name) {
                 if (name === 'extension') {
@@ -67,7 +63,7 @@ requirejs([
         app.use(veronicaui);
         app.uiKit.setDefault('keboacy');
         app.viewEngine.setDefault('kendo');
-        app.formValidation.setDefault('jqv');
+        app.formValidation.setDefault('kendo');
         app.windowProvider.setDefault('bs-modal');
 
         entry.init && entry.init(app);

@@ -1,9 +1,0 @@
-+panel
-  +panel-toolbar('sm')
-    +btn-toolbar('sm')
-      +btn-icon('plus', '添加')(data-action='addMember')
-      +btn-icon('plus', '从调查数据添加')
-      +btn-icon('edit', '编辑')
-      +btn-icon('trash-o', '删除')
-  +panel-body.no-padding
-    +kendo-datatable-for(contextModel.familyMember, 'list', 'source: data.Persons')(data-selectable='row')
