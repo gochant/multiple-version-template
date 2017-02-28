@@ -1,6 +1,6 @@
 {
-  "name": "app",
-  "version": "0.1.0",
+  "name": "multiple-version",
+  "version": "1.0.2",
   "devDependencies": {
     "amd-loader": "0.0.5",
     "eslint": "^3.2.2",
