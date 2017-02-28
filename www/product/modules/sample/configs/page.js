@@ -11,8 +11,8 @@ define({
          * 页面中的所有 widget
          */
         widgets: [
-            'sample-frame-view-header=>#header',
-            'sample-frame-nav-side=>#sidebar'
+            'sample-frame-view-header@sample=>#header',
+            'sample-frame-nav-side@sample=>#sidebar'
         ],
         /**
          * 该页面所继承的页面，如果不添加该属性，那么默认继承一个叫做 `_common` 的页面，如果要阻止该行为，设置空数组
@@ -22,7 +22,7 @@ define({
     },
     'sample_manage_user': {
         widgets: [
-            'sample-manage-list-user=>#content'
+            'sample-manage-list-user@sample=>#content'
         ],
         inherits: ['_sample_common']
     }

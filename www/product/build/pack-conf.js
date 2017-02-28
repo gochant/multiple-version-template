@@ -1,6 +1,6 @@
 var reqPath = '../app/_common/require-conf.js';
 var reqConfig = require(reqPath)('../bower_components');
-var dir = './www-built';
+var dir = './www-built';  // 发布时目录
 
 reqConfig.fileExclusionRegExp = /^\.|/;
 

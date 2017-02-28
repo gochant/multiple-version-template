@@ -1,6 +1,6 @@
 define([
     'text!./index.html',
-    'ver!sample-manage-form-user'
+    'ver!sample-manage-form-user@sample'
 ], function (tpl, userForm) {
     return {
         template: tpl,

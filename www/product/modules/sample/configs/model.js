@@ -8,7 +8,7 @@ define({
          * 简单模型示例
          */
         appInfo: {  // 模型名称
-            title: '账户中心'  // 模型字段和值
+            title: 'Sample Project'  // 模型字段和值
         },
         /**
          * 标准模型示例

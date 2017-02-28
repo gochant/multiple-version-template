@@ -10,5 +10,9 @@
   {
     "outputFile": "www/product/app/account_center/index.css",
     "inputFile": "www/product/app/account_center/index.less"
+  },
+  {
+    "outputFile": "www/product/app/sample/index.css",
+    "inputFile": "www/product/app/sample/index.less"
   }
 ]

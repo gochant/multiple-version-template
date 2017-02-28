@@ -1,7 +1,7 @@
 @import url('../../../../../bower_components/veronica-ui/dist/css/default.css');
 
-@import "../../../../../bower_components/veronica-ui/dist/less/default/variables";
-@import "../../../../../bower_components/veronica-ui/dist/less/mixins";
+@import "../../../../../bower_components/veronica-ui/dist/less/default/variables.less";
+/*@import "../../../../../bower_components/veronica-ui/dist/less/mixins.less";*/
 @import "variables";
 @import "reboot";
 @import "animate";
@@ -346,13 +346,13 @@ label.required:before {
   margin-top: 5px;
 }
 
-.k-invalid-msg {
+/*.k-invalid-msg {
   position: absolute;
   font-size: 18px;
   color: #cf4c35;
   line-height: @input-height-base;
   right: 15px;
-}
+}*/
 
 .k-dropdown .k-state-default.k-state-active .k-input,
 .k-state-selected .k-progress-status {
@@ -361,11 +361,16 @@ label.required:before {
 
 .form-control-container {
   padding-right: 40px;
-
-  .k-invalid-msg {
+  /*.k-invalid-msg {
     position: absolute;
     top: 0;
-  }
+  }*/
+}
+
+.panel-footer > [data-role=pager] {
+  padding: 0;
+  border-width: 0;
+  background-color: transparent;
 }
 
 @table-invalid-msg-top: @table-cell-padding;

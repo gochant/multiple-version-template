@@ -1,7 +1,7 @@
 define({
     '_common': {
         widgets: [
-            'base-frame-header@framework=>#header'
+            'base-frame-header@base=>#header'
         ]
     }
 });

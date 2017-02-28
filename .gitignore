@@ -10,3 +10,4 @@ arcgis
 .vscode
 vendor
 .idea
+compilerconfig.json
