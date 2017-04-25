@@ -1,6 +1,6 @@
 var reqPath = '../app/_common/require-conf.js';
 var reqConfig = require(reqPath)('../bower_components');
-var dir = './www-built';  // ����ʱĿ¼
+var dir = './www-built';  // 发布时目录
 
 reqConfig.fileExclusionRegExp = /^\.|/;
 
@@ -32,9 +32,10 @@ module.exports = {
                 expand: true
             },
             notMerge: [],
-            optimize: {
-                paths: []
-            },
+            // optimize: {
+            //     paths: []
+            // },
+            optimize: false,
             entryPack: [{
                 name: './product/app/sample/entry',
                 // include: [
